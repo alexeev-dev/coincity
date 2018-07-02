@@ -25,7 +25,6 @@ $(document).ready(function() {
 	});
     
     //check real length
-    var realLength = $(".houses.drop .house-item").length;
     dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
         moves: function (el, container, handle) {
             return handle.classList.contains('handle');
@@ -33,10 +32,9 @@ $(document).ready(function() {
     })
     .on('drop', function (el) {
         el.className += ' dropped';
-        $(".house-item.dropped").find("section img").toggleClass("handle");
-        if($("#right-lovehandles .house-item").hasClass("dropped")){
-            $("#right-lovehandles .house-item.dropped").prependTo("#right-lovehandles");
-        };
+        // if($("#right-lovehandles .house-item").hasClass("dropped")){
+        //     $("#right-lovehandles .house-item.dropped").prependTo("#right-lovehandles");
+        // };
         el.classList.remove('dropped');
         
         var housesWidth = $(".houses.drop").outerWidth();
@@ -47,30 +45,11 @@ $(document).ready(function() {
         
         if(housesWidth_ > $(window).width()){
         	$(".houses.drop").attr("style", "width: "+ housesWidth_ +"px;");
-        	console.log(housesWidth_);
         } else {
         	$(".houses.drop").attr("style", "width: 100%;");
-        	console.log(housesWidth_);
         }
-        // if(realLength < $(".houses.drop .house-item").length){
-        //     if($(".houses.drop").outerWidth() > $(window).width()){
-        //         $(".houses.drop").attr("style", "width: "+ (housesWidth+410) +"px;")
-        //     } else {
-        //     	 $(".houses.drop").attr("style", "width: 100%;");
-        //     }
-        // }else{
-        //     if(realLength > $(".houses.drop .house-item").length){
-        //     	if($(".houses.drop").outerWidth() > $(window).width()){
-        //     		$(".houses.drop").attr("style", "width: "+ (housesWidth-410) +"px;");
-        //     	} else {
-        //     		$(".houses.drop").attr("style", "width: 100%;");
-        //     	}
-        //     }
-        // }
-        //check prepend length
-        realLength = $(".houses.drop .house-item").length;
         
-    })
+    });
     
     
     
@@ -115,6 +94,11 @@ $(document).ready(function() {
 //            }
 //        }
 //    });
+
+	// jquery scrollbar
+	$('.scrollbar').scrollbar({
+		"scrollx": $('.scrollbar_x')
+	});
     
 });
 

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(jquery.scrollbar.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -5429,12 +5430,22 @@ readers do not read off random characters that represent icons */
     -webkit-justify-content: flex-start;
     -ms-flex-pack: start;
     justify-content: flex-start;
-    padding: 10px;
+    padding: 10px 10px 15px;
     min-height: 85px;
+    margin-bottom: 15px;
     overflow-x: auto; }
     @media (max-width: 480px) {
       .footer > section {
         padding: 10px 0; } }
+    .footer > section::-webkit-scrollbar {
+      height: 15px;
+      border: solid 2px #59bfff;
+      -webkit-border-radius: 100px;
+      border-radius: 100px; }
+    .footer > section::-webkit-scrollbar-thumb {
+      background: #59bfff;
+      -webkit-border-radius: 100px;
+      border-radius: 100px; }
     .footer > section .owl-stage {
       min-width: 100%;
       height: 100%; }
@@ -5781,7 +5792,8 @@ readers do not read off random characters that represent icons */
       min-width: 100%;
       height: 100%; }
   .houses .house-item {
-    width: 410px;
+    min-width: 410px;
+    width: auto;
     padding: 0 30px;
     display: -webkit-box;
     display: -webkit-flex;
@@ -5799,13 +5811,43 @@ readers do not read off random characters that represent icons */
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0; }
+    .houses .house-item:nth-child(2n) {
+      padding: 0 48px; }
+      .houses .house-item:nth-child(2n) section .houses-images img {
+        -webkit-transform: translateZ(10px);
+        transform: translateZ(10px); }
+    .houses .house-item:nth-child(3n) {
+      padding: 0 60px 0 30px; }
+      .houses .house-item:nth-child(3n) section .houses-images img {
+        -webkit-transform: translateZ(2px);
+        transform: translateZ(2px); }
+    .houses .house-item:nth-child(4n) {
+      padding: 0 55px 0 64px; }
+      .houses .house-item:nth-child(4n) section .houses-images img {
+        -webkit-transform: translateZ(-7px);
+        transform: translateZ(-7px); }
+    .houses .house-item:nth-child(5n) {
+      padding: 0 46px 0 63px; }
+      .houses .house-item:nth-child(5n) section .houses-images img {
+        -webkit-transform: translateZ(6px);
+        transform: translateZ(6px); }
+    .houses .house-item:nth-child(6n+1) {
+      padding: 0 64px 0 41px; }
+      .houses .house-item:nth-child(6n+1) section .houses-images img {
+        -webkit-transform: translateZ(-15px);
+        transform: translateZ(-15px); }
+    .houses .house-item:nth-child(7n-3) {
+      padding: 0 75px 0 58px; }
+      .houses .house-item:nth-child(7n-3) section .houses-images img {
+        -webkit-transform: translateZ(8px);
+        transform: translateZ(8px); }
     @media (max-width: 1199px) {
       .houses .house-item {
-        width: 360px;
+        min-width: 360px;
         padding: 0 20px; } }
     @media (max-width: 991px) {
       .houses .house-item {
-        width: 320px;
+        min-width: 320px;
         padding: 0 15px; } }
     .houses .house-item > header {
       display: block;
@@ -5872,7 +5914,9 @@ readers do not read off random characters that represent icons */
           -webkit-box-pack: center;
           -webkit-justify-content: center;
           -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+          -webkit-perspective: 100px;
+          perspective: 100px; }
         .houses .house-item > section figure.draggable {
           display: none; }
         .houses .house-item > section figure img {
@@ -6009,6 +6053,43 @@ readers do not read off random characters that represent icons */
 
 .sortable_placeholder {
   background: none !important; }
+
+.scroll-wrapper {
+  width: 100%; }
+
+.scroll-x, .scroll-y {
+  display: none;
+  position: fixed;
+  border: solid 2px #59bfff;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  cursor: pointer;
+  overflow: hidden; }
+  .scroll-x div, .scroll-y div {
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%; }
+  .scroll-x .scroll-bar, .scroll-y .scroll-bar {
+    background: #59bfff;
+    z-index: 12; }
+
+.scroll-x {
+  width: 1090px; }
+  .scroll-x.scroll-scrollx_visible {
+    display: block;
+    height: 15px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: 320px;
+    width: 1090px; }
+
+.scroll-y {
+  height: 100px;
+  display: none !important; }
 
 .app {
   min-width: 320px;
