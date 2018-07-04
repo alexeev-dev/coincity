@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(jquery.scrollbar.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -4430,9 +4429,20 @@ readers do not read off random characters that represent icons */
   line-height: 34px;
   text-align: center;
   display: block;
-  width: 100%;
+  width: -webkit-calc(100% - 160px);
+  width: calc(100% - 160px);
   padding: 5px;
   background: #ffffff; }
+
+.log-reg form .help-block {
+  color: #ff0000;
+  font-size: 16px;
+  font-family: robotocondensed-regular, sans-serif;
+  line-height: 24px;
+  padding-left: 160px;
+  padding-top: 5px;
+  display: block;
+  width: 100%; }
 
 .log-reg form .btn {
   font-size: 22px;
@@ -4457,7 +4467,10 @@ readers do not read off random characters that represent icons */
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
   .log-reg form .form-group:last-child {
     margin-bottom: 0; }
   .log-reg form .form-group .checkbox {
@@ -6054,7 +6067,7 @@ readers do not read off random characters that represent icons */
 .sortable_placeholder {
   background: none !important; }
 
-.scroll-wrapper {
+.scrollbar {
   width: 100%; }
 
 .scroll-x, .scroll-y {
