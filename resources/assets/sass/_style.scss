@@ -1,0 +1,48 @@
+.app {
+	min-width: 320px; height: 100vh; position: relative; z-index: 1; padding: 20px 0 0; display: flex; align-items: center; justify-content: space-between; flex-direction: column;
+	background: url('../img/backgrounds/mountain.png') center center no-repeat; background-size: cover;
+	overflow-x: hidden;
+
+	// &:after {
+	// 	content: '';
+	// 	display: block; width: 100%; height: 100%; position: absolute; left: 0; bottom: 0; z-index: 2;
+	// 	background: url('../img/backgrounds/ground.png') center bottom repeat-x; background-size: 1800px auto;
+	// 	pointer-events: none;
+	// }
+
+	.wr {
+		&-header, &-houses, &-footer {
+			z-index: 5; position: relative;
+		}
+
+
+		&-header {
+			z-index: 6; width: 100%;
+		}
+
+		&-houses {
+			height: 100%; max-height: 870px; padding: 40px 0 0; display: flex; width: 100%;
+			overflow-x: auto;
+
+			@include respond-to(sm) {
+				padding-top: 10px;
+			}
+			
+			.container {
+				height: 100%;
+			}
+		}
+		
+		&-footer {
+			position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+			background: #ebebeb; border-radius: 10px;
+
+			@include respond-to(sm) {
+				width: calc(100% - 30px); bottom: 30px;
+			}
+			@include respond-to(xs) {
+				bottom: 15px;
+			}
+		}
+	}
+}

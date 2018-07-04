@@ -1,0 +1,536 @@
+.popup {
+	position: fixed; width: 100%; height: 100vh; left: 0; top: 0; z-index: 1000;
+	background: rgba(0,0,0,0.2);
+	opacity: 0; pointer-events: none;
+	transition: 0.3s ease-out;
+
+	&.active {
+		opacity: 1; pointer-events: auto;
+	}
+
+	& > div {
+		background: #ebebeb; border-radius: 10px;
+		opacity: 0; pointer-events: none;
+		transition: 0.3s ease-out;
+
+		&.active {
+			opacity: 1; pointer-events: auto;
+		}
+	}
+
+	a.close {
+		position: absolute; right: 10px; top: 10px; width: 40px; height: 40px;
+		background: #ff3333; border-bottom: solid 2px #b51010; border-radius: 50%; background-size: contain;
+
+		@include respond-to(xs) {
+			width: 30px; height: 30px; right: 5px; top: 5px;
+		}
+
+		&:before {
+			content: '';
+			display: block; width: 100%; height: 50%; position: absolute; left: 0; bottom: 0; z-index: 1;
+			background: #ff0000; border-radius: 0 0 100px 100px;
+		}
+
+		&:after {
+			content: '';
+			display: block; width: 70%; height: 70%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1) rotate(0deg); z-index: 2;
+			background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%;
+		}
+	}
+
+	&-house-info {
+		display: block; height: calc(100vh - 200px); width: calc(100% - 30px); max-width: 1180px; position: absolute; left: 50%; top: calc(50% + 80px); transform: translate(-50%, -50%);
+		background: #ebebeb; border-radius: 10px;
+
+		@include respond-to(sm) {
+			height: calc(100vh - 120px); top: calc(50% + 50px);
+		}
+		@include respond-to(xs) {
+			height: calc(100vh - 90px); top: calc(50% + 35px);
+		}
+
+		&:before {
+			content: '';
+			display: block; width: 500px; height: 500px; position: absolute; left: 50%; top: -150px; transform: translateX(-50%); z-index: -1;
+			background: #ebebeb; border-radius: 50%;
+
+			@include respond-to(sm) {
+				width: 300px; height: 300px; top: -100px;
+			}
+			@include respond-to(xs) {
+				width: 200px; height: 200px; top: -75px;
+			}
+		}
+	}
+
+	&-house-info-small {
+		display: flex; flex-direction: column; align-items: center; width: calc(100% - 30px); max-width: 400px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 20px;
+		background: #ebebeb; border-radius: 10px;
+
+		a.close {
+			position: relative; right: 0; top: 0;
+		}
+	}
+
+	&-log-reg {
+		width: calc(100% - 30px); max-width: 500px; padding: 20px; position: relative; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+	}
+}
+
+.house-info {
+	height: 100%; display: flex; flex-direction: column; align-items: center; padding-bottom: 20px;
+
+	figure {
+		text-align: center;
+		padding-bottom: 30px; margin-top: -140px;
+
+		@include respond-to(sm) {
+			margin-top: -80px;
+		}
+		@include respond-to(xs) {
+			margin-top: -60px;
+		}
+
+		& > img {
+			max-width: 300px; margin-bottom: 20px;
+
+			@include respond-to(sm) {
+				max-width: 200px;
+			}
+			@include respond-to(xs) {
+				max-width: 150px;
+			}
+		}
+
+		figcaption {
+			ul {
+				display: flex; align-items: center; justify-content: center;
+
+				li {
+					display: flex; align-items: center; margin-right: 30px;
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					&.time {
+						svg {
+							path {
+								fill: #28a3f0;
+							}
+						}
+
+						p {
+							color: #28a3f0;
+						}
+					}
+
+					&.coins {
+						svg {
+							path {
+								fill: #00b3a4;
+							}
+						}
+
+						p {
+							color: #00b3a4;
+						}
+					}
+
+					img, svg {
+						margin-right: 10px; max-width: 40px; max-height: 40px;
+
+						@include respond-to(xs) {
+							max-width: 25px; max-height: 25px;
+						}
+
+						&:last-child {
+							margin-right: 0;
+						}
+					}
+
+					p {
+						color: black; font-size: 32px; font-family: $text;
+
+						@include respond-to(xs) {
+							font-size: 24px;
+						}
+					}
+				}
+			}
+		}
+	}
+	& > ul {
+		padding: 0 15px; max-height: 100%; width: 100%;
+		overflow-y: auto;
+		& > li {
+			margin-bottom: 10px; padding: 10px;
+			background: $white; border-radius: 8px;
+
+			&.disabled {
+				background: #e0e0e0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			section {
+				margin-bottom: 5px;
+
+				@include respond-to(xs) {
+					margin-bottom: 10px;
+				}
+
+				p {
+					color: #9e9e9e; font-size: 14px; font-family: Arial, sans-serif;
+				}
+			}
+
+			footer {
+				display: flex; align-items: center; justify-content: space-between;
+
+				@include respond-to(xs) {
+					flex-direction: column; align-items: stretch;
+				}
+
+				ul {
+					display: flex; align-items: center;
+
+					&.timer {
+
+						@include respond-to(xs) {
+							margin-bottom: 10px;
+						}
+
+						li {
+							margin-right: 15px;
+
+							&:last-child {
+								margin-right: 0;
+							}
+						}
+					}
+
+					&.btns {
+						li {
+							margin-right: 10px;
+
+							&:last-child {
+								margin-right: 0;
+							}
+						}
+					}
+
+					li {
+						& > img {
+							max-width: 20px; margin-right: 5px;
+
+							&:last-child {
+								margin-right: 0;
+							}
+						}
+
+						span {
+							color: #9e9e9e; font-size: 20px; font-family: $text;
+
+							@include respond-to(sm) {
+								font-size: 18px;
+							}
+						}
+
+						a {
+							color: $white; font-size: 26px; font-family: $text; text-align: center;
+							display: inline-block; padding: 10px; position: relative;
+							border-bottom: solid 2px transparent; border-radius: 8px;
+
+							@include respond-to(sm) {
+								font-size: 20px;
+								padding: 8px;
+							}
+
+							&.cointime, &.coinmax {
+								padding-right: 40px; width: 150px; padding-left: 20px;
+
+								@include respond-to(sm) {
+									width: 130px; padding-left: 30px;
+								}
+
+								&:after {
+									content: '';
+									display: block; width: 40px; height: calc(100% + 2px); position: absolute; right: 0; top: 0;
+									background: #58ff3a url("../img/header/news/h_i_button_upg.svg") center center no-repeat; background-size: 60%; border-bottom: solid 2px #4abd26; border-radius: 0 8px 8px 0;
+
+									@include respond-to(sm) {
+										background-size: 50%;
+									}
+								}
+							}
+
+							&.cointime {
+								background: #59bfff; border-color: #4990ad;
+
+								&:before {
+									content: '';
+									display: block; width: 30px; height: 30px; position: absolute; top: 50%; left: 5px; transform: translateY(-50%);
+									background: url('../img/header/h_i_button_upg_timecoins_icon.svg') center center no-repeat; background-size: contain;
+
+									@include respond-to(sm) {
+										width: 25px; height: 25px;
+									}
+								}
+							}
+
+							&.coinmax {
+								background: #00dbc8; border-color: #00b3a4;
+
+								&:before {
+									content: '';
+									display: block; width: 30px; height: 30px; position: absolute; top: 50%; left: 5px; transform: translateY(-50%);
+									background: url('../img/header/news/coinmax_icon.png') center center no-repeat; background-size: contain;
+
+									@include respond-to(sm) {
+										width: 25px; height: 25px;
+									}
+								}
+							}
+
+							&.more {
+								width: 70px;
+								background: #ffb640; border-color: #cc8300;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.log-reg {
+	h3, h4 {
+		color: black; font-family: $text; font-size: 34px; line-height: 40px; text-align: center;
+		margin-bottom: 45px; padding: 0 30px;
+
+		@include respond-to(sm) {
+			font-size: 40px; line-height: 46px;
+		}
+		@include respond-to(xs) {
+			font-size: 32px; line-height: 38px;
+			padding: 0 15px;
+		}
+	}
+
+	h4 {
+		margin-bottom: 20px;
+	}
+
+	p {
+		color: black; font-family: $text; font-size: 46px; line-height: 52px; text-align: center;
+		margin-bottom: 20px; padding: 0 30px;
+
+		@include respond-to(sm) {
+			font-size: 40px; line-height: 46px;
+		}
+		@include respond-to(xs) {
+			font-size: 32px; line-height: 38px;
+			padding: 0 15px;
+		}
+	}
+
+	div {
+		p {
+			font-size: 18px; line-height: 26px;
+		}
+	}
+
+	ul {
+		display: flex; align-items: center; justify-content: center;
+
+		@include respond-to(xs) {
+			flex-direction: column; align-items: stretch;
+		}
+
+		li {
+			margin-right: 20px;
+
+			@include respond-to(xs) {
+				margin-right: 0; margin-bottom: 10px;
+			}
+
+			&:last-child {
+				margin-right: 0; margin-bottom: 0;
+			}
+
+			a {
+				color: $white; font-size: 32px; font-family: $text; text-align: center;
+				display: inline-block; padding: 5px 10px; width: 200px;
+				border-radius: 6px;
+
+				@include respond-to(sm) {
+					font-size: 26px;
+					width: 160px;
+				}
+				@include respond-to(xs) {
+					width: 100%;
+				}
+
+				&.login {
+					background: #3ae55f; border-color: #00a323;
+				}
+
+				&.reg {
+					background: #f459ff; border-color: #f021ff;
+				}
+			}
+		}
+
+	}
+
+	& > .btn {
+		display: block; margin: 0 auto;
+	}
+
+	form {
+
+		label {
+			color: black; font-family: $text; font-size: 20px; line-height: 34px; text-align: right;
+			width: 160px; flex-shrink: 0; padding-right: 15px
+		}
+
+		input {
+			color: black; font-family: $text; font-size: 26px; line-height: 34px; text-align: center;
+			display: block; width: calc(100% - 160px); padding: 5px;
+			background: #ffffff;
+		}
+
+		.help-block {
+			color: #ff0000; font-size: 16px; font-family: $text; line-height: 24px;
+			padding-left: 160px; padding-top: 5px; display: block; width: 100%;
+		}
+
+		.btn {
+			font-size: 22px;
+			padding: 10px; width: 165px; display: block;
+			border-radius: 8px;
+
+			&.login {
+				background: #3ae55f; border-color: #00a323;
+			}
+
+			&.register {
+				background: #f459ff; border-color: #f021ff;
+			}
+		}
+
+		.form-group {
+			display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			label {
+
+			}
+
+			input {
+
+			}
+
+			.checkbox {
+				width: 100%;
+				
+				label {
+					font-size: 16px; line-height: 24px; text-align: left;
+					padding-left: 170px; width: auto; display: block;
+					cursor: pointer;
+
+					input[type=checkbox] {
+						display: inline-block; width: auto;
+					}
+				}
+			}
+		}
+
+		section {
+			margin-bottom: 20px;
+		}
+
+		footer {
+			display: flex; flex-direction: column; align-items: center;
+
+			.btn {
+				margin-bottom: 5px;
+			}
+
+			a:not(.btn) {
+				color: black; font-family: $text; font-size: 18px; line-height: 28px; text-align: center; text-decoration: underline;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+.house-info-small {
+	display: flex; align-items: center; flex-direction: column; margin-bottom: 20px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	figure {
+		margin-bottom: 10px;
+		img {
+
+		}
+	}
+
+	h4 {
+		color: black; font-size: 42px; font-family: $text; line-height: 50px; text-align: center;
+		margin-bottom: 20px;
+
+		@include respond-to(sm) {
+			font-size: 36px; line-height: 42px;
+		}
+	}
+
+	ul {
+		display: flex; align-items: center; flex-direction: column;
+		li {
+			margin-bottom: 10px; display: flex; align-items: center;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&.time {
+				p {
+					color: #28a3f0;
+				}
+			}
+
+			&.coins {
+				p {
+					color: #00b3a4;
+				}
+			}
+
+			img {
+				margin-right: 10px; max-width: 40px; max-height: 40px;
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+
+			p {
+				color: black; font-size: 32px; font-family: $text;
+			}
+		}
+	}
+}

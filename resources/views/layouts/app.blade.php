@@ -17,7 +17,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<link href="{{ compile_assets('css/app.css') }}" rel="stylesheet">
-	<link href="{{ compile_assets('css/main.css') }}" rel="stylesheet">
+	<!-- <link href="{{ compile_assets('css/main.css') }}" rel="stylesheet"> -->
 	<link href="{{ compile_assets('css/print.css') }}" rel="stylesheet" media="print">
 	@stack('styles-header')
 	

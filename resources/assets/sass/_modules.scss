@@ -1,0 +1,347 @@
+/*********************************/
+/******** Class Helpers **********/
+/*********************************/
+.icon {
+	display: inline-block;
+}
+
+
+
+
+/*********************************/
+/*********** Modules *************/
+/*********************************/
+.houses {
+	height: 100%; width: 100%;
+
+	&.drop{
+		display: flex; align-items: flex-start;
+		background: url(../img/backgrounds/ground.png) left top -310px repeat-x; background-size: 2700px auto;
+
+		@include respond-to(lg) {
+			background: url(../img/backgrounds/ground.png) left top -340px repeat-x; background-size: 2600px auto;
+		}
+		@include respond-to(md) {
+			background: url(../img/backgrounds/ground.png) left top -330px repeat-x; background-size: 2400px auto;
+		}
+		@include respond-to(sm) {
+			background: url(../img/backgrounds/ground.png) left top -300px repeat-x; background-size: 2300px auto;
+		}
+		@include respond-to(xs) {
+			background: url(../img/backgrounds/ground.png) left top -160px repeat-x; background-size: 1600px auto;
+		}
+	}
+
+	&.background-ground {}
+
+	.owl-stage {
+		min-width: 100%; height: 100%; padding-bottom: 320px;
+
+		&:after {
+			content: '';
+			display: block; width: 100%; height: 100%; position: absolute; left: 0; bottom: 0; z-index: -1;
+			background: url('../img/backgrounds/ground.png') center bottom repeat-x; background-size: 2600px auto;
+			pointer-events: none;
+			visibility: visible;
+		}
+
+		&-outer {
+			min-width: 100%; height: 100%;
+		}
+	}
+
+	.house-item {
+		min-width: 410px; width: auto; padding: 0 30px;
+
+		&:nth-child(2n) {
+			padding: 0 48px;
+
+			section {
+				.houses-images {
+					img {
+						transform: translateZ(10px);
+					}
+				}
+			}
+		}
+		&:nth-child(3n) {
+			padding: 0 60px 0 30px;
+
+			section {
+				.houses-images {
+					img {
+						transform: translateZ(2px);
+					}
+				}
+			}
+		}
+		&:nth-child(4n) {
+			padding: 0 55px 0 64px;
+
+			section {
+				.houses-images {
+					img {
+						transform: translateZ(-7px);
+					}
+				}
+			}
+		}
+		&:nth-child(5n) {
+			padding: 0 46px 0 63px;
+
+			section {
+				.houses-images {
+					img {
+						transform: translateZ(6px);
+					}
+				}
+			}
+		}
+		&:nth-child(6n+1) {
+			padding: 0 64px 0 41px;
+
+			section {
+				.houses-images {
+					img {
+						transform: translateZ(-15px);
+					}
+				}
+			}
+		}
+		&:nth-child(7n-3) {
+			padding: 0 75px 0 58px;
+
+			section {
+				.houses-images {
+					img {
+						transform: translateZ(8px);
+					}
+				}
+			}
+		}
+
+		@include respond-to(lg) {
+			min-width: 360px; padding: 0 20px;
+		}
+		@include respond-to(md) {
+			min-width: 320px; padding: 0 15px;
+		}
+
+		display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+
+		& > header {
+			display: block; margin-bottom: 15px;
+
+			.houses-count { 
+				display: flex; align-items: center; flex-direction: column;
+
+				span {
+					color: $white; font-size: 48px; font-family: $text; text-align: center; text-shadow: 1px 1px 0 #000;
+					margin-bottom: 30px;
+
+					@include respond-to(lg) {
+						font-size: 42px;
+						margin-bottom: 25px;
+					}
+					@include respond-to(md) {
+						font-size: 36px;
+						margin-bottom: 20px;
+					}
+					@include respond-to(sm) {
+						font-size: 30px;
+						margin-bottom: 15px;
+					}
+				}
+
+				img {
+					width: 50px;
+
+					@include respond-to(lg) {
+						width: 40px;
+					}
+					@include respond-to(md) {
+						width: 30px;
+					}
+					@include respond-to(sm) {
+						width: 25px;
+					}
+				}
+			}
+
+			.footer-buttons {
+				display: none;
+			}
+		}
+
+		& > section {
+			margin-bottom: 20px;
+
+			figure {
+				display: none;
+				
+				&.houses-images {
+					display: flex; align-items: center; justify-content: center;
+
+					perspective: 100px;
+				}
+
+				&.draggable {
+					display: none;
+				}
+
+				img {
+					width: 320px;
+
+					@include respond-to(lg) {
+						width: 260px;
+					}
+					@include respond-to(md) {
+						width: 220px;
+					}
+				}
+			}
+		}
+
+		& > footer {
+			display: block;
+
+			.footer-price {
+				display: none;
+			}
+
+			.houses-price {
+				display: flex; align-items: center; justify-content: center;
+
+				.info, .replace {
+					width: 60px; flex-shrink: 0;
+
+					@include respond-to(lg) {
+						width: 50px;
+					}
+					@include respond-to(md) {
+						width: 35px;
+					}
+
+					img {
+						width: 100%;
+					}
+				}
+
+				.info {
+
+				}
+
+				.coins {
+					color: $white; font-size: 36px; font-family: $text; text-align: center;
+					display: inline-flex; align-items: center; padding: 10px; position: relative; padding-right: 50px; padding-left: 20px; width: 100%; margin: 0 15px;
+					background: #59bfff; border-bottom: solid 2px #4990ad; border-radius: 8px;
+
+					@include respond-to(lg) {
+						font-size: 30px;
+					}
+					@include respond-to(md) {
+						font-size: 26px;
+						padding-top: 7px; padding-bottom: 7px;
+					}
+
+					&:after {
+						content: '';
+						display: block; width: 40px; height: calc(100% + 2px); position: absolute; right: 0; top: 0;
+						background: #58ff3a url(../img/header/news/h_i_button_upg.svg) center center no-repeat; background-size: 25px auto; border-bottom: solid 2px #4abd26; border-radius: 0 8px 8px 0;
+					}
+
+					img {
+						width: 40px; margin-right: 10px;
+
+						@include respond-to(lg) {
+							width: 35px;
+						}
+						@include respond-to(md) {
+							width: 30px;
+						}
+					}
+				}
+
+				.replace {
+
+				}
+			}
+		}
+	}
+}
+
+.house-item {
+	width: 200px;
+
+	header {
+		display: none;
+	}
+
+	section {
+		display: flex; align-items: center; justify-content: center;
+
+		figure {
+			display: none;
+
+			&.draggable {
+				display: block;
+			}
+		}
+	}
+
+	footer {
+		display: none;
+	}
+}
+
+.gu-mirror {
+	display: flex; align-items: flex-end; justify-content: flex-end;
+}
+
+.sortable_placeholder{
+    background: none !important;
+}
+
+// scrollbar
+.scroll {
+
+	&bar {
+		width: 100%;
+	}
+
+	&-x, &-y {
+		display: none; position: fixed;
+		border: solid 2px #59bfff; border-radius: 100px;
+		cursor: pointer; overflow: hidden;
+
+		
+
+		div {
+			height: 100%;
+			left: 0;
+			top: 0;
+			position: absolute;
+			width: 100%;
+		}
+
+		.scroll-bar {
+			background: #59bfff;
+			z-index: 12;
+		}
+	}
+	&-x {
+		width: 1090px;
+
+		&.scroll-scrollx_visible {
+			display: block;
+			height: 15px;
+			left: 50%; transform: translateX(-50%);
+			bottom: 320px;
+			width: 1090px;
+		}
+	}
+	&-y {
+		height: 100px;
+		display: none !important;
+	}
+}

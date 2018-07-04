@@ -1,0 +1,17 @@
+.btn {
+	color: $white; font-size: 32px; font-family: $text; text-align: center;
+	display: inline-block; width: 300px; padding: 10px;
+	background: #ffb640; border-bottom: solid 2px #cc8300; border-radius: 8px;
+
+	&.green {
+		background: #26c213; border-color: #1f9c0e;
+	}
+
+	&.purple {
+		background: #f459ff; border-color: #f021ff;
+	}
+
+	&.red {
+		background: #ff4040; border-color: #bd0000;
+	}
+}
