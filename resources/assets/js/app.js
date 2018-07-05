@@ -3,7 +3,32 @@ window.Vue = require('vue');
 
 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-require('../js/jquery.scrollbar.min.js');
+require('jquery.scrollbar');
+$('.scrollbar').scrollbar({
+	"scrollx": $('.scrollbar_x')
+});
+
+import * as dragula from "dragula";
+dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
+    moves: function (el, container, handle) {
+        return handle.classList.contains('handle');
+    }
+}).on('drop', function (el) {
+    el.className += ' dropped';
+    el.classList.remove('dropped');
+
+    var housesWidth = $(".houses.drop").outerWidth();
+    var housesWidth_ = 0;
+    for(var i = 0; i < $(".houses.drop .house-item").length; i++) {
+        housesWidth_ += $(".houses.drop .house-item").eq(i).outerWidth();
+    }
+
+    if(housesWidth_ > $(window).width()){
+        $(".houses.drop").attr("style", "width: "+ housesWidth_ +"px;");
+    } else {
+        $(".houses.drop").attr("style", "width: 100%;");
+    }
+});
 
 $(document).ready(function() {
     // settings menu
@@ -30,33 +55,6 @@ $(document).ready(function() {
         $('.popup').removeClass('active');
     });
 
-    //check real length
-    //require('../js/dragula.min.js');
-    dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
-        moves: function (el, container, handle) {
-            return handle.classList.contains('handle');
-        }
-    })
-    .on('drop', function (el) {
-        el.className += ' dropped';
-        // if($("#right-lovehandles .house-item").hasClass("dropped")){
-        //     $("#right-lovehandles .house-item.dropped").prependTo("#right-lovehandles");
-        // };
-        el.classList.remove('dropped');
-
-        var housesWidth = $(".houses.drop").outerWidth();
-        var housesWidth_ = 0;
-        for(i=0; i<$(".houses.drop .house-item").length; i++) {
-            housesWidth_ += $(".houses.drop .house-item").eq(i).outerWidth();
-        }
-
-        if(housesWidth_ > $(window).width()){
-            $(".houses.drop").attr("style", "width: "+ housesWidth_ +"px;");
-        } else {
-            $(".houses.drop").attr("style", "width: 100%;");
-        }
-    });
-
     // footer list sorting
     footerListSort();
 
@@ -64,11 +62,6 @@ $(document).ready(function() {
     footerButtonsActions();
 
     newsResize();
-
-    // jquery scrollbar
-    $('.scrollbar').scrollbar({
-        "scrollx": $('.scrollbar_x')
-    });
 });
 
 $(window).resize(function() {
@@ -89,15 +82,14 @@ function footerListSort() {
         if($(this).hasClass('built')) {
             $(".footer section").removeClass("show");
             $(".footer .buld-active-block").addClass("show");
-            $(".buld-active-block .house-item").remove()
+            $(".buld-active-block .house-item").remove();
             $(".houses.drop .house-item").clone().appendTo(".buld-active-block.show")
         }
 
         if($(this).hasClass('featured')) {
             $(".footer section").removeClass("show");
             $(".footer .featured-active-block").addClass("show");
-            $(".featured-active-block").find(".house-item").remove()
-//            $(".houses").find(".house-item.active-featured").clone().appendTo(".featured-active-block");
+            $(".featured-active-block").find(".house-item").remove();
             $(".buld-active-block").find(".house-item.active-featured").clone().appendTo(".featured-active-block");
             $(".new-active").find(".house-item.active-featured").clone().appendTo(".featured-active-block");
         }

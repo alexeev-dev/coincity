@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <section class="wr-houses">
         <div class="scrollbar">
             <div class="houses drop" id="left-lovehandles">
@@ -38,6 +37,13 @@
                             <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                         </div>
                     </footer>
+                </div>
+            </div>
+            <div class="scrollbar_x">
+                <div class="scroll-element_outer">
+                    <div class="scroll-element_size"></div>
+                    <div class="scroll-element_track"></div>
+                    <div class="scroll-bar"></div>
                 </div>
             </div>
         </div>

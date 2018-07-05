@@ -17,8 +17,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<link href="{{ compile_assets('css/app.css') }}" rel="stylesheet">
-	<!-- <link href="{{ compile_assets('css/main.css') }}" rel="stylesheet"> -->
-	<link href="{{ compile_assets('css/print.css') }}" rel="stylesheet" media="print">
+	<link href="{{ compile_assets('css/dragula.min.css') }}" rel="stylesheet">
+	<link href="{{ compile_assets('css/jquery.scrollbar.css') }}" rel="stylesheet">
+
 	@stack('styles-header')
 	
 	<title>{{ config('app.name', 'Coincity') }}</title>
@@ -125,5 +126,6 @@
     <script src="{{ compile_assets('js/app.js') }}"></script>
 
     @stack('scripts-footer')
+
 </body>
 </html>
