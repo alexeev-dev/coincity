@@ -4,6 +4,7 @@ namespace App;
 
 use App\Mail\EmailConfirmation;
 use App\Mail\EmailResetPassword;
+use App\Models\UserStat;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
@@ -19,6 +20,12 @@ class User extends Authenticatable
             if (!$user->confirmed) {
                 $user->sendConfirmation();
             }
+
+            if (empty($user->user_stat)) {
+                $userStat = new UserStat();
+                $userStat->user_id = $user->id;
+                $userStat->save();
+            }
         });
     }
 
@@ -29,6 +36,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function user_stat() {
+        return $this->hasOne('App\Models\UserStat');
+    }
+
+    public function user_houses() {
+        return $this->hasMany('App\Models\UserHouse');
+    }
 
     public function sendPasswordResetNotification($token) {
         Mail::to($this->email)->queue(new EmailResetPassword($token));

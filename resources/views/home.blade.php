@@ -4,11 +4,13 @@
     <section class="wr-houses">
         <div class="scrollbar">
             <div class="houses drop" id="left-lovehandles">
-                <div class="house-item handle">
+
+                @foreach ($userHouses as $house)
+                <div class="house-item handle" data-house-id="{{ $house->house_id }}">
                     <header>
                         <div class="houses-count">
-                            <span>+3.100</span>
-                            <img src="{{ asset('img/house-info/coin_30.png') }}">
+                            <!-- <span>+2.500</span> -->
+                        <!-- <img src="{{ asset('img/house-info/coin_30.png') }}"> -->
                         </div>
                         <div class="footer-buttons js-footerButtons">
                             <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
@@ -29,15 +31,17 @@
                     <footer>
                         <div class="footer-price">
                             <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                            <span>3.100</span>
+                            <span>{{ $house->money_per_hour }}</span>
                         </div>
                         <div class="houses-price">
                             <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                            <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>3.100</span></a>
+                            <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour }}</span></a>
                             <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                         </div>
                     </footer>
                 </div>
+                @endforeach
+
             </div>
             <div class="scrollbar_x">
                 <div class="scroll-element_outer">
@@ -53,46 +57,13 @@
         <div class="container">
             <div class="footer">
                 <section class="js-footerHouseItems new-active built-active featured-active show" id="right-lovehandles">
-                    <div class="house-item handle">
-                        <header>
-                            <div class="houses-count">
-                                <span>+2.500</span>
-                                <img src="{{ asset('img/house-info/coin_30.png') }}">
-                            </div>
-                            <div class="footer-buttons js-footerButtons">
-                                <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                                <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
-                            </div>
-                        </header>
-                        <section>
-                            <figure class="footer-image">
-                                <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="houses-images">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="draggable">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                        </section>
-                        <footer>
-                            <div class="footer-price">
-                                <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>2.500</span>
-                            </div>
-                            <div class="houses-price">
-                                <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>2.500</span></a>
-                                <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
-                            </div>
-                        </footer>
-                    </div>
 
-                    <div class="house-item handle">
+                    @foreach ($houses as $house)
+                    <div class="house-item handle" data-house-id="{{ $house->id }}">
                         <header>
                             <div class="houses-count">
-                                <span>+2.600</span>
-                                <img src="{{ asset('img/house-info/coin_30.png') }}">
+                                <!-- <span>+2.500</span> -->
+                                <!-- <img src="{{ asset('img/house-info/coin_30.png') }}"> -->
                             </div>
                             <div class="footer-buttons js-footerButtons">
                                 <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
@@ -113,190 +84,17 @@
                         <footer>
                             <div class="footer-price">
                                 <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>2.600</span>
+                                <span>{{ $house->money_per_hour }}</span>
                             </div>
                             <div class="houses-price">
                                 <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>2.600</span></a>
+                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour }}</span></a>
                                 <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                             </div>
                         </footer>
                     </div>
+                    @endforeach
 
-                    <div class="house-item handle">
-                        <header>
-                            <div class="houses-count">
-                                <span>+2.700</span>
-                                <img src="{{ asset('img/house-info/coin_30.png') }}">
-                            </div>
-                            <div class="footer-buttons js-footerButtons">
-                                <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                                <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
-                            </div>
-                        </header>
-                        <section>
-                            <figure class="footer-image">
-                                <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="houses-images">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="draggable">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                        </section>
-                        <footer>
-                            <div class="footer-price">
-                                <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>2.700</span>
-                            </div>
-                            <div class="houses-price">
-                                <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>2.700</span></a>
-                                <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
-                            </div>
-                        </footer>
-                    </div>
-
-                    <div class="house-item handle">
-                        <header>
-                            <div class="houses-count">
-                                <span>+2.800</span>
-                                <img src="{{ asset('img/house-info/coin_30.png') }}">
-                            </div>
-                            <div class="footer-buttons js-footerButtons">
-                                <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                                <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
-                            </div>
-                        </header>
-                        <section>
-                            <figure class="footer-image">
-                                <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="houses-images">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="draggable">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                        </section>
-                        <footer>
-                            <div class="footer-price">
-                                <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>2.800</span>
-                            </div>
-                            <div class="houses-price">
-                                <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>2.800</span></a>
-                                <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
-                            </div>
-                        </footer>
-                    </div>
-
-                    <div class="house-item handle">
-                        <header>
-                            <div class="houses-count">
-                                <span>+2.900</span>
-                                <img src="{{ asset('img/house-info/coin_30.png') }}">
-                            </div>
-                            <div class="footer-buttons js-footerButtons">
-                                <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                                <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
-                            </div>
-                        </header>
-                        <section>
-                            <figure class="footer-image">
-                                <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="houses-images">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="draggable">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                        </section>
-                        <footer>
-                            <div class="footer-price">
-                                <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>2.900</span>
-                            </div>
-                            <div class="houses-price">
-                                <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>2.900</span></a>
-                                <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
-                            </div>
-                        </footer>
-                    </div>
-
-                    <div class="house-item handle">
-                        <header>
-                            <div class="houses-count">
-                                <span>+3.000</span>
-                                <img src="{{ asset('img/house-info/coin_30.png') }}">
-                            </div>
-                            <div class="footer-buttons js-footerButtons">
-                                <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                                <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
-                            </div>
-                        </header>
-                        <section>
-                            <figure class="footer-image">
-                                <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="houses-images">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="draggable">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                        </section>
-                        <footer>
-                            <div class="footer-price">
-                                <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>3.000</span>
-                            </div>
-                            <div class="houses-price">
-                                <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>3.000</span></a>
-                                <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
-                            </div>
-                        </footer>
-                    </div>
-
-                    <div class="house-item handle">
-                        <header>
-                            <div class="houses-count">
-                                <span>+3.100</span>
-                                <img src="{{ asset('img/house-info/coin_30.png') }}">
-                            </div>
-                            <div class="footer-buttons js-footerButtons">
-                                <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                                <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
-                            </div>
-                        </header>
-                        <section>
-                            <figure class="footer-image">
-                                <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="houses-images">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                            <figure class="draggable">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
-                            </figure>
-                        </section>
-                        <footer>
-                            <div class="footer-price">
-                                <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>3.100</span>
-                            </div>
-                            <div class="houses-price">
-                                <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>3.100</span></a>
-                                <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
-                            </div>
-                        </footer>
-                    </div>
                 </section>
 
                 <section class="buld-active-block">
@@ -319,7 +117,6 @@
         								C10.678,0.741,11.418,0,12.33,0h6.337c0.914,0,1.654,0.74,1.654,1.654v9.023h9.023c0.914,0,1.654,0.74,1.654,1.654V18.67z"/>
         							</svg>
                                 </em>
-                            <!-- <img src="{{ asset('img/icons/icon_new_disable.png') }}"> -->
                                 <span>New</span>
                             </a>
                         </li>
@@ -339,7 +136,6 @@
                                     </g>
         						</svg>
                                 </em>
-                            <!-- <img src="{{ asset('img/icons/icon_built_disable.png') }}"> -->
                                 <span>Built</span>
                             </a>
                         </li>
@@ -355,7 +151,6 @@
         						c1.373,0,2.629,0.779,3.234,2.01l2.916,5.906l6.518,0.947c1.357,0.197,2.49,1.15,2.914,2.457S31.408,14.061,30.426,15.02z"/>
         					</svg>
                                 </em>
-                            <!-- <img src="{{ asset('img/icons/icon_featuring_disable.png') }}"> -->
                                 <span>Featured</span>
                             </a>
                         </li>
@@ -364,4 +159,38 @@
             </div>
         </div>
     </footer>
+@endsection
+
+@section('news')
+    <div class="news">
+        <a href="#" class="js-news"><span>{{ count($tweets) }}</span></a>
+        <div>
+            <p>News<span>{{ count($tweets) }}</span></p>
+            <ul>
+                @foreach ($tweets as $tweet)
+                <li>
+                    <section>
+                        <p>{{ $tweet->content }}</p>
+                    </section>
+                    <footer>
+                        <ul class="timer">
+                            <li><img src="{{ asset('img/header/news/logo_bitcoin.svg') }}"></li>
+                            <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $tweet->time_left }}</span></li>
+                        </ul>
+                        <ul class="btns">
+                            @if ($tweet->is_house_built)
+                            <li>
+                                <a href="#" class="{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
+                            </li>
+                            @endif
+                            <li>
+                                <a href="#" class="more">More</a>
+                            </li>
+                        </ul>
+                    </footer>
+                </li>
+            @endforeach
+            </ul>
+        </div>
+    </div>
 @endsection

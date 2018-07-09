@@ -14,7 +14,7 @@ class LoginController extends Controller {
 
     private $users;
 
-    protected $redirectTo = '/user/profile';
+    protected $redirectTo = '/';
 
     public function __construct(UserService $users) {
         $this->users = $users;

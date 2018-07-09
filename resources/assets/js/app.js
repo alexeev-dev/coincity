@@ -28,7 +28,32 @@ dragula([document.getElementById("left-lovehandles"), document.getElementById("r
     } else {
         $(".houses.drop").attr("style", "width: 100%;");
     }
+
+    sendHousesState();
 });
+
+function sendHousesState() {
+    var houses = [];
+    $(".houses.drop .house-item").each(function(i) {
+        houses.push({id: $(this).data('house-id'), position: i});
+    });
+
+    axios.post('/user/change-houses-state', {
+        houses: houses
+    }).then(function (response) {
+
+        if (response.data === 1) {
+            self.addClass('error');
+        } else {
+            console.log(response.data);
+
+            $('.js-tmph').text(response.data.total_money_per_hour + ' per hour');
+        }
+
+    }).catch(function (error) {
+        globalHandlerError(error.response);
+    });
+}
 
 $(document).ready(function() {
     // settings menu

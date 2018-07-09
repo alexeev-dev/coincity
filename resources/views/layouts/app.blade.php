@@ -49,12 +49,12 @@
 							<ul>
 								@auth
 								<li>
-									<input type="text" placeholder="Your name" value="{{ Auth::user()->name }}">
+									<input class="js-name" type="text" placeholder="Your name" value="{{ Auth::user()->name }}">
 								</li>
-                                @endauth
 								<li>
-									<a href="#" class="sound">Sound:on</a>
+									<a href="#" class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>
 								</li>
+								@endauth
 								<li>
 									<a href="#">About</a>
 								</li>
@@ -73,11 +73,20 @@
 					<div class="coins">
 						<div class="current">
 							<img src="{{ asset('img/header/coin_header.png') }}">
-							<p>000.000.000.000</p>
+
+							@auth
+							<p>{{ Auth::user()->user_stat->money }}</p>
+							@endauth
+
+                            @guest
+                            <p>0</p>
+                            @endguest
+
 						</div>
+
 						<div class="for-day">
 							<img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}">
-							<p>0 for day</p>
+							<p class="js-tmph">{{ Auth::user()->user_stat->total_money_per_hour }} per hour</p>
 						</div>
 
                         @guest
@@ -94,28 +103,13 @@
                         @endguest
 
 					</div>
-					<div class="news">
-						<a href="#" class="js-news"><span>99</span></a>
-						<div>
-							<p>News<span>99</span></p>
-							<ul>
 
-							</ul>
-						</div>
-					</div>
+                    @yield('news')
+
 				</div>
 				
 			</div>
 		</header>
-
-		@if ( session('message')  )
-			<div class="alert alert-warning alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-							aria-hidden="true">&times;</span></button>
-				<p><strong>Предупреждение!</strong></p>
-				<p>{!! session('message') !!}</p>
-			</div>
-		@endif
 
 		@yield('content')
 
@@ -124,6 +118,7 @@
     @yield('tmp-popup')
 
     <script src="{{ compile_assets('js/app.js') }}"></script>
+    <script src="{{ compile_assets('js/app2.js') }}"></script>
 
     @stack('scripts-footer')
 

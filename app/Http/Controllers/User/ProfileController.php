@@ -2,33 +2,54 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\UserHouse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
+    public function switchSound() {
+        $userStat = Auth::user()->user_stat;
+        $userStat->sound = ($userStat->sound == 0 ? 1 : 0);
+        $userStat->save();
+        return $userStat->sound == 0 ? 'Sound: off': 'Sound: on';
     }
 
-    public function index() {
+    public function changeName(Request $request) {
         $user = Auth::user();
-        return view('user/profile', compact('user'));
+        if (strlen($request['name']) < 16) {
+            $user->name = $request['name'];
+            $user->save();
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
-    public function update(Request $request) {
+    public function changeHousesState(Request $request) {
         $user = Auth::user();
-        $rules = array(
-            'name' => 'required|string|max:50',
-        );
+        $housesData = $request['houses'];
 
-        Validator::make($request->all(), $rules)->validate();
+        UserHouse::query()->update(['position' => null]);
 
-        $user->name = $request['name'];
-        $user->save();
+        foreach ($housesData as $houseData) {
+            $houseId = $houseData['id'];
+            $housePosition = $houseData['position'];
 
-        return redirect(route('profile'));
+            $userHouse = UserHouse::where([['user_id', $user->id], ['house_id', $houseId]])->first();
+            if (empty($userHouse)) {
+                $userHouse = new UserHouse();
+                $userHouse->user_id = $user->id;
+                $userHouse->house_id = $houseId;
+                $userHouse->save();
+            }
+
+            $userHouse->position = $housePosition;
+            $userHouse->save();
+        }
+
+        return json_encode(['total_money_per_hour' => $user->user_stat->total_money_per_hour]);
     }
 }

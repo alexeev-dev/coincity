@@ -7,8 +7,9 @@ App::setLocale('ru');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
-    Route::get('profile', 'User\ProfileController@index')->name('profile');
-    Route::post('update', 'User\ProfileController@update')->name('update_profile');
+    Route::post('switch-sound', 'User\ProfileController@switchSound');
+    Route::post('change-name', 'User\ProfileController@changeName');
+    Route::post('change-houses-state', 'User\ProfileController@changeHousesState');
 });
 
 Auth::routes();
