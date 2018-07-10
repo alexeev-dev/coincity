@@ -34,7 +34,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $housesData = $request['houses'];
 
-        UserHouse::query()->update(['position' => null]);
+        UserHouse::where('user_id', $user->id)->update(['position' => null]);
 
         foreach ($housesData as $houseData) {
             $houseId = $houseData['id'];
@@ -86,7 +86,7 @@ class ProfileController extends Controller
             // get tweets
             $tweets = $userHouse->house->tweets;
             $html = view('partials.house', ['userHouse' => $userHouse, 'tweets' => $tweets])->render();
-            $output = json_encode(['money' => $userStat->money, 'html' => $html]);
+            $output = json_encode(['money' => $userStat->money_text, 'html' => $html]);
         } else {
             $html = view('partials.error')->render();
             $output = json_encode(['html' => $html]);
@@ -137,7 +137,7 @@ class ProfileController extends Controller
             $userHouse->money_collected = $now;
             $userHouse->save();
 
-            $output = json_encode(['money' => $userStat->money]);
+            $output = json_encode(['money' => $userStat->money_text]);
         } else {
             $output = 1;
         }

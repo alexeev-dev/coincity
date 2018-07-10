@@ -17,20 +17,23 @@ dragula([document.getElementById("left-lovehandles"), document.getElementById("r
     el.className += ' dropped';
     el.classList.remove('dropped');
 
+    calculateHousesWidth();
+    sendHousesState();
+});
+
+function calculateHousesWidth() {
     var housesWidth = $(".houses.drop").outerWidth();
     var housesWidth_ = 0;
     for(var i = 0; i < $(".houses.drop .house-item").length; i++) {
         housesWidth_ += $(".houses.drop .house-item").eq(i).outerWidth();
     }
 
-    if(housesWidth_ > $(window).width()){
+    if (housesWidth_ > $(window).width()){
         $(".houses.drop").attr("style", "width: "+ housesWidth_ +"px;");
     } else {
         $(".houses.drop").attr("style", "width: 100%;");
     }
-
-    sendHousesState();
-});
+}
 
 function sendHousesState() {
     var houses = [];
@@ -56,6 +59,8 @@ function sendHousesState() {
 }
 
 $(document).ready(function() {
+    calculateHousesWidth();
+
     // settings menu
     $('.js-settings').click(function(e) {
         e.preventDefault();
