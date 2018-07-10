@@ -75,18 +75,26 @@
 							<img src="{{ asset('img/header/coin_header.png') }}">
 
 							@auth
-							<p>{{ Auth::user()->user_stat->money }}</p>
+							<p class="js-total-money">{{ Auth::user()->user_stat->money_text }}</p>
 							@endauth
 
                             @guest
-                            <p>0</p>
+                            <p class="js-total-money">0</p>
                             @endguest
 
 						</div>
 
 						<div class="for-day">
 							<img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}">
+
+							@auth
 							<p class="js-tmph">{{ Auth::user()->user_stat->total_money_per_hour }} per hour</p>
+							@endauth
+
+							@guest
+							<p class="js-tmph">0</p>
+							@endguest
+
 						</div>
 
                         @guest
@@ -116,6 +124,8 @@
 	</div>
 
     @yield('tmp-popup')
+
+    @stack('popups')
 
     <script src="{{ compile_assets('js/app.js') }}"></script>
     <script src="{{ compile_assets('js/app2.js') }}"></script>

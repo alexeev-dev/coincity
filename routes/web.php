@@ -10,6 +10,10 @@ Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');
     Route::post('change-name', 'User\ProfileController@changeName');
     Route::post('change-houses-state', 'User\ProfileController@changeHousesState');
+
+    Route::post('get-user-house-info', 'User\ProfileController@getUserHouseInfo');
+    Route::post('get-user-house-info-small', 'User\ProfileController@getUserHouseInfoSmall');
+    Route::post('gather-money', 'User\ProfileController@gatherMoney');
 });
 
 Auth::routes();

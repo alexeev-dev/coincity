@@ -11,8 +11,8 @@ class UserStat extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function getMoneyAttribute($value) {
-        return number_format($value, 0, '.', '.');
+    public function getMoneyTextAttribute() {
+        return number_format($this->money, 0, '.', '.');
     }
 
     public function getSoundTextAttribute() {

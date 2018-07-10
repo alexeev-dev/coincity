@@ -10,7 +10,7 @@
                     <header>
                         <div class="houses-count">
                             <!-- <span>+2.500</span> -->
-                        <!-- <img src="{{ asset('img/house-info/coin_30.png') }}"> -->
+                            <a href="#"><img src="{{ asset('img/house-info/coin_30.png') }}"></a>
                         </div>
                         <div class="footer-buttons js-footerButtons">
                             <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
@@ -31,11 +31,11 @@
                     <footer>
                         <div class="footer-price">
                             <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                            <span>{{ $house->money_per_hour }}</span>
+                            <span>{{ $house->money_per_hour_text }}</span>
                         </div>
                         <div class="houses-price">
                             <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                            <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour }}</span></a>
+                            <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour_text }}</span></a>
                             <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                         </div>
                     </footer>
@@ -63,7 +63,7 @@
                         <header>
                             <div class="houses-count">
                                 <!-- <span>+2.500</span> -->
-                                <!-- <img src="{{ asset('img/house-info/coin_30.png') }}"> -->
+                                <a href="#"><img src="{{ asset('img/house-info/coin_30.png') }}"></a>
                             </div>
                             <div class="footer-buttons js-footerButtons">
                                 <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
@@ -84,11 +84,11 @@
                         <footer>
                             <div class="footer-price">
                                 <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                                <span>{{ $house->money_per_hour }}</span>
+                                <span>{{ $house->money_per_hour_text }}</span>
                             </div>
                             <div class="houses-price">
                                 <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour }}</span></a>
+                                <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour_text }}</span></a>
                                 <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                             </div>
                         </footer>
@@ -178,19 +178,37 @@
                             <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $tweet->time_left }}</span></li>
                         </ul>
                         <ul class="btns">
+                            @auth
                             @if ($tweet->is_house_built)
                             <li>
                                 <a href="#" class="{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
                             </li>
                             @endif
+                            @endauth
                             <li>
                                 <a href="#" class="more">More</a>
                             </li>
                         </ul>
                     </footer>
                 </li>
-            @endforeach
+                @endforeach
             </ul>
         </div>
     </div>
 @endsection
+
+@push('popups')
+    <div class="popup">
+        <div class="popup-house-info">
+            <a href="#" class="close js-closePopup"></a>
+            <div class="house-info">
+            </div>
+        </div>
+
+        <div class="popup-house-info-small">
+            <div class="house-info-small">
+            </div>
+            <a href="#" class="close js-closePopup"></a>
+        </div>
+    </div>
+@endpush

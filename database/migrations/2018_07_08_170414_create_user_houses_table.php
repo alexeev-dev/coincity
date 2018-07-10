@@ -22,7 +22,7 @@ class CreateUserHousesTable extends Migration
             $table->unsignedInteger('house_id')->nullable();
             $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade');
 
-            $table->integer('money_collected')->default(0);
+            $table->dateTime('money_collected')->nullable();
             $table->integer('position')->nullable();
             $table->boolean('fav')->default(0);
 

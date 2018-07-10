@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index() {
+        $user = Auth::user();
         $tweets = Tweet::all();
-        $houses = House::whereRaw('id NOT IN (SELECT house_id FROM user_houses WHERE position IS NOT NULL)')->get();
-        $userHouses = Auth::user()->user_houses()->whereNotNull('position')->orderBy('position')->get();
+
+        if (!empty($user)) {
+            $houses = House::whereRaw('id NOT IN (SELECT house_id FROM user_houses WHERE user_id = '.$user->id.' AND position IS NOT NULL)')->get();
+            $userHouses = $user->user_houses()->whereNotNull('position')->orderBy('position')->get();
+        } else {
+            $houses = House::all();
+            $userHouses = [];
+        }
 
         return view('home', [
             'tweets' => $tweets,
