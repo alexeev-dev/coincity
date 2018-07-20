@@ -15,7 +15,7 @@
 	height: 100%; width: 100%;
 
 	&.drop{
-		display: flex; align-items: flex-end;
+		display: flex; align-items: flex-start;
 		background: url(../img/backgrounds/ground.png) left top -310px repeat-x; background-size: 2700px auto;
 
 		@include respond-to(lg) {
