@@ -15,7 +15,7 @@
 	height: 100%; width: 100%;
 
 	&.drop{
-		display: flex; align-items: flex-start;
+		display: flex; align-items: flex-end;
 		background: url(../img/backgrounds/ground.png) left top -310px repeat-x; background-size: 2700px auto;
 
 		@include respond-to(lg) {
@@ -51,7 +51,7 @@
 	}
 
 	.house-item {
-		min-width: 410px; width: auto; padding: 0 30px;
+		min-width: 410px; height: 470px; width: auto; padding: 0 30px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex-shrink: 0;
 
 		&:nth-child(2n) {
 			padding: 0 48px;
@@ -127,7 +127,15 @@
 			min-width: 320px; padding: 0 15px;
 		}
 
-		display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+		&:hover {
+			footer {
+				.houses-price {
+					.info, .replace {
+						opacity: 1;
+					}
+				}
+			}
+		}
 
 		& > header {
 			display: block; margin-bottom: 15px;
@@ -190,13 +198,14 @@
 				}
 
 				img {
-					width: 320px;
+					width: 260px;
+					pointer-events
 
 					@include respond-to(lg) {
-						width: 260px;
+						width: 220px;
 					}
 					@include respond-to(md) {
-						width: 220px;
+						width: 180px;
 					}
 				}
 			}
@@ -228,7 +237,7 @@
 				}
 
 				.info {
-
+					opacity: 0;
 				}
 
 				.coins {
@@ -263,7 +272,10 @@
 				}
 
 				.replace {
-
+					opacity: 0;
+					&:hover {
+						cursor: grab;
+					}
 				}
 			}
 		}
