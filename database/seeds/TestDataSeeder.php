@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\House;
+use App\Models\Page;
 use App\Models\Tweet;
 use App\Models\TweetAssignment;
 use App\Models\TweetUpdate;
@@ -10,6 +11,7 @@ class TestDataSeeder extends Seeder
 {
     public function run()
     {
+        // houses - categories
         $houses = collect([
             ['id' => 1, 'name' => 'Тестовая категория', 'max_money' => 1000, 'money_per_hour' => 110],
             ['id' => 2, 'name' => 'Bitcoin Cash', 'max_money' => 2000, 'money_per_hour' => 120],
@@ -26,6 +28,7 @@ class TestDataSeeder extends Seeder
             $row->save();
         });
 
+        // tweets
         $tweets = collect([
             ['id' => 1, 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
@@ -52,6 +55,7 @@ class TestDataSeeder extends Seeder
             $row->save();
         });
 
+        // tweet assignments to categories
         $tweetAssignments = collect([
             ['id' => 1, 'tweet_id' => 1, 'house_id' => 1],
             ['id' => 2, 'tweet_id' => 1, 'house_id' => 2],
@@ -67,6 +71,7 @@ class TestDataSeeder extends Seeder
             $row->save();
         });
 
+        // tweet updates
         $tweetUpdates = collect([
             ['id' => 1, 'tweet_id' => 1, 'update_type_id' => 1, 'value' => 100],
             ['id' => 2, 'tweet_id' => 2, 'update_type_id' => 2, 'value' => 500],
@@ -81,5 +86,44 @@ class TestDataSeeder extends Seeder
             $row->save();
         });
 
+        // static pages
+        $pages = collect([
+            ['id' => 1, 'alias' => 'about', 'content' => '<h1>Lorem ipsum dolor sit amet, consectetur</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>
+            <h2>Lorem ipsum dolor sit amet, consectetur</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>'],
+            ['id' => 2, 'alias' => 'rules', 'content' => '<h1>Lorem ipsum dolor sit amet, consectetur</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>']
+        ]);
+        $pages->each(function ($item) {
+            $row = Page::where(['id' => $item['id']])->first();
+            if ($row === null) {
+                $row = new Page;
+            }
+            $row->fill($item);
+            $row->save();
+        });
     }
 }

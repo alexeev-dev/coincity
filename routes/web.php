@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 App::setLocale('ru');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/page/{alias}', 'HomeController@getPage');
 
 Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');

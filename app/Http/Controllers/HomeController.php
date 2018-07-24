@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use App\Models\Page;
 use App\Models\Tweet;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -25,5 +27,15 @@ class HomeController extends Controller
             'houses' => $houses,
             'userHouses' => $userHouses
         ]);
+    }
+
+    public function getPage(Request $request) {
+        $page = Page::where('alias', $request['alias'])->first();
+        if (!empty($page)) {
+            $html = view('partials.page', ['content' => $page->content])->render();
+        } else {
+            $html = view('errors.404')->render();
+        }
+        return json_encode(['html' => $html]);
     }
 }

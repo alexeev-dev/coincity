@@ -1,5 +1,7 @@
 window.$ = window.jQuery = require('jquery');
 
+const commonError = "Something went wrong. Try again later.";
+
 $(document).ready(function() {
 
     // switch sound
@@ -14,7 +16,7 @@ $(document).ready(function() {
             self.removeClass('loading');
 
         }).catch(function (error) {
-            globalHandlerError(error.response);
+            // ...
         });
 
         return false;
@@ -44,8 +46,34 @@ $(document).ready(function() {
             }
 
         }).catch(function (error) {
-            globalHandlerError(error.response);
+            // ...
         });
+    });
+
+    // static pages menu
+    $('.settings li a[href^="#"]').click(function() {
+        $('.app').removeClass('active-settings');
+        $('.js-settings').removeClass('active');
+
+        const self = $(this);
+        const popup = $('.popup');
+
+        $('.popup-page-content, .popup').addClass('active');
+
+        popup.find('.page-content').empty();
+        popup.addClass('loading');
+
+        axios.post('/page/' + self.attr('href').substr(1), {
+        }).then(function (response) {
+
+            popup.removeClass('loading');
+            popup.find('.page-content').html(response.data.html);
+
+        }).catch(function (error) {
+            popup.find('.page-content').html(commonError);
+        });
+
+        return false;
     });
 
     // house popup
@@ -64,14 +92,14 @@ $(document).ready(function() {
 
             popup.removeClass('loading');
             if (response.data === 1) {
-                // ...
+                popup.find('.house-info').html(commonError);
             } else {
                 popup.find('.house-info').html(response.data.html);
                 $('.js-total-money').text(response.data.money);
             }
 
         }).catch(function (error) {
-            globalHandlerError(error.response);
+            popup.find('.house-info').html(commonError);
         });
 
         return false;
@@ -93,13 +121,13 @@ $(document).ready(function() {
 
             popup.removeClass('loading');
             if (response.data === 1) {
-                // ...
+                popup.find('.house-info-small').html(commonError);
             } else {
                 popup.find('.house-info-small').html(response.data.html);
             }
 
         }).catch(function (error) {
-            globalHandlerError(error.response);
+            popup.find('.house-info-small').html(commonError);
         });
 
         return false;
@@ -109,7 +137,7 @@ $(document).ready(function() {
     // house popup
     $('.house-item .houses-count a').click(function() {
         const self = $(this).parents('.house-item');
-        $(this).remove();
+        $(this).hide();
 
         axios.post('/user/gather-money', {
             houseId: self.data('house-id')
@@ -122,7 +150,7 @@ $(document).ready(function() {
             }
 
         }).catch(function (error) {
-            globalHandlerError(error.response);
+            // ...
         });
 
         return false;

@@ -89,6 +89,23 @@
 		}
 	}
 
+	&-page-content {
+		display: flex; flex-direction: column; align-items: center; width: calc(100% - 30px); max-width: 400px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 20px;
+		background: #ebebeb; border-radius: 10px;
+
+		.loading & {
+			&:after {
+				content: '';
+				display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5;
+				background: #ebebeb url('../img/preloader.svg') center center no-repeat;
+			}
+		}
+
+		a.close {
+			position: relative; right: 0; top: 0;
+		}
+	}
+
 	&-log-reg {
 		width: calc(100% - 30px); max-width: 500px; padding: 20px; position: relative; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
 
@@ -501,6 +518,65 @@
 }
 
 .house-info-small {
+	display: flex; align-items: center; flex-direction: column; margin-bottom: 20px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	figure {
+		margin-bottom: 10px;
+		img {
+
+		}
+	}
+
+	h4 {
+		color: black; font-size: 42px; font-family: $text; line-height: 50px; text-align: center;
+		margin-bottom: 20px;
+
+		@include respond-to(sm) {
+			font-size: 36px; line-height: 42px;
+		}
+	}
+
+	ul {
+		display: flex; align-items: center; flex-direction: column;
+		li {
+			margin-bottom: 10px; display: flex; align-items: center;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&.time {
+				p {
+					color: #28a3f0;
+				}
+			}
+
+			&.coins {
+				p {
+					color: #00b3a4;
+				}
+			}
+
+			img {
+				margin-right: 10px; max-width: 40px; max-height: 40px;
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+
+			p {
+				color: black; font-size: 32px; font-family: $text;
+			}
+		}
+	}
+}
+
+.page-content {
 	display: flex; align-items: center; flex-direction: column; margin-bottom: 20px;
 
 	&:last-child {

@@ -52,14 +52,14 @@
 									<input class="js-name" type="text" placeholder="Your name" value="{{ Auth::user()->name }}">
 								</li>
 								<li>
-									<a href="#" class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>
+									<a href="" class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>
 								</li>
 								@endauth
 								<li>
-									<a href="#">About</a>
+									<a href="#about">About</a>
 								</li>
 								<li>
-									<a href="#">Rules</a>
+									<a href="#rules">Rules</a>
 								</li>
                                 @auth
 								<li>
