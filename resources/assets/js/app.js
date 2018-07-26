@@ -69,14 +69,6 @@ $(document).ready(function() {
         $(this).toggleClass('active');
     });
 
-    // news menu
-    $('.js-news').click(function(e) {
-        e.preventDefault();
-
-        $('.app').toggleClass('active-news');
-        $(this).toggleClass('active');
-    });
-
     // close popup
     $('.js-closePopup').click(function(e) {
         e.preventDefault();

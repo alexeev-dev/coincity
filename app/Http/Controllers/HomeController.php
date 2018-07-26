@@ -23,7 +23,6 @@ class HomeController extends Controller
         }
 
         return view('home', [
-            'tweets' => $tweets,
             'houses' => $houses,
             'userHouses' => $userHouses
         ]);
@@ -33,6 +32,16 @@ class HomeController extends Controller
         $page = Page::where('alias', $request['alias'])->first();
         if (!empty($page)) {
             $html = view('partials.page', ['content' => $page->content])->render();
+        } else {
+            $html = view('errors.404')->render();
+        }
+        return json_encode(['html' => $html]);
+    }
+
+    public function getNews() {
+        $tweets = Tweet::all();
+        if (!empty($tweets)) {
+            $html = view('partials.tweets', ['tweets' => $tweets])->render();
         } else {
             $html = view('errors.404')->render();
         }

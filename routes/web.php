@@ -6,6 +6,7 @@ App::setLocale('ru');
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/page/{alias}', 'HomeController@getPage');
+Route::post('/news', 'HomeController@getNews');
 
 Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');

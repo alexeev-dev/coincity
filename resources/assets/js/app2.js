@@ -76,6 +76,28 @@ $(document).ready(function() {
         return false;
     });
 
+    // news menu
+    $('.js-news').click(function(e) {
+        $('.app').toggleClass('active-news');
+        $(this).toggleClass('active');
+
+        const popup = $(this).siblings('.news-inner');
+        popup.empty();
+        popup.addClass('loading');
+
+        axios.post('/news', {
+        }).then(function (response) {
+
+            popup.removeClass('loading');
+            popup.html(response.data.html);
+
+        }).catch(function (error) {
+            popup.html(commonError);
+        });
+
+        return false;
+    });
+
     // house popup
     $('.house-item .coins').click(function() {
         const self = $(this).parents('.house-item');
