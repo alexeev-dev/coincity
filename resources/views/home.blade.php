@@ -43,12 +43,12 @@
                 @endforeach
 
             </div>
-            <div class="scrollbar_x">
-                <div class="scroll-element_outer">
-                    <div class="scroll-element_size"></div>
-                    <div class="scroll-element_track"></div>
-                    <div class="scroll-bar"></div>
-                </div>
+        </div>
+        <div class="scrollbar_x">
+            <div class="scroll-element_outer">
+                <div class="scroll-element_size"></div>
+                <div class="scroll-element_track"></div>
+                <div class="scroll-bar"></div>
             </div>
         </div>
     </section>

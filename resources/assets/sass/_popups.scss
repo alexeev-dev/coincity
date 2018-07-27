@@ -53,14 +53,14 @@
 		.loading & {
 			&:after {
 				content: '';
-				display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5;
+				display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: -1;
 				background: #ebebeb url('../img/preloader.svg') center center no-repeat;
 			}
 		}
 
 		&:before {
 			content: '';
-			display: block; width: 500px; height: 500px; position: absolute; left: 50%; top: -150px; transform: translateX(-50%); z-index: -1;
+			display: block; width: 500px; height: 500px; position: absolute; left: 50%; top: -150px; transform: translateX(-50%); z-index: -2;
 			background: #ebebeb; border-radius: 50%;
 
 			@include respond-to(sm) {
@@ -79,7 +79,7 @@
 		.loading & {
 			&:after {
 				content: '';
-				display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5;
+				display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: -1;
 				background: #ebebeb url('../img/preloader.svg') center center no-repeat;
 			}
 		}
@@ -96,7 +96,7 @@
 		.loading & {
 			&:after {
 				content: '';
-				display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5;
+				display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: -1;
 				background: #ebebeb url('../img/preloader.svg') center center no-repeat;
 			}
 		}
