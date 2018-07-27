@@ -16,14 +16,18 @@ class UserHouse extends Model
         return $this->belongsToMany('App\Models\TweetUpdate', 'user_house_updates');
     }
 
+    public function user_house_updates() {
+        return $this->hasMany('App\Models\UserHouseUpdate');
+    }
+
     public function getMoneyPerHourAttribute() {
-        // todo add money updates here
-        return $this->house->money_per_hour;
+        $updatesSum = $this->tweet_updates()->where('update_type_id','=', 1)->sum('value');
+        return $this->house->money_per_hour + $updatesSum;
     }
 
     public function getMaxMoneyAttribute() {
-        // todo add money updates here
-        return $this->house->max_money;
+        $updatesSum = $this->tweet_updates()->where('update_type_id','=', 2)->sum('value');
+        return $this->house->max_money + $updatesSum;
     }
 
     public function getMoneyPerHourTextAttribute() {

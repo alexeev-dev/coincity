@@ -47,7 +47,9 @@
             </ul>
             <ul class="btns">
                 @auth
-                @if ($tweet->is_house_built && !empty($tweet->tweet_update))
+                @if ($tweet->is_house_built
+                    && !empty($tweet->tweet_update)
+                    && count($tweet->tweet_update->current_user_houses()) == 0)
                 <li>
                     <a data-update-id="{{ $tweet->tweet_update->id }}" href="#" class="js-update{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
                 </li>

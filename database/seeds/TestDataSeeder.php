@@ -167,7 +167,7 @@ class TestDataSeeder extends Seeder
 
         // static pages
         $pages = collect([
-            ['id' => 1, 'alias' => 'about', 'content' => '<h1>Lorem ipsum dolor sit amet, consectetur</h1>
+            ['id' => 1, 'alias' => 'about', 'content' => '<h2>Lorem ipsum dolor sit amet, consectetur</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
@@ -184,7 +184,7 @@ class TestDataSeeder extends Seeder
             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
             nec egestas lorem lobortis.</p>'],
-            ['id' => 2, 'alias' => 'rules', 'content' => '<h1>Lorem ipsum dolor sit amet, consectetur</h1>
+            ['id' => 2, 'alias' => 'rules', 'content' => '<h2>Lorem ipsum dolor sit amet, consectetur</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,

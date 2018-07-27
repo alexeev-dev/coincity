@@ -30,8 +30,8 @@ class CreateTweetUpdatesTable extends Migration
         Schema::create('user_house_updates', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('twit_update_id')->nullable();
-            $table->foreign('twit_update_id')->references('id')->on('tweet_updates')->onDelete('cascade');
+            $table->unsignedInteger('tweet_update_id')->nullable();
+            $table->foreign('tweet_update_id')->references('id')->on('tweet_updates')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class TweetUpdate extends Model
 {
@@ -16,6 +17,10 @@ class TweetUpdate extends Model
 
     public function user_houses() {
         return $this->belongsToMany('App\Models\UserHouse', 'user_house_updates');
+    }
+
+    public function current_user_houses() {
+        return $this->user_houses()->where('user_id', Auth::user()->id)->get();
     }
 
     public function getUpdateClassAttribute() {

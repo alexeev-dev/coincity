@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Mode\UserHouseUpdate;
+use App\Models\UserHouseUpdate;
 use App\Models\TweetUpdate;
 use App\Models\UserHouse;
 use Carbon\Carbon;
@@ -149,28 +149,26 @@ class ProfileController extends Controller
         $user = Auth::user();
         $updateId = $request['updateId'];
 
-        /*
         $tweetUpdate = TweetUpdate::where('id', $updateId)->first();
-        $userHouses = $tweetUpdate->tweet->houses->user_houses()->where('iser_id', $user->id);
+        $userHouses = UserHouse::whereIn('house_id', $tweetUpdate->tweet->houses()->pluck('houses.id'))
+            ->where('user_id', $user->id)->get();
 
         if (!empty($tweetUpdate) && !empty($userHouses)) {
-
             foreach ($userHouses as $userHouse) {
-                $userHouseUpdate = new UserHouseUpdate();
-                $userHouseUpdate->twit_update_id = $tweetUpdate->id;
-                $userHouseUpdate->user_house_id = $userHouse->id;
-                $userHouseUpdate->save();
+                if (!$userHouse->user_house_updates()->where('tweet_update_id', $tweetUpdate->id)->exists()) {
+                    $userHouseUpdate = new UserHouseUpdate();
+                    $userHouseUpdate->tweet_update_id = $tweetUpdate->id;
+                    $userHouseUpdate->user_house_id = $userHouse->id;
+                    $userHouseUpdate->save();
+                }
             }
-
-            // print_r($userHouses); die();
 
             $output = json_encode(['houseId' => count($userHouses), 'houseMoney' => '']);
 
         } else {
             $output = 1;
         }
-        */
-        $output = 1;
+
         return $output;
     }
 }
