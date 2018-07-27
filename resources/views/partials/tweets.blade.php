@@ -12,15 +12,21 @@
                 </ul>
                 <ul class="btns">
                     @auth
-                        @if ($tweet->is_house_built)
+                        @if ($tweet->is_house_built && !empty($tweet->tweet_update))
                             <li>
-                                <a href="#" class="{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
+                                <a data-update-id="{{ $tweet->tweet_update->id }}" href="#" class="js-update{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
                             </li>
                         @endif
                     @endauth
-                    <li>
-                        <a href="#" class="more">More</a>
-                    </li>
+                    @if (!empty($tweet->link))
+                        <li>
+                            <a target="_blank" href="{{ $tweet->link }}" class="more">More</a>
+                        </li>
+                    @elseif (!empty($tweet->alias))
+                        <li>
+                            <a href="/news/{{ $tweet->alias }}" class="more">More</a>
+                        </li>
+                    @endif
                 </ul>
             </footer>
         </li>

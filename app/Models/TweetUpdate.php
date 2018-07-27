@@ -10,6 +10,14 @@ class TweetUpdate extends Model
         return $this->belongsTo('App\Models\UpdateType');
     }
 
+    public function tweet() {
+        return $this->belongsTo('App\Models\Tweet');
+    }
+
+    public function user_houses() {
+        return $this->belongsToMany('App\Models\UserHouse', 'user_house_updates');
+    }
+
     public function getUpdateClassAttribute() {
         $output = '';
         switch ($this->update_type->id) {

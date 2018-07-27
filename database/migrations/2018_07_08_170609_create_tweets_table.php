@@ -34,7 +34,6 @@ class CreateTweetsTable extends Migration
 
             $table->timestamps();
         });
-
     }
 
     /**

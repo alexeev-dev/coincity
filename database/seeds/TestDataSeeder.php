@@ -13,11 +13,31 @@ class TestDataSeeder extends Seeder
     {
         // houses - categories
         $houses = collect([
-            ['id' => 1, 'name' => 'Тестовая категория', 'max_money' => 1000, 'money_per_hour' => 110],
-            ['id' => 2, 'name' => 'Bitcoin Cash', 'max_money' => 2000, 'money_per_hour' => 120],
-            ['id' => 3, 'name' => 'Microsoft', 'max_money' => 3300, 'money_per_hour' => 130],
-            ['id' => 4, 'name' => 'ICO Бомжкоин', 'max_money' => 300, 'money_per_hour' => 140],
-            ['id' => 5, 'name' => 'Скромная компания', 'max_money' => 1000, 'money_per_hour' => 150]
+            ['id' => 1, 'name' => 'Тестовая категория',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_1.png',
+                'image_small' => 'img/houses/house_1_icon.png',
+                'max_money' => 1000, 'money_per_hour' => 110],
+            ['id' => 2, 'name' => 'Bitcoin Cash',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_2.png',
+                'image_small' => 'img/houses/house_2_icon.png',
+                'max_money' => 2000, 'money_per_hour' => 120],
+            ['id' => 3, 'name' => 'Microsoft',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_3.png',
+                'image_small' => 'img/houses/house_3_icon.png',
+                'max_money' => 3300, 'money_per_hour' => 130],
+            ['id' => 4, 'name' => 'ICO Бомжкоин',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_4.png',
+                'image_small' => 'img/houses/house_4_icon.png',
+                'max_money' => 300, 'money_per_hour' => 140],
+            ['id' => 5, 'name' => 'Скромная компания',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_5.png',
+                'image_small' => 'img/houses/house_5_icon.png',
+                'max_money' => 1000, 'money_per_hour' => 150]
         ]);
         $houses->each(function ($item) {
             $row = House::where(['id' => $item['id']])->first();
@@ -30,17 +50,72 @@ class TestDataSeeder extends Seeder
 
         // tweets
         $tweets = collect([
-            ['id' => 1, 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            ['id' => 1,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => 'https://google.com',
+                'alias' => null,
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
              nec egestas lorem lobortis. '],
-            ['id' => 2, 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            ['id' => 2,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => null,
+                'alias' => null,
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
              nec egestas lorem lobortis. '],
-            ['id' => 3, 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            ['id' => 3,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => null,
+                'alias' => 'test1',
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis. '],
+            ['id' => 4,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => null,
+                'alias' => null,
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis. '],
+            ['id' => 5,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => 'https://google.com',
+                'alias' => null,
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis. '],
+            ['id' => 6,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => null,
+                'alias' => 'test1',
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis. '],
+            ['id' => 7,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => null,
+                'alias' => null,
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
@@ -60,7 +135,11 @@ class TestDataSeeder extends Seeder
             ['id' => 1, 'tweet_id' => 1, 'house_id' => 1],
             ['id' => 2, 'tweet_id' => 1, 'house_id' => 2],
             ['id' => 3, 'tweet_id' => 2, 'house_id' => 2],
-            ['id' => 4, 'tweet_id' => 3, 'house_id' => 3]
+            ['id' => 4, 'tweet_id' => 3, 'house_id' => 3],
+            ['id' => 5, 'tweet_id' => 4, 'house_id' => 3],
+            ['id' => 6, 'tweet_id' => 5, 'house_id' => 3],
+            ['id' => 7, 'tweet_id' => 6, 'house_id' => 3],
+            ['id' => 8, 'tweet_id' => 7, 'house_id' => 3]
         ]);
         $tweetAssignments->each(function ($item) {
             $row = TweetAssignment::where(['id' => $item['id']])->first();

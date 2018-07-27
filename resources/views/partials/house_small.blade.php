@@ -1,5 +1,5 @@
 <figure>
-    <img src="{{ asset('img/header/news/logo_bitcoin.svg') }}">
+    <img src="{{ !empty($userHouse->house->ico) ? asset($userHouse->house->ico) : '#' }}">
 </figure>
 <h4>{{ $userHouse->house->name }}</h4>
 <ul>

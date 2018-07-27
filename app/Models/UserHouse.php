@@ -12,6 +12,10 @@ class UserHouse extends Model
         return $this->belongsTo('App\Models\House');
     }
 
+    public function tweet_updates() {
+        return $this->belongsToMany('App\Models\TweetUpdate', 'user_house_updates');
+    }
+
     public function getMoneyPerHourAttribute() {
         // todo add money updates here
         return $this->house->money_per_hour;

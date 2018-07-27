@@ -7,6 +7,7 @@ App::setLocale('ru');
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/page/{alias}', 'HomeController@getPage');
 Route::post('/news', 'HomeController@getNews');
+Route::get('/news/{alias}', 'HomeController@singleNews');
 
 Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');
@@ -16,6 +17,7 @@ Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('get-user-house-info', 'User\ProfileController@getUserHouseInfo');
     Route::post('get-user-house-info-small', 'User\ProfileController@getUserHouseInfoSmall');
     Route::post('gather-money', 'User\ProfileController@gatherMoney');
+    Route::post('update-house', 'User\ProfileController@updateHouse');
 });
 
 Auth::routes();

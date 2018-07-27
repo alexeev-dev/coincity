@@ -5,8 +5,8 @@
         <div class="scrollbar">
             <div class="houses drop" id="left-lovehandles">
 
-                @foreach ($userHouses as $house)
-                <div class="house-item handle" data-house-id="{{ $house->house_id }}">
+                @foreach ($userHouses as $userHouse)
+                <div class="house-item handle" data-house-id="{{ $userHouse->house_id }}">
                     <header>
                         <div class="houses-count">
                             <!-- <span>+2.500</span> -->
@@ -19,23 +19,23 @@
                     </header>
                     <section>
                         <figure class="footer-image">
-                            <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
+                            <img class="handle" src="{{ asset($userHouse->house->image_small) }}">
                         </figure>
                         <figure class="houses-images">
-                            <img src="{{ asset('img/houses/house_1_icon.png') }}">
+                            <img src="{{ asset($userHouse->house->image_small) }}">
                         </figure>
                         <figure class="draggable">
-                            <img src="{{ asset('img/houses/house_1_icon.png') }}">
+                            <img src="{{ asset($userHouse->house->image_small) }}">
                         </figure>
                     </section>
                     <footer>
                         <div class="footer-price">
                             <img src="{{ asset('img/icons/cointime_icon.png') }}">
-                            <span>{{ $house->money_per_hour_text }}</span>
+                            <span>{{ $userHouse->money_per_hour_text }}</span>
                         </div>
                         <div class="houses-price">
                             <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
-                            <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour_text }}</span></a>
+                            <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $userHouse->money_per_hour_text }}</span></a>
                             <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                         </div>
                     </footer>
@@ -72,13 +72,13 @@
                         </header>
                         <section>
                             <figure class="footer-image">
-                                <img class="handle" src="{{ asset('img/houses/house_1_icon.png') }}">
+                                <img class="handle" src="{{ asset($house->image_small) }}">
                             </figure>
                             <figure class="houses-images">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
+                                <img src="{{ asset($house->image_small) }}">
                             </figure>
                             <figure class="draggable">
-                                <img src="{{ asset('img/houses/house_1_icon.png') }}">
+                                <img src="{{ asset($house->image_small) }}">
                             </figure>
                         </section>
                         <footer>

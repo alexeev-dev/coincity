@@ -47,4 +47,11 @@ class HomeController extends Controller
         }
         return json_encode(['html' => $html]);
     }
+
+    public function singleNews(Request $request) {
+        $singleNews = Tweet::where('alias', $request['alias'])->first();
+        return view('single_news', [
+            'singleNews' => $singleNews
+        ]);
+    }
 }

@@ -155,6 +155,30 @@ $(document).ready(function() {
         return false;
     });
 
+    // house update
+    $('body').on('click', '.js-update', function() {
+        const self = $(this);
+        self.addClass('loading');
+
+        axios.post('/user/update-house', {
+            updateId: self.data('update-id')
+        }).then(function (response) {
+
+            self.removeClass('loading');
+            if (response.data === 1) {
+                // ...
+            } else {
+                self.remove();
+                $('[data-house-id="' + response.data.houseId + '"] .footer-price span').text(response.data.houseMoney);
+            }
+
+        }).catch(function (error) {
+            // ...
+        });
+
+        return false;
+    });
+
     // coin click - gather money
     // house popup
     $('.house-item .houses-count a').click(function() {
