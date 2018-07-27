@@ -36,7 +36,8 @@ class RegisterController extends Controller {
         $user = User::create([
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
-            'confirmation_code' => str_random(30)
+            //'confirmation_code' => str_random(30)
+            'confirmed' => 1
         ]);
 
         $request->session()->flash('code_sent_to_email', $request->input('email'));
