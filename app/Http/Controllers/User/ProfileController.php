@@ -52,7 +52,7 @@ class ProfileController extends Controller
             $userHouse->save();
         }
 
-        return json_encode(['total_money_per_hour' => $user->user_stat->total_money_per_hour]);
+        return json_encode(['totalMoneyPerHour' => $user->user_stat->total_money_per_hour]);
     }
 
     public function getUserHouseInfo(Request $request) {
@@ -153,6 +153,7 @@ class ProfileController extends Controller
         $userHouses = UserHouse::whereIn('house_id', $tweetUpdate->tweet->houses()->pluck('houses.id'))
             ->where('user_id', $user->id)->get();
 
+        $housesToSend = [];
         if (!empty($tweetUpdate) && !empty($userHouses)) {
             foreach ($userHouses as $userHouse) {
                 if (!$userHouse->user_house_updates()->where('tweet_update_id', $tweetUpdate->id)->exists()) {
@@ -160,11 +161,18 @@ class ProfileController extends Controller
                     $userHouseUpdate->tweet_update_id = $tweetUpdate->id;
                     $userHouseUpdate->user_house_id = $userHouse->id;
                     $userHouseUpdate->save();
+
+                    $housesToSend[] = [
+                        'houseId' => $userHouse->house->id,
+                        'houseMoney' => $userHouse->money_per_hour_text,
+                        'houseCapacity' => $userHouse->max_money_text
+                    ];
                 }
             }
-
-            $output = json_encode(['houseId' => count($userHouses), 'houseMoney' => '']);
-
+            $output = json_encode([
+                'totalMoneyPerHour' => $user->user_stat->total_money_per_hour,
+                'houses' => $housesToSend
+            ]);
         } else {
             $output = 1;
         }

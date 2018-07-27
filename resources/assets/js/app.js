@@ -48,9 +48,7 @@ function sendHousesState() {
         if (response.data === 1) {
             self.addClass('error');
         } else {
-            console.log(response.data);
-
-            $('.js-tmph').text(response.data.total_money_per_hour + ' per hour');
+            $('.js-tmph').text(response.data.totalMoneyPerHour + ' per hour');
         }
 
     }).catch(function (error) {

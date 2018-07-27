@@ -169,7 +169,15 @@ $(document).ready(function() {
                 // ...
             } else {
                 self.remove();
-                $('[data-house-id="' + response.data.houseId + '"] .footer-price span').text(response.data.houseMoney);
+                $('.js-tmph').text(response.data.totalMoneyPerHour + ' per hour');
+                if (Array.isArray(response.data.houses)) {
+                    for (let i = 0; i < response.data.houses.length; i++) {
+                        $('[data-house-id="' + response.data.houses[i].houseId + '"] .footer-price span').text(response.data.houses[i].houseMoney);
+                        $('[data-house-id="' + response.data.houses[i].houseId + '"] .houses-price .coins span').text(response.data.houses[i].houseMoney);
+                        $('.popup-house-info .time p').text(response.data.houses[i].houseMoney);
+                        $('.popup-house-info .coins p').text(response.data.houses[i].houseCapacity);
+                    }
+                }
             }
 
         }).catch(function (error) {

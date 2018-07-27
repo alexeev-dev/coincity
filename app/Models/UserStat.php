@@ -20,10 +20,6 @@ class UserStat extends Model
     }
 
     public function getTotalMoneyPerHourAttribute() {
-        $result = DB::table('user_houses')
-            ->join('houses', 'user_houses.house_id', '=', 'houses.id')
-            ->where('user_houses.user_id', $this->user->id)
-            ->sum('money_per_hour');
-        return $result;
+        return $this->user->user_houses->sum('money_per_hour');
     }
 }
