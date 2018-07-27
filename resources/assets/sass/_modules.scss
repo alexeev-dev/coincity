@@ -53,6 +53,10 @@
 	.house-item {
 		min-width: 410px; height: 470px; width: auto; padding: 0 30px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex-shrink: 0;
 
+		@media (max-height: 950px) {
+			height: 420px;
+		}
+
 		&:nth-child(2n) {
 			padding: 0 48px;
 
@@ -132,6 +136,8 @@
 				.houses-price {
 					.info, .replace {
 						opacity: 1;
+
+						@extend .bounce; @extend .animated;
 					}
 				}
 			}
@@ -322,7 +328,7 @@
 	}
 
 	&-x, &-y {
-		display: none; position: fixed;
+		display: none; position: absolute;
 		border: solid 2px #59bfff; border-radius: 100px;
 		cursor: pointer; overflow: hidden;
 
@@ -346,10 +352,20 @@
 
 		&.scroll-scrollx_visible {
 			display: block;
-			height: 15px;
+			height: 10px;
 			left: 50%; transform: translateX(-50%);
-			bottom: 320px;
+			bottom: 235px;
 			width: 1090px;
+
+			@include respond-to(lg) {
+				width: 930px;
+			}
+			@include respond-to(md) {
+				width: 710px;
+			}
+			@include respond-to(sm) {
+				width: calc(100% - 30px);
+			}
 		}
 	}
 	&-y {

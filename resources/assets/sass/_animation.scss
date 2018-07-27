@@ -1,115 +1,41 @@
 /**** Header animations ****/
-// settings close/open animation
-// @keyframes settOpen {
-// 	0% { background: url('../img/header/set_to_close/set_to_close_00.png') center center no-repeat; background-size: 75%; }
-// 	5.26316% { background: url('../img/header/set_to_close/set_to_close_01.png') center center no-repeat; background-size: 75%; }
-// 	10.52632% { background: url('../img/header/set_to_close/set_to_close_02.png') center center no-repeat; background-size: 75%; }
-// 	15.78947% { background: url('../img/header/set_to_close/set_to_close_03.png') center center no-repeat; background-size: 75%; }
-// 	21.05263% { background: url('../img/header/set_to_close/set_to_close_04.png') center center no-repeat; background-size: 75%; }
-// 	26.31579% { background: url('../img/header/set_to_close/set_to_close_05.png') center center no-repeat; background-size: 75%; }
-// 	31.57895% { background: url('../img/header/set_to_close/set_to_close_06.png') center center no-repeat; background-size: 75%; }
-// 	36.84211% { background: url('../img/header/set_to_close/set_to_close_07.png') center center no-repeat; background-size: 75%; }
-// 	42.10526% { background: url('../img/header/set_to_close/set_to_close_08.png') center center no-repeat; background-size: 75%; }
-// 	47.36842% { background: url('../img/header/set_to_close/set_to_close_09.png') center center no-repeat; background-size: 75%; }
-// 	52.63158% { background: url('../img/header/set_to_close/set_to_close_10.png') center center no-repeat; background-size: 75%; }
-// 	57.89474% { background: url('../img/header/set_to_close/set_to_close_11.png') center center no-repeat; background-size: 75%; }
-// 	63.15789% { background: url('../img/header/set_to_close/set_to_close_12.png') center center no-repeat; background-size: 75%; }
-// 	68.42105% { background: url('../img/header/set_to_close/set_to_close_13.png') center center no-repeat; background-size: 75%; }
-// 	73.68421% { background: url('../img/header/set_to_close/set_to_close_14.png') center center no-repeat; background-size: 75%; }
-// 	78.94737% { background: url('../img/header/set_to_close/set_to_close_15.png') center center no-repeat; background-size: 75%; }
-// 	84.21053% { background: url('../img/header/set_to_close/set_to_close_16.png') center center no-repeat; background-size: 75%; }
-// 	89.47368% { background: url('../img/header/set_to_close/set_to_close_17.png') center center no-repeat; background-size: 75%; }
-// 	94.73684% { background: url('../img/header/set_to_close/set_to_close_18.png') center center no-repeat; background-size: 75%; }
-// 	100% { background: url('../img/header/set_to_close/set_to_close_19.png') center center no-repeat; background-size: 75%; }
-// }
 @keyframes settOpen {
 	0% { background: url('../img/header/settings.svg') center center no-repeat; background-size: contain; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
 	50% { background: url('../img/header/settings.svg') center center no-repeat; background-size: contain; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	50.001% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	100% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
 }
-// @keyframes settClose {
-// 	0% { background: url('../img/header/set_to_close/set_to_close_19.png') center center no-repeat; background-size: 75%; }
-// 	5.26316% { background: url('../img/header/set_to_close/set_to_close_18.png') center center no-repeat; background-size: 75%; }
-// 	10.52632% { background: url('../img/header/set_to_close/set_to_close_17.png') center center no-repeat; background-size: 75%; }
-// 	15.78947% { background: url('../img/header/set_to_close/set_to_close_16.png') center center no-repeat; background-size: 75%; }
-// 	21.05263% { background: url('../img/header/set_to_close/set_to_close_15.png') center center no-repeat; background-size: 75%; }
-// 	26.31579% { background: url('../img/header/set_to_close/set_to_close_14.png') center center no-repeat; background-size: 75%; }
-// 	31.57895% { background: url('../img/header/set_to_close/set_to_close_13.png') center center no-repeat; background-size: 75%; }
-// 	36.84211% { background: url('../img/header/set_to_close/set_to_close_12.png') center center no-repeat; background-size: 75%; }
-// 	42.10526% { background: url('../img/header/set_to_close/set_to_close_11.png') center center no-repeat; background-size: 75%; }
-// 	47.36842% { background: url('../img/header/set_to_close/set_to_close_10.png') center center no-repeat; background-size: 75%; }
-// 	52.63158% { background: url('../img/header/set_to_close/set_to_close_09.png') center center no-repeat; background-size: 75%; }
-// 	57.89474% { background: url('../img/header/set_to_close/set_to_close_08.png') center center no-repeat; background-size: 75%; }
-// 	63.15789% { background: url('../img/header/set_to_close/set_to_close_07.png') center center no-repeat; background-size: 75%; }
-// 	68.42105% { background: url('../img/header/set_to_close/set_to_close_06.png') center center no-repeat; background-size: 75%; }
-// 	73.68421% { background: url('../img/header/set_to_close/set_to_close_05.png') center center no-repeat; background-size: 75%; }
-// 	78.94737% { background: url('../img/header/set_to_close/set_to_close_04.png') center center no-repeat; background-size: 75%; }
-// 	84.21053% { background: url('../img/header/set_to_close/set_to_close_03.png') center center no-repeat; background-size: 75%; }
-// 	89.47368% { background: url('../img/header/set_to_close/set_to_close_02.png') center center no-repeat; background-size: 75%; }
-// 	94.73684% { background: url('../img/header/set_to_close/set_to_close_01.png') center center no-repeat; background-size: 75%; }
-// 	100% { background: url('../img/header/set_to_close/set_to_close_00.png') center center no-repeat; background-size: 75%; }
-// }
 @keyframes settClose {
 	0% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
 	50% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	50.001% { background: url('../img/header/settings.svg') center center no-repeat; background-size: contain; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	100% { background: url('../img/header/settings.svg') center center no-repeat; background-size: contain; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
 }
-// news close/open animation
-// @keyframes newsOpen {
-// 	0% { background: url('../img/header/news_to_close/news_to_close_00.png') center center no-repeat; background-size: 75%; }
-// 	5.26316% { background: url('../img/header/news_to_close/news_to_close_01.png') center center no-repeat; background-size: 75%; }
-// 	10.52632% { background: url('../img/header/news_to_close/news_to_close_02.png') center center no-repeat; background-size: 75%; }
-// 	15.78947% { background: url('../img/header/news_to_close/news_to_close_03.png') center center no-repeat; background-size: 75%; }
-// 	21.05263% { background: url('../img/header/news_to_close/news_to_close_04.png') center center no-repeat; background-size: 75%; }
-// 	26.31579% { background: url('../img/header/news_to_close/news_to_close_05.png') center center no-repeat; background-size: 75%; }
-// 	31.57895% { background: url('../img/header/news_to_close/news_to_close_06.png') center center no-repeat; background-size: 75%; }
-// 	36.84211% { background: url('../img/header/news_to_close/news_to_close_07.png') center center no-repeat; background-size: 75%; }
-// 	42.10526% { background: url('../img/header/news_to_close/news_to_close_08.png') center center no-repeat; background-size: 75%; }
-// 	47.36842% { background: url('../img/header/news_to_close/news_to_close_09.png') center center no-repeat; background-size: 75%; }
-// 	52.63158% { background: url('../img/header/news_to_close/news_to_close_10.png') center center no-repeat; background-size: 75%; }
-// 	57.89474% { background: url('../img/header/news_to_close/news_to_close_11.png') center center no-repeat; background-size: 75%; }
-// 	63.15789% { background: url('../img/header/news_to_close/news_to_close_12.png') center center no-repeat; background-size: 75%; }
-// 	68.42105% { background: url('../img/header/news_to_close/news_to_close_13.png') center center no-repeat; background-size: 75%; }
-// 	73.68421% { background: url('../img/header/news_to_close/news_to_close_14.png') center center no-repeat; background-size: 75%; }
-// 	78.94737% { background: url('../img/header/news_to_close/news_to_close_15.png') center center no-repeat; background-size: 75%; }
-// 	84.21053% { background: url('../img/header/news_to_close/news_to_close_16.png') center center no-repeat; background-size: 75%; }
-// 	89.47368% { background: url('../img/header/news_to_close/news_to_close_17.png') center center no-repeat; background-size: 75%; }
-// 	94.73684% { background: url('../img/header/news_to_close/news_to_close_18.png') center center no-repeat; background-size: 75%; }
-// 	100% { background: url('../img/header/news_to_close/news_to_close_19.png') center center no-repeat; background-size: 75%; }
-// }
 @keyframes newsOpen {
 	0% { background: url('../img/header/news.svg') center center no-repeat; background-size: 80%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
 	50% { background: url('../img/header/news.svg') center center no-repeat; background-size: 80%; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	50.001% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	100% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
 }
-// @keyframes newsClose {
-// 	0% { background: url('../img/header/news_to_close/news_to_close_19.png') center center no-repeat; background-size: 75%; }
-// 	5.26316% { background: url('../img/header/news_to_close/news_to_close_18.png') center center no-repeat; background-size: 75%; }
-// 	10.52632% { background: url('../img/header/news_to_close/news_to_close_17.png') center center no-repeat; background-size: 75%; }
-// 	15.78947% { background: url('../img/header/news_to_close/news_to_close_16.png') center center no-repeat; background-size: 75%; }
-// 	21.05263% { background: url('../img/header/news_to_close/news_to_close_15.png') center center no-repeat; background-size: 75%; }
-// 	26.31579% { background: url('../img/header/news_to_close/news_to_close_14.png') center center no-repeat; background-size: 75%; }
-// 	31.57895% { background: url('../img/header/news_to_close/news_to_close_13.png') center center no-repeat; background-size: 75%; }
-// 	36.84211% { background: url('../img/header/news_to_close/news_to_close_12.png') center center no-repeat; background-size: 75%; }
-// 	42.10526% { background: url('../img/header/news_to_close/news_to_close_11.png') center center no-repeat; background-size: 75%; }
-// 	47.36842% { background: url('../img/header/news_to_close/news_to_close_10.png') center center no-repeat; background-size: 75%; }
-// 	52.63158% { background: url('../img/header/news_to_close/news_to_close_09.png') center center no-repeat; background-size: 75%; }
-// 	57.89474% { background: url('../img/header/news_to_close/news_to_close_08.png') center center no-repeat; background-size: 75%; }
-// 	63.15789% { background: url('../img/header/news_to_close/news_to_close_07.png') center center no-repeat; background-size: 75%; }
-// 	68.42105% { background: url('../img/header/news_to_close/news_to_close_06.png') center center no-repeat; background-size: 75%; }
-// 	73.68421% { background: url('../img/header/news_to_close/news_to_close_05.png') center center no-repeat; background-size: 75%; }
-// 	78.94737% { background: url('../img/header/news_to_close/news_to_close_04.png') center center no-repeat; background-size: 75%; }
-// 	84.21053% { background: url('../img/header/news_to_close/news_to_close_03.png') center center no-repeat; background-size: 75%; }
-// 	89.47368% { background: url('../img/header/news_to_close/news_to_close_02.png') center center no-repeat; background-size: 75%; }
-// 	94.73684% { background: url('../img/header/news_to_close/news_to_close_01.png') center center no-repeat; background-size: 75%; }
-// 	100% { background: url('../img/header/news_to_close/news_to_close_00.png') center center no-repeat; background-size: 75%; }
-// }
 @keyframes newsClose {
 	0% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
 	50% { background: url('../img/header/close_btn.svg') center center no-repeat; background-size: 60%; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	50.001% { background: url('../img/header/news.svg') center center no-repeat; background-size: 80%; transform: translate(-50%, -50%) rotate(360deg) scale(0); }
 	100% { background: url('../img/header/news.svg') center center no-repeat; background-size: 80%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+}
+
+/**** Footer buttons animations ****/
+@keyframes iconShake {
+	0% { transform: translateX(0px); }
+	60% { transform: translateX(-13px); }
+	70% { transform: translateX(10px); }
+	85% { transform: translateX(-7px); }
+	100% { transform: translateX(0px); }
+}
+@keyframes textShake {
+	0% { transform: translateX(0px); }
+	60% { transform: translateX(13px); }
+	70% { transform: translateX(-10px); }
+	85% { transform: translateX(7px); }
+	100% { transform: translateX(0px); }
 }

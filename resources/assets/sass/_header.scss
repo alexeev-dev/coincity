@@ -26,6 +26,10 @@
 			display: block; width: 40px; height: 40px; position: relative;
 			background: #e16aff; border-bottom: solid 2px #993db0; border-radius: 50%; background-size: contain;
 
+			&:hover {
+				@extend .tada; @extend .animated;
+			}
+
 			@include respond-to(xs) {
 				width: 35px; height: 35px;
 			}
@@ -116,6 +120,10 @@
 						@include respond-to(xs) {
 							font-size: 24px;
 							width: 100%;
+						}
+
+						&:hover {
+							@extend .rubberBand; @extend .animated;
 						}
 
 						&.sound {
@@ -220,7 +228,7 @@
 					margin: 0;
 					a {
 						color: $white; font-size: 22px; font-family: $header; text-align: center;
-						padding: 10px; width: 165px; display: block;
+						padding: 10px; width: 155px; display: block;
 						border-radius: 8px; border-bottom: solid 2px;
 
 						@include respond-to(lg) {
@@ -236,6 +244,10 @@
 						@include respond-to(xs) {
 							font-size: 14px;
 							width: 70px; padding: 6px;
+						}
+
+						&:hover {
+							@extend .rubberBand; @extend .animated;
 						}
 
 						&.login {
@@ -285,6 +297,10 @@
 
 			@include respond-to(xs) {
 				width: 35px; height: 35px;
+			}
+
+			&:hover {
+				@extend .tada; @extend .animated;
 			}
 
 			&.active {
@@ -452,6 +468,10 @@
 									color: $white; font-size: 26px; font-family: $text; text-align: center;
 									display: inline-block; padding: 10px; position: relative;
 									border-bottom: solid 2px transparent; border-radius: 8px;
+
+									&:hover {
+										@extend .rubberBand; @extend .animated;
+									}
 
 									@include respond-to(sm) {
 										font-size: 20px;

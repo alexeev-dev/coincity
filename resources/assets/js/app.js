@@ -87,7 +87,25 @@ $(document).ready(function() {
 });
 
 $(window).resize(function() {
+	calculateHousesWidth();
     newsResize();
+});
+
+$(document).mouseup(function (e) {
+
+	// close popup on click free space
+	var popup = $('.popup > div');
+	if(popup.has(e.target).length === 0 && !popup.is(e.target)) {
+		popup.removeClass('active').parent().removeClass('active');
+	}
+
+	// close settings/news popup
+	var settNewsPopup = $('.settings > div, .news > div'),
+		settNewsButtons = $('.js-settings, .js-news');
+	if(settNewsPopup.has(e.target).length === 0 && !settNewsPopup.is(e.target) && settNewsButtons.has(e.target).length === 0 && !settNewsButtons.is(e.target)) {
+		$('.app').removeClass('active-news active-settings');
+		settNewsButtons.removeClass('active');
+	}
 });
 
 function footerListSort() {

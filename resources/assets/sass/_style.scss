@@ -1,7 +1,7 @@
 .app {
 	min-width: 320px; height: 100vh; position: relative; z-index: 1; padding: 20px 0 0; display: flex; align-items: center; justify-content: space-between; flex-direction: column;
 	background: url('../img/backgrounds/mountain.png') center center no-repeat; background-size: cover;
-	overflow-x: hidden;
+	overflow-x: hidden; overflow-y: auto;
 
 	// &:after {
 	// 	content: '';
@@ -34,9 +34,12 @@
 		}
 		
 		&-footer {
-			position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+			position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%) scale(0.5); transform-origin: 50% 100%;
 			background: #ebebeb; border-radius: 10px;
 
+			@include respond-to(md) {
+				transform: translateX(-50%) scale(0.65);
+			}
 			@include respond-to(sm) {
 				width: calc(100% - 30px); bottom: 30px;
 			}
