@@ -85,6 +85,9 @@ $(document).ready(function() {
         popup.empty();
         popup.addClass('loading');
 
+        // todo tmp
+        $(this).find('span').remove();
+
         axios.post('/news', {
         }).then(function (response) {
 

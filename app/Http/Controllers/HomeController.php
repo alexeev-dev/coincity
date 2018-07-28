@@ -24,7 +24,8 @@ class HomeController extends Controller
 
         return view('home', [
             'houses' => $houses,
-            'userHouses' => $userHouses
+            'userHouses' => $userHouses,
+            'tweets' => $tweets
         ]);
     }
 

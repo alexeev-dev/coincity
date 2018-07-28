@@ -163,7 +163,7 @@
 
 @section('news')
     <div class="news">
-        <a href="#" class="js-news"><span>55</span></a>
+        <a href="#" class="js-news"><span>{{ count($tweets) }}</span></a>
         <div class="news-inner">
         </div>
     </div>
