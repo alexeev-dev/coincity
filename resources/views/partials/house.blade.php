@@ -38,7 +38,7 @@
     @foreach ($tweets as $tweet)
     <li>
         <section>
-            <p>{{ $tweet->content }}</p>
+            {!! $tweet->content !!}
         </section>
         <footer>
             <ul class="timer">

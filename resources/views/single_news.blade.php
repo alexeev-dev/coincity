@@ -6,7 +6,7 @@
             <a href="{{ route('home') }}" class="close"></a>
             <div class="page-content">
                 <h2>{{ $singleNews->title }}</h2>
-                <p>{{ $singleNews->content }}</p>
+                {!! $singleNews->content !!}
             </div>
         </div>
     </div>

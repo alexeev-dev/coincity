@@ -37,7 +37,32 @@ class TestDataSeeder extends Seeder
                 'ico' => 'img/header/news/logo_bitcoin.svg',
                 'image' => 'img/houses/house_5.png',
                 'image_small' => 'img/houses/house_5_icon.png',
-                'max_money' => 1000, 'money_per_hour' => 150]
+                'max_money' => 1500, 'money_per_hour' => 150],
+            ['id' => 6, 'name' => 'Litecoin',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_6.png',
+                'image_small' => 'img/houses/house_6_icon.png',
+                'max_money' => 2500, 'money_per_hour' => 110],
+            ['id' => 7, 'name' => 'Monero',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_7.png',
+                'image_small' => 'img/houses/house_7_icon.png',
+                'max_money' => 3500, 'money_per_hour' => 120],
+            ['id' => 8, 'name' => 'Bitcoin Cash',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_8.png',
+                'image_small' => 'img/houses/house_8_icon.png',
+                'max_money' => 1200, 'money_per_hour' => 130],
+            ['id' => 9, 'name' => 'Dash',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_9.png',
+                'image_small' => 'img/houses/house_9_icon.png',
+                'max_money' => 1700, 'money_per_hour' => 140],
+            ['id' => 10, 'name' => 'Etherium',
+                'ico' => 'img/header/news/logo_bitcoin.svg',
+                'image' => 'img/houses/house_10.png',
+                'image_small' => 'img/houses/house_10_icon.png',
+                'max_money' => 2100, 'money_per_hour' => 150],
         ]);
         $houses->each(function ($item) {
             $row = House::where(['id' => $item['id']])->first();
@@ -55,71 +80,121 @@ class TestDataSeeder extends Seeder
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 'link' => 'https://google.com',
                 'alias' => null,
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                'content' => '<p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
-             nec egestas lorem lobortis. '],
+             nec egestas lorem lobortis.</p>'],
             ['id' => 2,
                 'title' => 'Тестовый заголовок h1',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 'link' => null,
                 'alias' => null,
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                'content' => '<p>2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
-             nec egestas lorem lobortis. '],
+             nec egestas lorem lobortis.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p>'],
             ['id' => 3,
                 'title' => 'Тестовый заголовок h1',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 'link' => null,
                 'alias' => 'test1',
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                'content' => '<p>3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
-             nec egestas lorem lobortis. '],
+             nec egestas lorem lobortis.</p>'],
             ['id' => 4,
                 'title' => 'Тестовый заголовок h1',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 'link' => null,
                 'alias' => null,
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                'content' => '<p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
-             nec egestas lorem lobortis. '],
+             nec egestas lorem lobortis.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p>'],
             ['id' => 5,
                 'title' => 'Тестовый заголовок h1',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 'link' => 'https://google.com',
                 'alias' => null,
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                'content' => '<p>5. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
-             nec egestas lorem lobortis. '],
+             nec egestas lorem lobortis.</p>'],
             ['id' => 6,
                 'title' => 'Тестовый заголовок h1',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
                 'link' => null,
                 'alias' => 'test1',
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                'content' => '<p>6. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
-             nec egestas lorem lobortis. '],
+             nec egestas lorem lobortis.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p>'],
             ['id' => 7,
                 'title' => 'Тестовый заголовок h1',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-                'link' => null,
+                'link' => 'https://google.com',
                 'alias' => null,
-                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                'content' => '<p>7. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
              Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
              quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
-             nec egestas lorem lobortis. ']
+             nec egestas lorem lobortis.</p>'],
+            ['id' => 8,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => null,
+                'alias' => 'test1',
+                'content' => '<p>8. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p>'],
+            ['id' => 9,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => 'https://google.com',
+                'alias' => null,
+                'content' => '<p>9. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p>'],
+            ['id' => 10,
+                'title' => 'Тестовый заголовок h1',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'link' => null,
+                'alias' => 'test1',
+                'content' => '<p>10.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+             Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+             Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+             quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+             nec egestas lorem lobortis.</p>'],
         ]);
         $tweets->each(function ($item) {
             $row = Tweet::where(['id' => $item['id']])->first();
@@ -136,10 +211,13 @@ class TestDataSeeder extends Seeder
             ['id' => 2, 'tweet_id' => 1, 'house_id' => 2],
             ['id' => 3, 'tweet_id' => 2, 'house_id' => 2],
             ['id' => 4, 'tweet_id' => 3, 'house_id' => 3],
-            ['id' => 5, 'tweet_id' => 4, 'house_id' => 3],
-            ['id' => 6, 'tweet_id' => 5, 'house_id' => 3],
-            ['id' => 7, 'tweet_id' => 6, 'house_id' => 3],
-            ['id' => 8, 'tweet_id' => 7, 'house_id' => 3]
+            ['id' => 5, 'tweet_id' => 4, 'house_id' => 4],
+            ['id' => 6, 'tweet_id' => 5, 'house_id' => 5],
+            ['id' => 7, 'tweet_id' => 6, 'house_id' => 6],
+            ['id' => 8, 'tweet_id' => 7, 'house_id' => 7],
+            ['id' => 9, 'tweet_id' => 8, 'house_id' => 8],
+            ['id' => 10, 'tweet_id' => 9, 'house_id' => 9],
+            ['id' => 11, 'tweet_id' => 10, 'house_id' => 10]
         ]);
         $tweetAssignments->each(function ($item) {
             $row = TweetAssignment::where(['id' => $item['id']])->first();
@@ -154,7 +232,14 @@ class TestDataSeeder extends Seeder
         $tweetUpdates = collect([
             ['id' => 1, 'tweet_id' => 1, 'update_type_id' => 1, 'value' => 100],
             ['id' => 2, 'tweet_id' => 2, 'update_type_id' => 2, 'value' => 500],
-            ['id' => 3, 'tweet_id' => 3, 'update_type_id' => 1, 'value' => 150]
+            ['id' => 3, 'tweet_id' => 3, 'update_type_id' => 1, 'value' => 50],
+            ['id' => 4, 'tweet_id' => 4, 'update_type_id' => 1, 'value' => 60],
+            ['id' => 5, 'tweet_id' => 5, 'update_type_id' => 2, 'value' => 750],
+            ['id' => 6, 'tweet_id' => 6, 'update_type_id' => 1, 'value' => 40],
+            ['id' => 7, 'tweet_id' => 7, 'update_type_id' => 1, 'value' => 770],
+            ['id' => 8, 'tweet_id' => 8, 'update_type_id' => 2, 'value' => 1000],
+            ['id' => 9, 'tweet_id' => 9, 'update_type_id' => 1, 'value' => 110],
+            ['id' => 10, 'tweet_id' => 10, 'update_type_id' => 1, 'value' => 120]
         ]);
         $tweetUpdates->each(function ($item) {
             $row = TweetUpdate::where(['id' => $item['id']])->first();
