@@ -1,7 +1,7 @@
 .app {
 	min-width: 320px; height: 100vh; position: relative; z-index: 1; padding: 20px 0 0; display: flex; align-items: center; justify-content: space-between; flex-direction: column;
 	background: url('../img/backgrounds/mountain.png') center center no-repeat; background-size: cover;
-	overflow-x: hidden; overflow-y: auto;
+	overflow: hidden;
 
 	// &:after {
 	// 	content: '';
@@ -34,8 +34,24 @@
 		}
 		
 		&-footer {
-			position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%) scale(0.5); transform-origin: 50% 100%;
+			position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 51%) scale(0.5); transform-origin: 50% 100%;
 			background: #ebebeb; border-radius: 10px;
+
+			&.active {
+				transform: translate(-50%, -50px) scale(0.5);
+
+				a.footerShowHide {
+					bottom: -80px; top: auto;
+
+					&:before {
+						top: auto; bottom: 30px;
+					}
+					&:after {
+						top: auto; bottom: 20px;
+						border-bottom: none; border-top: 15px solid #59bfff;
+					}
+				}
+			}
 
 			@include respond-to(md) {
 				transform: translateX(-50%) scale(0.65);
@@ -45,6 +61,22 @@
 			}
 			@include respond-to(xs) {
 				bottom: 15px;
+			}
+
+			a.footerShowHide {
+				position: absolute; left: 50%; top: -80px; width: 200px; height: 200px; transform: translateX(-50%);
+				background: #ebebeb; border-radius: 100px;
+
+				&:before {
+					content: '';
+					display: block; width: 20px; height: 40px; position: absolute; left: 50%; top: 25px; transform: translateX(-50%);
+					background: #59bfff;
+				}
+				&:after {
+					content: '';
+					display: block; position: absolute; left: 50%; top: 15px; transform: translateX(-50%);
+					border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 15px solid #59bfff;
+				}
 			}
 		}
 	}

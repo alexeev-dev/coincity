@@ -53,7 +53,8 @@
         </div>
     </section>
 
-    <footer class="wr-footer">
+    <footer class="wr-footer active">
+        <a href="#" class="footerShowHide js-footerShowHide"></a>
         <div class="container">
             <div class="footer">
                 <section class="js-footerHouseItems new-active built-active featured-active show" id="right-lovehandles">
@@ -121,7 +122,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="built active">
+                            <a href="#" class="built">
                                 <em>
                                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          width="33.828px" height="31.923px" viewBox="0 0 33.828 31.923" enable-background="new 0 0 33.828 31.923" xml:space="preserve">
@@ -140,7 +141,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="featured active">
+                            <a href="#" class="featured">
                                 <em>
                                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          width="31.517px" height="30.326px" viewBox="0 0 31.517 30.326" enable-background="new 0 0 31.517 30.326" xml:space="preserve">

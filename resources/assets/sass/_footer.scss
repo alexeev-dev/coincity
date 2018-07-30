@@ -8,7 +8,7 @@
 	}
 
 	& > section {
-		display: none; align-items: flex-start; justify-content: flex-start; padding: 10px 10px 15px; min-height: 85px; margin-bottom: 15px;
+		display: none; align-items: flex-end; justify-content: flex-start; padding: 10px 10px 15px; min-height: 85px; margin-bottom: 15px;
 		overflow-x: auto;
 
 		@include respond-to(xs) {
@@ -203,79 +203,97 @@
 					}
 
 					&.new, &.built, &.featured {
-						background: #f7f7f7; border-color: #b8b8b8;
+						color: $white;
 
 						&.active {
-							color: $white
+							background: #f7f7f7; border-color: #b8b8b8;
 						}
 					}
 
 					&.new {
-						color: #48a8f7;
-						border-right: solid 2px #b8b8b8; border-bottom: solid 2px #b8b8b8; border-radius: 0 0 0 10px;
+						background: #48a8f7; border-right: solid #0e76cb 2px; border-bottom: solid 2px #0e76cb; border-radius: 0 0 0 10px;
 
 						&.active {
-							background: #48a8f7; border-right: solid #0e76cb 2px; border-bottom: solid 2px #0e76cb;
+							color: #48a8f7;
+							border-right: solid 2px #b8b8b8; border-bottom: solid 2px #b8b8b8;
 
 							em {
-								background: $white;
+								background: #48a8f7;
 
 								svg {
 									path {
-										fill: #48a8f7;
+										fill: $white;
 									}
 								}
 							}
 						}
 
 						em {
-							background: #48a8f7; background-size: 60%;
+							background: $white; background-size: 60%;
+
+							svg {
+								path {
+									fill: #48a8f7;
+								}
+							}
 						}
 					}
 
 					&.built {
-						color: #70cb5c;
-						border-bottom: solid 2px #b8b8b8; border-right: solid 2px #b8b8b8;
+						background: #70cb5c; border-right: solid #348e23 2px; border-bottom: solid 2px #348e23;
 
 						&.active {
-							background: #70cb5c; border-right: solid #348e23 2px; border-bottom: solid 2px #348e23;
+							color: #70cb5c;
+							border-bottom: solid 2px #b8b8b8; border-right: solid 2px #b8b8b8;
 
 							em {
-								background: $white;
+								background: #70cb5c;
 
 								svg {
 									path {
-										fill: #70cb5c;
+										fill: $white;
 									}
 								}
 							}
 						}
 
 						em {
-							background: #70cb5c; background-size: 60%;
+							background: $white; background-size: 60%;
+
+							svg {
+								path {
+									fill: #70cb5c;
+								}
+							}
 						}
 					}
 
 					&.featured {
-						color: #eb982a;
-						border-bottom: solid 2px #b8b8b8; border-radius: 0 0 10px 0;
+						background: #eb982a; border-bottom: solid 2px #c77912; 
 
 						&.active {
-							background: #eb982a; border-bottom: solid 2px #c77912;
+							color: #eb982a;
+							border-bottom: solid 2px #b8b8b8; border-radius: 0 0 10px 0;
 
 							em {
-								background: $white;
+								background: #eb982a;
 
 								svg {
 									path {
-										fill: #eb982a;
+										fill: $white;
 									}
 								}
 							}
 						}
 
 						em {
-							background: #eb982a; background-size: 60%;
+							background: $white; background-size: 60%;
+
+							svg {
+								path {
+									fill: #eb982a;
+								}
+							}
 						}
 					}
 

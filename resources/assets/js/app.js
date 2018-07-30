@@ -109,8 +109,8 @@ $(document).mouseup(function (e) {
 function footerListSort() {
     $("body").on("click", ".js-listSort a", function(e) {
         e.preventDefault();
-        $('.js-listSort a').addClass("active");
-        $(this).toggleClass('active');
+        $('.js-listSort a').removeClass("active");
+        $(this).addClass('active');
 
         if($(this).hasClass('new')) {
             $(".footer section").removeClass("show");
@@ -128,8 +128,8 @@ function footerListSort() {
             $(".footer section").removeClass("show");
             $(".footer .featured-active-block").addClass("show");
             $(".featured-active-block").find(".house-item").remove();
-            $(".buld-active-block").find(".house-item.active-featured").clone().appendTo(".featured-active-block");
-            $(".new-active").find(".house-item.active-featured").clone().appendTo(".featured-active-block");
+            $(".buld-active-block").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
+            $(".new-active").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
         }
     })
 }
@@ -138,14 +138,19 @@ function footerButtonsActions() {
     $("body").on("click", ".js-footerButtons .featured", function(e) {
         e.preventDefault();
 
-        $(this).toggleClass('active');
-        var featuredItem = $(this).parents('house-item');
-        featuredItem.addClass('featured');
-        $(this).parent(".footer-buttons").parent("header").parent(".house-item").toggleClass("active-featured")
+        var houseID = $(this).parent(".footer-buttons").parent("header").parent(".house-item").attr('data-house-id');
+        $('*[data-house-id="' + houseID + '"]').toggleClass('house-featured');
+        $('*[data-house-id="' + houseID + '"]').find('.js-footerButtons').find('.featured').toggleClass('active');
     });
 
     $('.js-footerButtons .info').click(function(e) {
         e.preventDefault();
+    });
+
+    $('.js-footerShowHide').click(function(e) {
+        e.preventDefault();
+
+        $('.wr-footer').toggleClass('active');
     });
 }
 
