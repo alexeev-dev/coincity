@@ -17,4 +17,8 @@ class House extends Model
     public function getMoneyPerHourTextAttribute() {
         return number_format($this->money_per_hour, 0, '.', '.');
     }
+	
+    public function getMaxMoneyTextAttribute() {
+        return number_format($this->max_money, 0, '.', '.');
+    }
 }

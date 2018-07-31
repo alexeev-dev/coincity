@@ -1,14 +1,14 @@
 <figure>
-    <img src="{{ !empty($house->ico) ? asset($house->ico) : '#' }}">
+    <img src="{{ !empty($userHouse->house->ico) ? asset($userHouse->house->ico) : '#' }}">
 </figure>
-<h4>{{ $house->name }}</h4>
+<h4>{{ $userHouse->house->name }}</h4>
 <ul>
     <li class="time">
         <img src="{{ asset('img/house-info/popup_house_info_timecoins.png') }}">
-        <p>{{ $house->money_per_hour_text }}</p>
+        <p>{{ $userHouse->money_per_hour_text }}</p>
     </li>
     <li class="coins">
         <img src="{{ asset('img/house-info/popup_house_info_maxcoins.png') }}">
-        <p>{{ $house->max_money_text }}</p>
+        <p>{{ $userHouse->max_money_text }}</p>
     </li>
 </ul>

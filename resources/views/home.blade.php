@@ -6,7 +6,7 @@
             <div class="houses drop" id="left-lovehandles">
 
                 @foreach ($userHouses as $userHouse)
-                <div class="house-item" data-house-id="{{ $userHouse->house_id }}">
+                <div class="house-item" data-house-id="{{ $userHouse->house->id }}">
                     <header>
                         <div class="houses-count">
                             <!-- <span>+2.500</span> -->
