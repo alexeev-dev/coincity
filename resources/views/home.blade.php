@@ -6,11 +6,11 @@
             <div class="houses drop" id="left-lovehandles">
 
                 @foreach ($userHouses as $userHouse)
-                <div class="house-item handle" data-house-id="{{ $userHouse->house_id }}">
+                <div class="house-item" data-house-id="{{ $userHouse->house_id }}">
                     <header>
                         <div class="houses-count">
                             <!-- <span>+2.500</span> -->
-                            <a href="#"><img src="{{ asset('img/house-info/coin_30.png') }}"></a>
+                            <a href="#"><em></em></a>
                         </div>
                         <div class="footer-buttons js-footerButtons">
                             <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
@@ -60,11 +60,11 @@
                 <section class="js-footerHouseItems new-active built-active featured-active show" id="right-lovehandles">
 
                     @foreach ($houses as $house)
-                    <div class="house-item handle" data-house-id="{{ $house->id }}">
+                    <div class="house-item" data-house-id="{{ $house->id }}">
                         <header>
                             <div class="houses-count">
                                 <!-- <span>+2.500</span> -->
-                                <a href="#"><img src="{{ asset('img/house-info/coin_30.png') }}"></a>
+                                <a href="#"><em></em></a>
                             </div>
                             <div class="footer-buttons js-footerButtons">
                                 <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>

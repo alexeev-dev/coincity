@@ -22,7 +22,16 @@
 
 		&-houses {
 			height: 100%; max-height: 870px; padding: 40px 0 0; display: flex; width: 100%;
-			overflow-x: auto;
+			overflow-x: auto; overflow-y: hidden;
+			transition: margin 0.4s ease-out;
+
+			&.margin {
+				margin-top: 120px;
+
+				@include respond-to(xs) {
+					margin-top: 0;
+				}
+			}
 
 			@include respond-to(sm) {
 				padding-top: 10px;
@@ -31,30 +40,21 @@
 			.container {
 				height: 100%;
 			}
+
+			.scroll-wrapper {
+				& > .scroll-content {
+					max-height: none !important; height: 100% !important;
+				}
+			}
 		}
 		
 		&-footer {
 			position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 51%) scale(0.5); transform-origin: 50% 100%;
 			background: #ebebeb; border-radius: 10px;
-
-			&.active {
-				transform: translate(-50%, -50px) scale(0.5);
-
-				a.footerShowHide {
-					bottom: -80px; top: auto;
-
-					&:before {
-						top: auto; bottom: 30px;
-					}
-					&:after {
-						top: auto; bottom: 20px;
-						border-bottom: none; border-top: 15px solid #59bfff;
-					}
-				}
-			}
+			transition: 0.4s ease-out;
 
 			@include respond-to(md) {
-				transform: translateX(-50%) scale(0.65);
+				transform: translate(-50%, 113%) scale(1);
 			}
 			@include respond-to(sm) {
 				width: calc(100% - 30px); bottom: 30px;
@@ -63,19 +63,64 @@
 				bottom: 15px;
 			}
 
+			&.active {
+				transform: translate(-50%, -50px) scale(0.5);
+
+				@include respond-to(md) {
+					transform: translate(-50%, -10px) scale(1);
+				}
+
+				a.footerShowHide {
+					bottom: -80px; top: auto;
+
+					@include respond-to(xs) {
+						bottom: -20px;
+					}
+
+					&:before {
+						top: auto; bottom: 30px;
+
+						@include respond-to(md) {
+							bottom: 6px;
+						}
+					}
+					&:after {
+						top: auto; bottom: 20px;
+						border-bottom: none; border-top: 15px solid #59bfff;
+
+						@include respond-to(md) {
+							border-top-width: 7px; bottom: 8px;
+						}
+					}
+				}
+			}
+
 			a.footerShowHide {
 				position: absolute; left: 50%; top: -80px; width: 200px; height: 200px; transform: translateX(-50%);
 				background: #ebebeb; border-radius: 100px;
+				transition: 0.4s ease-out;
+
+				@include respond-to(xs) {
+					width: 60px; height: 40px; top: -20px;
+				}
 
 				&:before {
 					content: '';
 					display: block; width: 20px; height: 40px; position: absolute; left: 50%; top: 25px; transform: translateX(-50%);
 					background: #59bfff;
+
+					@include respond-to(md) {
+						content: none;
+					}
 				}
 				&:after {
 					content: '';
 					display: block; position: absolute; left: 50%; top: 15px; transform: translateX(-50%);
 					border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 15px solid #59bfff;
+
+					@include respond-to(md) {
+						border-left-width: 8px; border-right-width: 8px; border-bottom-width: 8px; top: 5px;
+					}
 				}
 			}
 		}

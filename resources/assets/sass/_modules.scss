@@ -34,91 +34,78 @@
 
 	&.background-ground {}
 
-	.owl-stage {
-		min-width: 100%; height: 100%; padding-bottom: 320px;
-
-		&:after {
-			content: '';
-			display: block; width: 100%; height: 100%; position: absolute; left: 0; bottom: 0; z-index: -1;
-			background: url('../img/backgrounds/ground.png') center bottom repeat-x; background-size: 2600px auto;
-			pointer-events: none;
-			visibility: visible;
-		}
-
-		&-outer {
-			min-width: 100%; height: 100%;
-		}
-	}
-
 	.house-item {
 		min-width: 410px; height: 470px; width: auto; padding: 0 30px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex-shrink: 0;
 
 		@media (max-height: 950px) {
 			height: 420px;
 		}
+		@include respond-to(xs) {
+			height: 320px;
+		}
 
 		&:nth-child(2n) {
-			padding: 0 48px;
+			padding: 0 30px;
 
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(10px);
+						transform: translateZ(15px);
 					}
 				}
 			}
 		}
 		&:nth-child(3n) {
-			padding: 0 60px 0 30px;
+			padding: 0 190px 0 160px;
 
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(2px);
+						transform: translateZ(-5px);
 					}
 				}
 			}
 		}
 		&:nth-child(4n) {
-			padding: 0 55px 0 64px;
+			padding: 0 30px 0 128px;
 
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(-7px);
+						transform: translateZ(-20px);
 					}
 				}
 			}
 		}
 		&:nth-child(5n) {
-			padding: 0 46px 0 63px;
+			padding: 0 6px 0 16px;
 
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(6px);
+						transform: translateZ(26px);
 					}
 				}
 			}
 		}
 		&:nth-child(6n+1) {
-			padding: 0 64px 0 41px;
+			padding: 0 100px 0 21px;
 
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(-15px);
+						transform: translateZ(-26px);
 					}
 				}
 			}
 		}
 		&:nth-child(7n-3) {
-			padding: 0 75px 0 58px;
+			padding: 0 75px 0 158px;
 
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(8px);
+						transform: translateZ(12px);
 					}
 				}
 			}
@@ -135,9 +122,14 @@
 			footer {
 				.houses-price {
 					.info, .replace {
-						opacity: 1;
-
-						@extend .bounce; @extend .animated;
+						transform: scale(1);				
+					}
+					.info {
+						animation: houseButtonsBounce 0.3s 1 ease-out;	
+					}
+					.replace {
+						transition: transform 0s 0.3s ease-out;
+						animation: houseButtonsBounce 0.3s 0.3s 1 ease-out;	
 					}
 				}
 			}
@@ -145,6 +137,10 @@
 
 		& > header {
 			display: block; margin-bottom: 15px;
+
+			@include respond-to(xs) {
+				margin-bottom: 5px;
+			}
 
 			.houses-count { 
 				display: flex; align-items: center; flex-direction: column;
@@ -167,17 +163,21 @@
 					}
 				}
 
-				img {
-					width: 50px;
+				em {
+					width: 80px; height: 80px; display: block; transform-origin: 0% 0%; transform: scale(0.625);
+					background: url('../img/coin/coin_sprite.png') center center no-repeat;
+					animation: coinRotateAnimation 1.2s linear infinite;
 
-					@include respond-to(lg) {
-						width: 40px;
+					@include respond-to(xs) {
+						transform: scale(0.375);
 					}
-					@include respond-to(md) {
-						width: 30px;
-					}
-					@include respond-to(sm) {
-						width: 25px;
+				}
+
+				a {
+					width: 50px; height: 50px;
+
+					@include respond-to(xs) {
+						width: 30px; height: 30px;
 					}
 				}
 			}
@@ -189,6 +189,10 @@
 
 		& > section {
 			margin-bottom: 20px;
+
+			@include respond-to(xs) {
+				margin-bottom: 10px;
+			}
 
 			figure {
 				display: none;
@@ -204,21 +208,21 @@
 				}
 
 				img {
-					width: 260px;
+					width: 200px;
 					pointer-events: none;
 
 					@include respond-to(lg) {
-						width: 220px;
+						width: 180px;
 					}
 					@include respond-to(md) {
-						width: 180px;
+						width: 160px;
 					}
 				}
 			}
 		}
 
 		& > footer {
-			display: block;
+			display: block; transform: scale(0.8);
 
 			.footer-price {
 				display: none;
@@ -228,7 +232,7 @@
 				display: flex; align-items: center; justify-content: center;
 
 				.info, .replace {
-					width: 60px; flex-shrink: 0;
+					width: 60px; flex-shrink: 0; transform: scale(0);
 
 					@include respond-to(lg) {
 						width: 50px;
@@ -243,13 +247,14 @@
 				}
 
 				.info {
-					opacity: 0;
+
 				}
 
 				.coins {
 					color: $white; font-size: 36px; font-family: $text; text-align: center;
 					display: inline-flex; align-items: center; padding: 10px; position: relative; padding-right: 50px; padding-left: 20px; width: 100%; margin: 0 15px;
-					background: #59bfff; border-bottom: solid 2px #4990ad; border-radius: 8px;
+					background: #59bfff; box-shadow: 0 2px 0 0 #4990ad; border-radius: 8px;
+					transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
 
 					@include respond-to(lg) {
 						font-size: 30px;
@@ -259,10 +264,29 @@
 						padding-top: 7px; padding-bottom: 7px;
 					}
 
+					&:hover {
+						transform: translateY(-2px);
+						box-shadow: 0 4px 0 0 #4990ad;
+
+						&:active {
+							transform: translateY(2px);
+							box-shadow: 0 0px 0 0 #4990ad;
+
+							&:after {
+								box-shadow: 0 0px 0 0 #4abd26;
+							}
+						}
+
+						&:after {
+							box-shadow: 0 4px 0 0 #4abd26;
+						}
+					}
+
 					&:after {
 						content: '';
-						display: block; width: 40px; height: calc(100% + 2px); position: absolute; right: 0; top: 0;
-						background: #58ff3a url(../img/header/news/h_i_button_upg.svg) center center no-repeat; background-size: 25px auto; border-bottom: solid 2px #4abd26; border-radius: 0 8px 8px 0;
+						display: block; width: 40px; height: 100%; position: absolute; right: 0; top: 0;
+						background: #58ff3a url(../img/header/news/h_i_button_upg.svg) center center no-repeat; background-size: 25px auto; box-shadow: 0 2px 0 0 #4abd26; border-radius: 0 8px 8px 0;
+						transition: box-shadow 0.1s ease-out;
 					}
 
 					img {
@@ -278,7 +302,6 @@
 				}
 
 				.replace {
-					opacity: 0;
 					&:hover {
 						cursor: grab;
 					}
@@ -353,8 +376,8 @@
 		&.scroll-scrollx_visible {
 			display: block;
 			height: 10px;
-			left: 50%; transform: translateX(-50%);
-			bottom: 235px;
+			left: 50%; transform: translate(-50%, 0);
+			top: 620px;
 			width: 1090px;
 
 			@include respond-to(lg) {

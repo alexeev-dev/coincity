@@ -39,3 +39,77 @@
 	85% { transform: translateX(7px); }
 	100% { transform: translateX(0px); }
 }
+
+@keyframes houseButtonsBounce {
+	0% {
+		transform: scale(0);
+	}
+	75% {
+		transform: scale(1.15);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes coinRotateAnimation {
+	0% {background-position: -80px 0px;}
+	3.44827% {background-position: -80px 0px;}
+	3.44828% {background-position: -240px -240px;}
+	6.89654% {background-position: -240px -240px;}
+	6.89655% {background-position: 0px -80px;}
+	10.34482% {background-position: 0px -80px;}
+	10.34483% {background-position: -80px -80px;}
+	13.79309% {background-position: -80px -80px;}
+	13.7931% {background-position: -160px 0px;}
+	17.24137% {background-position: -160px 0px;}
+	17.24138% {background-position: -160px -80px;}
+	20.68965% {background-position: -160px -80px;}
+	20.68966% {background-position: 0px -160px;}
+	24.13792% {background-position: 0px -160px;}
+	24.13793% {background-position: -80px -160px;}
+	27.5862% {background-position: -80px -160px;}
+	27.58621% {background-position: -160px -160px;}
+	31.03447% {background-position: -160px -160px;}
+	31.03448% {background-position: -240px 0px;}
+	34.48275% {background-position: -240px 0px;}
+	34.48276% {background-position: -240px -80px;}
+	37.93102% {background-position: -240px -80px;}
+	37.93103% {background-position: -240px -160px;}
+	41.3793% {background-position: -240px -160px;}
+	41.37931% {background-position: 0px -240px;}
+	44.82758% {background-position: 0px -240px;}
+	44.82759% {background-position: -80px -240px;}
+	48.27585% {background-position: -80px -240px;}
+	48.27586% {background-position: -160px -240px;}
+	51.72413% {background-position: -160px -240px;}
+	51.72414% {background-position: 0px 0px;}
+	55.1724% {background-position: 0px 0px;}
+	55.17241% {background-position: -320px 0px;}
+	58.62068% {background-position: -320px 0px;}
+	58.62069% {background-position: -320px -80px;}
+	62.06896% {background-position: -320px -80px;}
+	62.06897% {background-position: -320px -160px;}
+	65.51723% {background-position: -320px -160px;}
+	65.51724% {background-position: -320px -240px;}
+	68.96551% {background-position: -320px -240px;}
+	68.96552% {background-position: 0px -320px;}
+	72.41378% {background-position: 0px -320px;}
+	72.41379% {background-position: -80px -320px;}
+	75.86206% {background-position: -80px -320px;}
+	75.86207% {background-position: -160px -320px;}
+	79.31033% {background-position: -160px -320px;}
+	79.31034% {background-position: -240px -320px;}
+	82.75861% {background-position: -240px -320px;}
+	82.75862% {background-position: -320px -320px;}
+	86.20689% {background-position: -320px -320px;}
+	86.2069% {background-position: -400px 0px;}
+	89.65516% {background-position: -400px 0px;}
+	89.65517% {background-position: -400px -80px;}
+	93.10344% {background-position: -400px -80px;}
+	93.10345% {background-position: -400px -160px;}
+	96.55171% {background-position: -400px -160px;}
+	96.55172% {background-position: -400px -240px;}
+	99.99999% {background-position: -400px -240px;}
+	100% {background-position: -400px -320px;}
+}

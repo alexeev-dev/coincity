@@ -150,6 +150,7 @@ function footerButtonsActions() {
     $('.js-footerShowHide').click(function(e) {
         e.preventDefault();
 
+        $('.wr-houses').toggleClass('margin');
         $('.wr-footer').toggleClass('active');
     });
 }
