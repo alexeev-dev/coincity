@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Models\UserHouseUpdate;
 use App\Models\TweetUpdate;
+use App\Models\House;
 use App\Models\UserHouse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -101,11 +102,17 @@ class ProfileController extends Controller
 
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
         if (!empty($userHouse)) {
-            $html = view('partials.house_small', ['userHouse' => $userHouse])->render();
+            $html = view('partials.user_house_small', ['userHouse' => $userHouse])->render();
             $output = json_encode(['html' => $html]);
         } else {
-            $html = view('partials.error')->render();
-            $output = json_encode(['html' => $html]);
+			$house = House::where('id', $houseId)->first();
+			if (!empty($house)) {
+				$html = view('partials.house_small', ['house' => $house])->render();
+				$output = json_encode(['html' => $html]);
+			} else {
+				$html = view('partials.error')->render();
+				$output = json_encode(['html' => $html]);
+			}				
         }
 
         return $output;

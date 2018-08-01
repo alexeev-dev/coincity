@@ -102,7 +102,7 @@ $(document).ready(function() {
     });
 
     // house popup
-    $('.house-item .coins').click(function() {
+    $('body').on('click', '.house-item .coins', function() {
         const self = $(this).parents('.house-item');
         const popup = $('.popup');
 
@@ -131,7 +131,7 @@ $(document).ready(function() {
     });
 
     // house i popup
-    $('.house-item .info').click(function() {
+    $('body').on('click', '.house-item .info', function() {
         const self = $(this).parents('.house-item');
         const popup = $('.popup');
 
