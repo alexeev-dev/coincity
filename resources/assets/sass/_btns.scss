@@ -1,17 +1,58 @@
 .btn {
 	color: $white; font-size: 32px; font-family: $text; text-align: center;
 	display: inline-block; width: 300px; padding: 10px;
-	background: #ffb640; border-bottom: solid 2px #cc8300; border-radius: 8px;
+	background: #ffb640; border-radius: 8px; box-shadow: 0 2px 0 0 #cc8300;
+	transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 0 0 #cc8300;
+
+		&:active {
+			transform: translateY(2px);
+			box-shadow: 0 0px 0 0 #cc8300;
+		}
+	}
 
 	&.green {
-		background: #26c213; border-color: #1f9c0e;
+		background: #26c213; box-shadow: 0 2px 0 0 #00a323;
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 0 0 #00a323;
+
+			&:active {
+				transform: translateY(2px);
+				box-shadow: 0 0px 0 0 #00a323;
+			}
+		}
 	}
 
 	&.purple {
-		background: #f459ff; border-color: #f021ff;
+		background: #f459ff; box-shadow: 0 2px 0 0 #f021ff;
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 0 0 #f021ff;
+
+			&:active {
+				transform: translateY(2px);
+				box-shadow: 0 0px 0 0 #f021ff;
+			}
+		}
 	}
 
 	&.red {
-		background: #ff4040; border-color: #bd0000;
+		background: #ff4040; box-shadow: 0 2px 0 0 #bd0000;
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 0 0 #bd0000;
+
+			&:active {
+				transform: translateY(2px);
+				box-shadow: 0 0px 0 0 #bd0000;
+			}
+		}
 	}
 }

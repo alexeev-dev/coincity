@@ -261,7 +261,8 @@
 					a {
 						color: $white; font-size: 22px; font-family: $header; text-align: center;
 						padding: 10px; width: 155px; display: block;
-						border-radius: 8px; border-bottom: solid 2px;
+						border-radius: 8px;
+						transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
 
 						@include respond-to(lg) {
 							width: 145px;
@@ -278,16 +279,32 @@
 							width: 70px; padding: 6px;
 						}
 
-						&:hover {
-							@extend .rubberBand; @extend .animated;
-						}
-
 						&.login {
-							background: #3ae55f; border-color: #00a323;
+							background: #3ae55f; box-shadow: 0 2px 0 0 #00a323;
+
+							&:hover {
+								transform: translateY(-2px);
+								box-shadow: 0 4px 0 0 #00a323;
+
+								&:active {
+									transform: translateY(2px);
+									box-shadow: 0 0px 0 0 #00a323;
+								}
+							}
 						}
 
 						&.register {
-							background: #f459ff; border-color: #f021ff;
+							background: #f459ff; box-shadow: 0 2px 0 0 #f021ff;
+
+							&:hover {
+								transform: translateY(-2px);
+								box-shadow: 0 4px 0 0 #f021ff;
+
+								&:active {
+									transform: translateY(2px);
+									box-shadow: 0 0px 0 0 #f021ff;
+								}
+							}
 						}
 					}
 				}
@@ -375,7 +392,7 @@
 		}
 
 		div {
-			width: 1070px; max-height: calc(100vh - 150px); position: absolute; right: 20px; bottom: -30px; transform: translateY(100%); display: flex; align-items: center; flex-direction: column; padding: 20px 0;
+			width: 1070px; min-height: 300px; max-height: calc(100vh - 150px); position: absolute; right: 20px; bottom: -30px; transform: translateY(100%); display: flex; align-items: center; flex-direction: column; padding: 20px 0;
 			background: #ebebeb; border-bottom: solid 2px #adadad; border-radius: 10px; box-shadow: 0 0 10px 0 rgba(0,0,0,0.15);
 			transition: 0.3s ease-out;
 			opacity: 0; pointer-events: none;
@@ -385,6 +402,14 @@
 			}
 			@include respond-to(md) {
 				width: 690px;
+			}
+
+			&.loading {
+				&:after {
+					content: '';
+					display: block; width: 64px; height: 64px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: -1;
+					background: #ebebeb url('../img/preloader.svg') center center no-repeat;
+				}
 			}
 
 			&:before {

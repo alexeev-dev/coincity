@@ -26,10 +26,21 @@
 
 	a.close {
 		position: absolute; right: 10px; top: 10px; width: 40px; height: 40px;
-		background: #ff3333; border-bottom: solid 2px #b51010; border-radius: 50%; background-size: contain;
+		background: #ff3333; box-shadow: 0 2px 0 0 #b51010; border-radius: 50%; background-size: contain;
+		transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
 
 		@include respond-to(xs) {
 			width: 30px; height: 30px; right: 5px; top: 5px;
+		}
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 0 0 #b51010;
+
+			&:active {
+				transform: translateY(2px);
+				box-shadow: 0 0px 0 0 #b51010;
+			}
 		}
 
 		&:before {
@@ -452,6 +463,10 @@
 			background: #ffffff;
 		}
 
+		button {
+			cursor: pointer;
+		}
+
 		.help-block {
 			color: #ff0000; font-size: 16px; font-family: $text; line-height: 24px;
 			padding-left: 160px; padding-top: 5px; display: block; width: 100%;
@@ -460,15 +475,7 @@
 		.btn {
 			font-size: 22px;
 			padding: 10px; width: 165px; display: block;
-			border-radius: 8px;
-
-			&.login {
-				background: #3ae55f; border-color: #00a323;
-			}
-
-			&.register {
-				background: #f459ff; border-color: #f021ff;
-			}
+			border-radius: 8px; border: none;
 		}
 
 		.form-group {

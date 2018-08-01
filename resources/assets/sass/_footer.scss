@@ -1,6 +1,10 @@
 .footer {
 	display: flex; align-items: stretch; flex-direction: column; justify-content: space-between;
 
+	@include respond-to(xs) {
+		margin: 0 -5px;
+	}
+
 	.buld-active-block.show,
 	.new-active.show,
 	.featured-active-block.show{
@@ -12,12 +16,16 @@
 		overflow-x: auto;
 
 		@include respond-to(xs) {
-			padding: 5px 0; margin-bottom: 0;
+			padding: 5px 0; margin-bottom: 5px;
 		}
 
 		&::-webkit-scrollbar {
 			height: 15px;
 			border: solid 2px #59bfff; border-radius: 100px;
+
+			@include respond-to(xs) {
+				height: 8px;
+			}
 		}
 
 		&::-webkit-scrollbar-track {
@@ -124,7 +132,7 @@
 						max-width: 100%;
 
 						@include respond-to(xs) {
-							max-height: 60px;
+							max-height: 50px;
 						}
 					}
 				}
@@ -181,6 +189,10 @@
 	& > footer {
 		display: flex; margin: 0 -15px;
 
+		@include respond-to(xs) {
+			margin: 0 -10px;
+		}
+
 		ul {
 			display: flex; justify-content: center; width: 100%;
 			li {
@@ -197,8 +209,8 @@
 						font-size: 26px;
 					}
 					@include respond-to(xs) {
-						font-size: 18px;
-						padding: 7px 5px;
+						font-size: 14px;
+						padding: 5px 3px;
 					}
 
 					&:hover {

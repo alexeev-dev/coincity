@@ -34,7 +34,7 @@
                             <span>{{ $userHouse->money_per_hour_text }}</span>
                         </div>
                         <div class="houses-price">
-                            <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
+                            <a href="#" class="info"></a>
                             <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $userHouse->money_per_hour_text }}</span></a>
                             <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                         </div>
@@ -88,7 +88,7 @@
                                 <span>{{ $house->money_per_hour_text }}</span>
                             </div>
                             <div class="houses-price">
-                                <a href="#" class="info"><img src="{{ asset('img/house-info/info_btn.png') }}"></a>
+                                <a href="#" class="info"></a>
                                 <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour_text }}</span></a>
                                 <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
                             </div>

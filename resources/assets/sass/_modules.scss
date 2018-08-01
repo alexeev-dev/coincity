@@ -15,8 +15,12 @@
 	height: 100%; width: 100%;
 
 	&.drop{
-		display: flex; align-items: flex-start;
-		background: url(../img/backgrounds/ground.png) left top -310px repeat-x; background-size: 2700px auto;
+		display: flex; align-items: flex-start; position: relative;
+		background: url(../img/backgrounds/ground.png) left top -290px repeat-x; background-size: 2700px auto;
+
+		@media (max-height: 890px) {
+			background: url(../img/backgrounds/ground.png) left top -360px repeat-x; background-size: 2700px auto;
+		}
 
 		@include respond-to(lg) {
 			background: url(../img/backgrounds/ground.png) left top -340px repeat-x; background-size: 2600px auto;
@@ -28,7 +32,30 @@
 			background: url(../img/backgrounds/ground.png) left top -300px repeat-x; background-size: 2300px auto;
 		}
 		@include respond-to(xs) {
-			background: url(../img/backgrounds/ground.png) left top -160px repeat-x; background-size: 1600px auto;
+			background: url(../img/backgrounds/ground.png) left top -110px repeat-x; background-size: 1170px auto;
+		}
+
+		&:after {
+			content: '';
+			display: block; width: 100%; height: 60%; position: absolute; left: 0; bottom: 0; z-index: -1;
+			background: #3f2610;
+
+			@media (max-height: 540px) {
+				height: 50%;
+			} 
+			@media (max-height: 480px) {
+				height: 40%;
+			}
+
+			@media (max-height: 1200px) and (min-width: 1199px) {
+				height: 30%;
+			}
+			@media (max-height: 920px) and (min-width: 1199px) {
+				height: 50%;
+			}
+			@media (max-height: 820px) and (min-width: 1199px) {
+				height: 40%;
+			}
 		}
 	}
 
@@ -37,11 +64,14 @@
 	.house-item {
 		min-width: 410px; height: 470px; width: auto; padding: 0 30px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex-shrink: 0;
 
-		@media (max-height: 950px) {
-			height: 420px;
+		@media (max-height: 890px) {
+			height: 410px;
+		}
+		@include respond-to(sm) {
+			height: 320px;
 		}
 		@include respond-to(xs) {
-			height: 320px;
+			height: 240px;
 		}
 
 		&:nth-child(2n) {
@@ -50,7 +80,11 @@
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(15px);
+						transform: translateZ(12px);
+
+						@include respond-to(xs) {
+							transform: translateZ(0);
+						}
 					}
 				}
 			}
@@ -58,10 +92,18 @@
 		&:nth-child(3n) {
 			padding: 0 190px 0 160px;
 
+			@include respond-to(xs) {
+				padding: 0 95px 0 80px;
+			}
+
 			section {
 				.houses-images {
 					img {
 						transform: translateZ(-5px);
+
+						@include respond-to(xs) {
+							transform: translateZ(0);
+						}
 					}
 				}
 			}
@@ -69,10 +111,18 @@
 		&:nth-child(4n) {
 			padding: 0 30px 0 128px;
 
+			@include respond-to(xs) {
+				padding: 0 15px 0 64px;
+			}
+
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(-20px);
+						transform: translateZ(-10px);
+
+						@include respond-to(xs) {
+							transform: translateZ(0);
+						}
 					}
 				}
 			}
@@ -83,7 +133,11 @@
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(26px);
+						transform: translateZ(16px);
+
+						@include respond-to(xs) {
+							transform: translateZ(0);
+						}
 					}
 				}
 			}
@@ -91,10 +145,18 @@
 		&:nth-child(6n+1) {
 			padding: 0 100px 0 21px;
 
+			@include respond-to(xs) {
+				padding: 0 50px 0 12px;
+			}
+
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(-26px);
+						transform: translateZ(-11px);
+
+						@include respond-to(xs) {
+							transform: translateZ(0);
+						}
 					}
 				}
 			}
@@ -102,10 +164,18 @@
 		&:nth-child(7n-3) {
 			padding: 0 75px 0 158px;
 
+			@include respond-to(xs) {
+				padding: 0 40px 0 79px;
+			}
+
 			section {
 				.houses-images {
 					img {
-						transform: translateZ(12px);
+						transform: translateZ(8px);
+
+						@include respond-to(xs) {
+							transform: translateZ(0);
+						}
 					}
 				}
 			}
@@ -208,14 +278,17 @@
 				}
 
 				img {
-					width: 200px;
+					width: 180px;
 					pointer-events: none;
 
 					@include respond-to(lg) {
-						width: 180px;
+						width: 160px;
 					}
 					@include respond-to(md) {
-						width: 160px;
+						width: 140px;
+					}
+					@include respond-to(xs) {
+						max-width: 120px; width: auto; max-height: 160px;
 					}
 				}
 			}
@@ -247,7 +320,36 @@
 				}
 
 				.info {
+					display: block; width: 60px; height: 60px; position: relative; flex-shrink: 0;
+					background: #6ac6ff; box-shadow: 0 2px 0 0 #4990ad; border-radius: 50%; background-size: contain;
+					transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
 
+					&:hover {
+						transform: translateY(-2px);
+						box-shadow: 0 4px 0 0 #4990ad;
+
+						&:active {
+							transform: translateY(2px);
+							box-shadow: 0 0px 0 0 #4990ad;
+						}
+					}
+
+					@include respond-to(xs) {
+						width: 35px; height: 35px;
+					}
+
+					&:before {
+						content: '';
+						display: block; width: 100%; height: 50%; position: absolute; left: 0; bottom: 0; z-index: 1;
+						background: #59bfff; border-radius: 0 0 100px 100px;
+					}
+
+					&:after {
+						content: '';
+						display: block; width: 65%; height: 65%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1) rotate(0deg); z-index: 2;
+						background: url('../img/icons/info_btn.svg') center center no-repeat; background-size: contain;
+						animation: settClose 0.5s 1 ease-in-out;
+					}
 				}
 
 				.coins {
@@ -377,8 +479,12 @@
 			display: block;
 			height: 10px;
 			left: 50%; transform: translate(-50%, 0);
-			top: 620px;
+			top: 560px;
 			width: 1090px;
+
+			@media (max-height: 890px) {
+				top: 510px;
+			}
 
 			@include respond-to(lg) {
 				width: 930px;
