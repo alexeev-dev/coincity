@@ -75,7 +75,7 @@
 		}
 
 		&:nth-child(2n) {
-			padding: 0 30px;
+			padding: 0 30px 0 67px;
 
 			section {
 				.houses-images {
@@ -90,7 +90,7 @@
 			}
 		}
 		&:nth-child(3n) {
-			padding: 0 190px 0 160px;
+			padding: 0 230px 0 60px;
 
 			@include respond-to(xs) {
 				padding: 0 95px 0 80px;
@@ -128,7 +128,7 @@
 			}
 		}
 		&:nth-child(5n) {
-			padding: 0 6px 0 16px;
+			padding: 0 26px 0 96px;
 
 			section {
 				.houses-images {
@@ -143,7 +143,7 @@
 			}
 		}
 		&:nth-child(6n+1) {
-			padding: 0 100px 0 21px;
+			padding: 0 145px 0 51px;
 
 			@include respond-to(xs) {
 				padding: 0 50px 0 12px;
@@ -162,7 +162,7 @@
 			}
 		}
 		&:nth-child(7n-3) {
-			padding: 0 75px 0 158px;
+			padding: 0 95px 0 158px;
 
 			@include respond-to(xs) {
 				padding: 0 40px 0 79px;
@@ -295,7 +295,7 @@
 		}
 
 		& > footer {
-			display: block; transform: scale(0.8);
+			display: block;
 
 			.footer-price {
 				display: none;
@@ -305,11 +305,8 @@
 				display: flex; align-items: center; justify-content: center;
 
 				.info, .replace {
-					width: 60px; flex-shrink: 0; transform: scale(0);
+					width: 34px; flex-shrink: 0; transform: scale(0);
 
-					@include respond-to(lg) {
-						width: 50px;
-					}
 					@include respond-to(md) {
 						width: 35px;
 					}
@@ -320,7 +317,7 @@
 				}
 
 				.info {
-					display: block; width: 60px; height: 60px; position: relative; flex-shrink: 0;
+					display: block; width: 30px; height: 30px; position: relative; flex-shrink: 0;
 					background: #6ac6ff; box-shadow: 0 2px 0 0 #4990ad; border-radius: 50%; background-size: contain;
 					transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
 
@@ -353,14 +350,11 @@
 				}
 
 				.coins {
-					color: $white; font-size: 36px; font-family: $text; text-align: center;
-					display: inline-flex; align-items: center; padding: 10px; position: relative; padding-right: 50px; padding-left: 20px; width: 100%; margin: 0 15px;
+					color: $white; font-size: 24px; font-family: $text; text-align: center;
+					display: inline-flex; align-items: center; padding: 7px; position: relative; padding-right: 42px; padding-left: 12px; width: 100%; margin: 0 10px;
 					background: #59bfff; box-shadow: 0 2px 0 0 #4990ad; border-radius: 8px;
 					transition: box-shadow 0.1s ease-out, transform 0.1s ease-out;
 
-					@include respond-to(lg) {
-						font-size: 30px;
-					}
 					@include respond-to(md) {
 						font-size: 26px;
 						padding-top: 7px; padding-bottom: 7px;
@@ -386,20 +380,13 @@
 
 					&:after {
 						content: '';
-						display: block; width: 40px; height: 100%; position: absolute; right: 0; top: 0;
-						background: #58ff3a url(../img/header/news/h_i_button_upg.svg) center center no-repeat; background-size: 25px auto; box-shadow: 0 2px 0 0 #4abd26; border-radius: 0 8px 8px 0;
+						display: block; width: 30px; height: 100%; position: absolute; right: 0; top: 0;
+						background: #58ff3a url(../img/header/news/h_i_button_upg.svg) center center no-repeat; background-size: 18px auto; box-shadow: 0 2px 0 0 #4abd26; border-radius: 0 8px 8px 0;
 						transition: box-shadow 0.1s ease-out;
 					}
 
 					img {
-						width: 40px; margin-right: 10px;
-
-						@include respond-to(lg) {
-							width: 35px;
-						}
-						@include respond-to(md) {
-							width: 30px;
-						}
+						width: 24px; margin-right: 7px;
 					}
 				}
 

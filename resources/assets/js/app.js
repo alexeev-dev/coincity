@@ -5,7 +5,10 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[nam
 
 require('jquery.scrollbar');
 $('.scrollbar').scrollbar({
-	"scrollx": $('.scrollbar_x')
+	"scrollx": $('.scrollbar_x'),
+    onScroll: function() {
+        showHideScrollButtons();
+    }
 });
 
 import * as dragula from "dragula";
@@ -80,6 +83,11 @@ $(document).ready(function() {
 
     // footer buttons actions (info popup and featured)
     footerButtonsActions();
+    scrollToFeatured();
+
+    // scroll right/left buttons in houses section
+    showHideScrollButtons();
+    scrollHouses();
 
     newsResize();
 });
@@ -130,6 +138,8 @@ function footerListSort() {
             $(".featured-active-block").find(".house-item").remove();
             $(".buld-active-block").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
             $(".new-active").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
+
+            scrollToFeatured();
         }
     })
 }
@@ -165,3 +175,77 @@ function newsResize() {
     }
 }
 
+function isEmpty( el ){
+  return !$.trim(el.html())
+}
+
+function scrollToFeatured() {
+    if(isEmpty($('.featured-active-block.show'))) {
+        return false;
+    } else {
+        $('.featured-active-block.show .house-item .footer-image').click(function(e) {
+            e.preventDefault();
+
+            var houseID = $(this).parent("section").parent(".house-item").attr('data-house-id'),
+                houseScrollLeft = $('.wr-houses .houses *[data-house-id="' + houseID + '"]').position().left,
+                houseWidth = $('.wr-houses .houses *[data-house-id="' + houseID + '"]').width(),
+                housePaddingLeft = parseInt($('.wr-houses .houses *[data-house-id="' + houseID + '"]').css('padding-left')),
+                windowWidth = $(window).width();
+
+            $('.scrollbar.scroll-content').animate({scrollLeft: houseScrollLeft+housePaddingLeft+houseWidth/2-windowWidth/2}, 800);
+        });
+    }
+}
+
+function showHideScrollButtons() {
+    var windowWidth = $(window).width(),
+        housesContainerWidth = $('.houses.drop').width(),
+        currentScrollPosition = $('.scrollbar.scroll-content').scrollLeft();
+
+    if(currentScrollPosition>0) {
+        $('.js-scrollHouses.left').removeClass('disabled');
+    } else {
+        $('.js-scrollHouses.left').addClass('disabled');
+    }
+    if((currentScrollPosition + windowWidth) <= (Math.floor(housesContainerWidth) - 1)) {
+        $('.js-scrollHouses.right').removeClass('disabled');
+    } else {
+        $('.js-scrollHouses.right').addClass('disabled');
+    }
+}
+function scrollHouses() {
+
+    $('.js-scrollHouses').click(function(e) {
+        e.preventDefault();
+
+        var this_ = $(this),
+            housesContainerWidth = $('.houses.drop').width(),
+            windowWidth = $(window).width(),
+            currentScrollPosition = $('.scrollbar.scroll-content').scrollLeft(),
+            widthToEnd = housesContainerWidth-currentScrollPosition-windowWidth,
+            scrollAnimationTime = 800;
+
+        if(this_.hasClass('right')) {
+            if(widthToEnd<windowWidth) {
+                $('.scrollbar.scroll-content').animate({scrollLeft: currentScrollPosition+widthToEnd}, scrollAnimationTime);
+            } else {
+                $('.scrollbar.scroll-content').animate({scrollLeft: currentScrollPosition+windowWidth}, scrollAnimationTime);
+            }
+        }
+
+        if(this_.hasClass('left')) {
+            if(currentScrollPosition<windowWidth) {
+                $('.scrollbar.scroll-content').animate({scrollLeft: 0}, scrollAnimationTime);
+            } else {
+                $('.scrollbar.scroll-content').animate({scrollLeft: currentScrollPosition-windowWidth}, scrollAnimationTime);
+            }
+        }
+
+        $(this_).addClass('inactive');
+
+        setTimeout(function(){
+            $(this_).removeClass('inactive');
+        },scrollAnimationTime);
+    });
+
+}

@@ -453,7 +453,7 @@
 	form {
 
 		label {
-			color: black; font-family: $text; font-size: 20px; line-height: 34px; text-align: right;
+			color: #557AFF; font-family: $text; font-size: 20px; line-height: 34px; text-align: right; text-transform: uppercase;
 			width: 160px; flex-shrink: 0; padding-right: 15px
 		}
 
@@ -520,7 +520,7 @@
 			}
 
 			a:not(.btn) {
-				color: black; font-family: $text; font-size: 18px; line-height: 28px; text-align: center; text-decoration: underline;
+				color: #FF7E55; font-family: $text; font-size: 18px; line-height: 28px; text-align: center; text-decoration: underline;
 
 				&:hover {
 					text-decoration: none;
