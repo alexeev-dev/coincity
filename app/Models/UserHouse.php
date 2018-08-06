@@ -8,6 +8,10 @@ class UserHouse extends Model
 {
     protected $dates = ['money_collected'];
 
+    protected $casts = [
+        'fav' => 'boolean'
+    ];
+
     public function house() {
         return $this->belongsTo('App\Models\House');
     }

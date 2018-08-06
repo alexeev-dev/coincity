@@ -15,15 +15,19 @@ class HomeController extends Controller
         $tweets = Tweet::all();
 
         if (!empty($user)) {
-            $houses = House::whereRaw('id NOT IN (SELECT house_id FROM user_houses WHERE user_id = '.$user->id.' AND position IS NOT NULL)')->get();
+            $houses = House::whereRaw('id NOT IN (SELECT house_id FROM user_houses WHERE user_id = '.$user->id.' AND position IS NOT NULL)')
+                ->orderBy('money_per_hour', 'DESC')->get();
+            $allUserHouses = $user->user_houses()->get();
             $userHouses = $user->user_houses()->whereNotNull('position')->orderBy('position')->get();
         } else {
             $houses = House::all();
+            $allUserHouses = [];
             $userHouses = [];
         }
 
         return view('home', [
             'houses' => $houses,
+            'allUserHouses' => $allUserHouses,
             'userHouses' => $userHouses,
             'tweets' => $tweets
         ]);

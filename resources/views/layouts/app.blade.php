@@ -49,7 +49,7 @@
 							<ul>
 								@auth
 								<li>
-									<input class="js-name" type="text" placeholder="Your name" value="{{ Auth::user()->name }}">
+									<input maxlength="16" class="js-name" type="text" placeholder="Your name" value="{{ Auth::user()->name }}">
 								</li>
 								<li>
 									<a href="" class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>

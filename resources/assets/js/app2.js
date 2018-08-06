@@ -3,6 +3,7 @@ window.$ = window.jQuery = require('jquery');
 const commonError = "Something went wrong. Try again later.";
 
 $(document).ready(function() {
+    let body = $('body');
 
     // switch sound
 	$('.js-sound').click(function() {
@@ -102,7 +103,7 @@ $(document).ready(function() {
     });
 
     // house popup
-    $('body').on('click', '.house-item .coins', function() {
+    body.on('click', '.house-item .coins', function() {
         const self = $(this).parents('.house-item');
         const popup = $('.popup');
 
@@ -131,7 +132,7 @@ $(document).ready(function() {
     });
 
     // house i popup
-    $('body').on('click', '.house-item .info', function() {
+    body.on('click', '.house-item .info', function() {
         const self = $(this).parents('.house-item');
         const popup = $('.popup');
 
@@ -159,7 +160,7 @@ $(document).ready(function() {
     });
 
     // house update
-    $('body').on('click', '.js-update', function() {
+    body.on('click', '.js-update', function() {
         const self = $(this);
         self.addClass('loading');
 
@@ -173,6 +174,7 @@ $(document).ready(function() {
             } else {
                 self.remove();
                 $('.js-tmph').text(response.data.totalMoneyPerHour + ' per hour');
+
                 if (Array.isArray(response.data.houses)) {
                     for (let i = 0; i < response.data.houses.length; i++) {
                         $('[data-house-id="' + response.data.houses[i].houseId + '"] .footer-price span').text(response.data.houses[i].houseMoney);
@@ -203,7 +205,30 @@ $(document).ready(function() {
             if (response.data === 1) {
                 // ...
             } else {
-                $('.js-total-money').text(response.data.money);
+                $('.js-total-money').text(response.data.totalMoney);
+            }
+
+        }).catch(function (error) {
+            // ...
+        });
+
+        return false;
+    });
+
+    // house feature
+    body.on('click', '.js-footerButtons .featured', function() {
+        const houseId = $(this).parents('.house-item').data('house-id');
+        const isFav = $(this).hasClass('active');
+
+        axios.post('/user/add-to-fav', {
+            houseId: houseId,
+            fav: isFav
+        }).then(function (response) {
+
+            if (response.data === 1) {
+                // ...
+            } else {
+                // ...
             }
 
         }).catch(function (error) {

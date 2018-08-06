@@ -120,21 +120,23 @@ function footerListSort() {
         $('.js-listSort a').removeClass("active");
         $(this).addClass('active');
 
-        if($(this).hasClass('new')) {
+        if ($(this).hasClass('new')) {
             $(".footer section").removeClass("show");
             $(".footer .new-active").addClass("show");
         }
 
-        if($(this).hasClass('built')) {
+        if ($(this).hasClass('built')) {
             $(".footer section").removeClass("show");
             $(".footer .buld-active-block").addClass("show");
+
             $(".buld-active-block .house-item").remove();
             $(".houses.drop .house-item").clone().appendTo(".buld-active-block.show")
         }
 
-        if($(this).hasClass('featured')) {
+        if ($(this).hasClass('featured')) {
             $(".footer section").removeClass("show");
             $(".footer .featured-active-block").addClass("show");
+
             $(".featured-active-block").find(".house-item").remove();
             $(".buld-active-block").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
             $(".new-active").find(".house-item.house-featured").clone().appendTo(".featured-active-block");

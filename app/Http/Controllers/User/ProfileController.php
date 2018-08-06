@@ -88,6 +88,7 @@ class ProfileController extends Controller
             $tweets = $userHouse->house->tweets;
             $html = view('partials.house', ['userHouse' => $userHouse, 'tweets' => $tweets])->render();
             $output = json_encode(['money' => $userStat->money_text, 'html' => $html]);
+
         } else {
             $html = view('partials.error')->render();
             $output = json_encode(['html' => $html]);
@@ -144,7 +145,7 @@ class ProfileController extends Controller
             $userHouse->money_collected = $now;
             $userHouse->save();
 
-            $output = json_encode(['money' => $userStat->money_text]);
+            $output = json_encode(['totalMoney' => $userStat->money_text]);
         } else {
             $output = 1;
         }
@@ -180,6 +181,23 @@ class ProfileController extends Controller
                 'totalMoneyPerHour' => $user->user_stat->total_money_per_hour,
                 'houses' => $housesToSend
             ]);
+        } else {
+            $output = 1;
+        }
+
+        return $output;
+    }
+
+    public function addToFav(Request $request) {
+        $user = Auth::user();
+        $houseId = $request['houseId'];
+        $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
+
+        if (!empty($userHouse)) {
+            $userHouse->fav = $request['fav'] ? 1 : 0;
+            $userHouse->save();
+
+            $output = 0;
         } else {
             $output = 1;
         }

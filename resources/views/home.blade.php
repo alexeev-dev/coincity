@@ -8,7 +8,7 @@
             <div class="houses drop" id="left-lovehandles">
 
                 @foreach ($userHouses as $userHouse)
-                <div class="house-item" data-house-id="{{ $userHouse->house->id }}">
+                <div class="house-item{{ $userHouse->fav ? ' house-featured' : '' }}" data-house-id="{{ $userHouse->house->id }}">
                     <header>
                         <div class="houses-count">
                             <!-- <span>+2.500</span> -->
@@ -16,7 +16,7 @@
                         </div>
                         <div class="footer-buttons js-footerButtons">
                             <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                            <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
+                            <a href="#" class="featured{{ $userHouse->fav ? ' active' : '' }}"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
                         </div>
                     </header>
                     <section>
@@ -62,7 +62,11 @@
                 <section class="js-footerHouseItems new-active built-active featured-active show" id="right-lovehandles">
 
                     @foreach ($houses as $house)
-                    <div class="house-item" data-house-id="{{ $house->id }}">
+                    @php
+                        $userHouse = $allUserHouses->where('house_id', $house->id)->first();
+                        $fav = !empty($userHouse) && $userHouse->fav ? true : false;
+                    @endphp
+                    <div class="house-item{{ $fav ? ' house-featured' : '' }}" data-house-id="{{ $house->id }}">
                         <header>
                             <div class="houses-count">
                                 <!-- <span>+2.500</span> -->
@@ -70,7 +74,7 @@
                             </div>
                             <div class="footer-buttons js-footerButtons">
                                 <a href="#" class="info"><img src="{{ asset('img/icons/info_btn.svg') }}"></a>
-                                <a href="#" class="featured"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
+                                <a href="#" class="featured{{ $fav ? ' active' : '' }}"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
                             </div>
                         </header>
                         <section>

@@ -18,6 +18,7 @@ Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('get-user-house-info-small', 'User\ProfileController@getUserHouseInfoSmall');
     Route::post('gather-money', 'User\ProfileController@gatherMoney');
     Route::post('update-house', 'User\ProfileController@updateHouse');
+    Route::post('add-to-fav', 'User\ProfileController@addToFav');
 });
 
 Auth::routes();
