@@ -37,23 +37,34 @@ class ProfileController extends Controller
 
         UserHouse::where('user_id', $user->id)->update(['position' => null]);
 
+        $built_last_24h = UserHouse::where('created_at', '>',
+            Carbon::now()->subHours(24)->toDateTimeString())->count();
+
         foreach ($housesData as $houseData) {
             $houseId = $houseData['id'];
             $housePosition = $houseData['position'];
 
             $userHouse = UserHouse::where([['user_id', $user->id], ['house_id', $houseId]])->first();
-            if (empty($userHouse)) {
+
+            if ($built_last_24h < 3 && empty($userHouse)) {
                 $userHouse = new UserHouse();
                 $userHouse->user_id = $user->id;
                 $userHouse->house_id = $houseId;
                 $userHouse->save();
+
+                $built_last_24h++;
             }
 
-            $userHouse->position = $housePosition;
-            $userHouse->save();
+            if (!empty($userHouse)) {
+                $userHouse->position = $housePosition;
+                $userHouse->save();
+            }
         }
 
-        return json_encode(['totalMoneyPerHour' => $user->user_stat->total_money_per_hour]);
+        return json_encode([
+            'totalMoneyPerHour' => $user->user_stat->total_money_per_hour,
+            'build_blocked' => ($built_last_24h >= 3 ? 1 : 0)
+        ]);
     }
 
     public function getUserHouseInfo(Request $request) {

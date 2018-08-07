@@ -101,7 +101,7 @@
 						<div class="log-reg">
 							<ul>
 								<li>
-									<a href="{{ route('login') }}" class="login">Log In</a>
+									<a href="#" class="login">Log In</a>
 								</li>
 								<li>
 									<a href="{{ route('register') }}" class="register">Register</a>

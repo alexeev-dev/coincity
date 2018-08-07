@@ -1,7 +1,7 @@
 <p>News<span>{{ count($tweets) }}</span></p>
 <ul>
     @foreach ($tweets as $tweet)
-        <li>
+        <li class="unseen">
             <section>
                 {!! $tweet->content !!}
             </section>

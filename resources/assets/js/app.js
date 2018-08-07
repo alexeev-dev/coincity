@@ -12,9 +12,12 @@ $('.scrollbar').scrollbar({
 });
 
 import * as dragula from "dragula";
-dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
+const drag = dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
     moves: function (el, container, handle) {
-        return handle.classList.contains('handle');
+        return handle.classList.contains('handle') && !el.classList.contains('no-dnd');
+    },
+    accepts: function(el, target) {
+        return !el.classList.contains('no-dnd')
     }
 }).on('drop', function (el) {
     el.className += ' dropped';
@@ -52,6 +55,13 @@ function sendHousesState() {
             self.addClass('error');
         } else {
             $('.js-tmph').text(response.data.totalMoneyPerHour + ' per hour');
+            /*
+            if (response.data.build_blocked == 1) {
+                $(".houses.drop .house-item").addClass('no-dnd');
+            } else {
+                $(".houses.drop .house-item").removeClass('no-dnd');
+            }
+            */
         }
 
     }).catch(function (error) {
@@ -76,6 +86,13 @@ $(document).ready(function() {
 
         $(this).parent().removeClass('active');
         $('.popup').removeClass('active');
+    });
+
+    // login popup
+    $('.log-reg .login').click(function(e) {
+        e.preventDefault();
+
+        $('.popup-log-reg, .popup').addClass('active');
     });
 
     // footer list sorting
