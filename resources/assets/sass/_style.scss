@@ -1,7 +1,11 @@
 .app {
-	min-width: 320px; height: 100vh; position: relative; z-index: 1; padding: 95px 0 0; display: flex; align-items: center; justify-content: space-between; flex-direction: column;
+	min-width: 320px; height: 100vh; position: relative; z-index: 1; padding: 95px 0 0; display: flex; align-items: center; justify-content: flex-end; flex-direction: column;
 	background: url('../img/backgrounds/mountain.png') center center no-repeat; background-size: cover;
 	overflow: hidden;
+
+	@media (max-height: 615px) {
+		height: 615px;
+	}
 
 	// &:after {
 	// 	content: '';
@@ -21,15 +25,15 @@
 		}
 
 		&-houses {
-			height: 100%; max-height: 100%; padding: 40px 0 0; display: flex; width: 100%;
+			height: 100%; max-height: 100%; padding: 40px 0 0; display: flex; align-items: flex-end; width: 100%;
 			overflow-x: auto; overflow-y: hidden;
-			transition: margin 0.4s ease-out;
+			transition: height 0.4s ease-out;
 
 			&.margin {
-				margin-top: 120px;
+				height: calc(100% - 200px);
 
 				@include respond-to(xs) {
-					margin-top: 80px;
+					height: calc(100% - 80px);
 				}
 			}
 
@@ -42,6 +46,18 @@
 			}
 
 			.scroll-wrapper {
+				max-height: 800px; height: 100%;
+
+				@media (max-height: 890px) {
+					max-height: 620px;
+				}
+				@media (max-height: 759px) {
+					max-height: 550px;
+				}
+				@media (max-height: 689px) {
+					max-height: 480px;
+				}
+
 				& > .scroll-content {
 					max-height: none !important; height: 100% !important;
 				}

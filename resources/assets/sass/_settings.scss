@@ -60,6 +60,10 @@ body {
 
 body, html {
 	overflow: hidden;
+
+	@media (max-height: 615px) {
+		overflow-y: auto;
+	}
 }
 
 .container {

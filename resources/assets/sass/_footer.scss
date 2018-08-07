@@ -66,6 +66,10 @@
 				margin-right: 0;
 			}
 
+			@media (max-height: 689px) {
+				width: 60px;
+			}
+
 			@include respond-to(md) {
 				width: 60px;
 			}
@@ -141,7 +145,7 @@
 						display: block;
 					}
 					& > img {
-						max-width: 100%;
+						max-width: 100%; max-height: 105px;
 
 						@include respond-to(xs) {
 							max-height: 50px;
@@ -160,6 +164,10 @@
 				.footer-price {
 					padding: 5px; display: flex; align-items: center; justify-content: center;
 					background: #59bfff; border-bottom: solid 2px #4990ad; border-radius: 5px; box-shadow: 0 0 10px 0px rgba(0,0,0,0.25);
+
+					@media (max-height: 689px) {
+						padding: 2px;
+					}
 
 					@include respond-to(xs) {
 						padding: 2px;
@@ -182,6 +190,10 @@
 					span {
 						color: $white; font-size: 18px; font-family: $header; line-height: 18px;
 						display: inline-block;
+
+						@media (max-height: 689px) {
+							font-size: 14px;
+						}
 
 						@include respond-to(md) {
 							font-size: 13px;
