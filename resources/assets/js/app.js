@@ -20,7 +20,7 @@ const drag = dragula([document.getElementById("left-lovehandles"), document.getE
         return !el.classList.contains('no-dnd')
     }
 }).on('drop', function (el) {
-    el.className += ' dropped';
+    el.className += ' dropped user-house';
     el.classList.remove('dropped');
 
     calculateHousesWidth();
@@ -53,15 +53,16 @@ function sendHousesState() {
 
         if (response.data === 1) {
             self.addClass('error');
+
         } else {
             $('.js-tmph').text(response.data.totalMoneyPerHour + ' per hour');
-            /*
-            if (response.data.build_blocked == 1) {
-                $(".houses.drop .house-item").addClass('no-dnd');
+
+            if (response.data.timeLeft === 0) {
+                $(".js-footerHouseItems .house-item:not('.user-house')").removeClass('no-dnd');
             } else {
-                $(".houses.drop .house-item").removeClass('no-dnd');
+                $('.js-adv').text(response.data.timeLeft);
+                $(".js-footerHouseItems .house-item:not('.user-house')").addClass('no-dnd');
             }
-            */
         }
 
     }).catch(function (error) {

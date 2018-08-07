@@ -237,4 +237,34 @@ $(document).ready(function() {
 
         return false;
     });
+
+    // adv
+    body.on('click', '.js-adv', function() {
+        const self = $(this);
+        const popup = $('.popup');
+
+        $('.popup-page-content, .popup').addClass('active');
+
+        popup.find('.page-content').empty();
+        popup.addClass('loading');
+
+        axios.post('/user/adv', {
+        }).then(function (response) {
+
+            popup.removeClass('loading');
+            popup.find('.page-content').html(response.data.html);
+
+            if (response.data.timeLeft === 0) {
+                $('.no-dnd').removeClass('no-dnd');
+                $('.js-adv').text('');
+            } else {
+                $('.js-adv').text(response.data.timeLeft);
+            }
+
+        }).catch(function (error) {
+            popup.find('.page-content').html(commonError);
+        });
+
+        return false;
+    });
 });

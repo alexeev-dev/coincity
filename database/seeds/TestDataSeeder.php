@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Adv;
 use App\Models\House;
 use App\Models\Page;
 use App\Models\Tweet;
@@ -285,6 +286,41 @@ class TestDataSeeder extends Seeder
             $row = Page::where(['id' => $item['id']])->first();
             if ($row === null) {
                 $row = new Page;
+            }
+            $row->fill($item);
+            $row->save();
+        });
+
+        // advs
+        $pages = collect([
+            ['id' => 1, 'content' => '<h2>Рекламный блок 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>
+            '],
+            ['id' => 2, 'content' => '<h2>Рекламный блок 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porttitor neque a turpis dignissim, vitae fringilla nisl sodales.
+            Suspendisse pretium, lacus vitae posuere facilisis, tortor turpis condimentum magna,
+            quis pellentesque mauris nunc quis tortor. Nullam ultricies arcu nec arcu finibus,
+            nec egestas lorem lobortis.</p>']
+        ]);
+        $pages->each(function ($item) {
+            $row = Adv::where(['id' => $item['id']])->first();
+            if ($row === null) {
+                $row = new Adv;
             }
             $row->fill($item);
             $row->save();

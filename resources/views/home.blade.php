@@ -8,7 +8,7 @@
             <div class="houses drop" id="left-lovehandles">
 
                 @foreach ($userHouses as $userHouse)
-                <div class="house-item{{ $userHouse->fav ? ' house-featured' : '' }}" data-house-id="{{ $userHouse->house->id }}">
+                <div class="house-item{{ $userHouse->fav ? ' house-featured' : '' }} user-house" data-house-id="{{ $userHouse->house->id }}">
                     <header>
                         <div class="houses-count">
                             <!-- <span>+2.500</span> -->
@@ -55,6 +55,20 @@
         </div>
     </section>
 
+    <style>
+        .house-item .adv {
+            display:none;
+            top: 44px;
+            font-size: 10px;
+            color: #555;
+            background-color: #fff;
+            padding: 3px;
+            z-index: 1000 !important;
+            text-align: center;
+        }
+        .house-item.no-dnd .adv {display:block}
+    </style>
+
     <footer class="wr-footer active">
         <a href="#" class="footerShowHide js-footerShowHide"></a>
         <div class="container">
@@ -66,9 +80,10 @@
                         if (!empty($allUserHouses)) {
                             $userHouse = $allUserHouses->where('house_id', $house->id)->first();
                         }
-                        $fav = !empty($userHouse) && $userHouse->fav ? true : false;
+                        $isUserHouse = !empty($userHouse);
+                        $fav = $isUserHouse && $userHouse->fav ? true : false;
                     @endphp
-                    <div class="house-item{{ $fav ? ' house-featured' : '' }}" data-house-id="{{ $house->id }}">
+                    <div class="house-item{{ $fav ? ' house-featured' : '' }}{{ $isUserHouse ? ' user-house' : '' }}{{ !$isUserHouse && $buildBlocked ? ' no-dnd' : '' }}" data-house-id="{{ $house->id }}">
                         <header>
                             <div class="houses-count">
                                 <!-- <span>+2.500</span> -->
@@ -79,6 +94,9 @@
                                 <a href="#" class="featured{{ $fav ? ' active' : '' }}"><img src="{{ asset('img/icons/featured_btn_disabled.svg') }}"></a>
                             </div>
                         </header>
+                        <section class="adv">
+                            <p><a class="js-adv" href="#">{{ $timeLeft }}</a></p>
+                        </section>
                         <section>
                             <figure class="footer-image">
                                 <img class="handle" src="{{ asset($house->image_small) }}">

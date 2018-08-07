@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Adv;
 use App\Models\UserHouseUpdate;
 use App\Models\TweetUpdate;
 use App\Models\House;
@@ -37,7 +38,7 @@ class ProfileController extends Controller
 
         UserHouse::where('user_id', $user->id)->update(['position' => null]);
 
-        $built_last_24h = UserHouse::where('created_at', '>',
+        $built_last_24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
             Carbon::now()->subHours(24)->toDateTimeString())->count();
 
         foreach ($housesData as $houseData) {
@@ -63,7 +64,7 @@ class ProfileController extends Controller
 
         return json_encode([
             'totalMoneyPerHour' => $user->user_stat->total_money_per_hour,
-            'build_blocked' => ($built_last_24h >= 3 ? 1 : 0)
+            'timeLeft' => ($built_last_24h >= 3 ? '23:59:59' : 0)
         ]);
     }
 
@@ -212,6 +213,38 @@ class ProfileController extends Controller
         } else {
             $output = 1;
         }
+
+        return $output;
+    }
+
+    public function getAdv(Request $request) {
+        $user = Auth::user();
+
+        $housesLast24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
+            Carbon::now()->subHours(24)->toDateTimeString())->get();
+
+        foreach ($housesLast24h as $house) {
+            $house->created_at = $house->created_at->subHours(3);
+            $house->save();
+        }
+
+        $adv = Adv::inRandomOrder()->first();
+
+        $lastHouseDate = $user->user_houses()->latest()->first()->created_at;
+        $yesterday = Carbon::now()->subHours(24);
+
+        if ($lastHouseDate > $yesterday) {
+            $timeLeft = gmdate('H:i:s', $lastHouseDate->diffInSeconds($yesterday));
+        } else {
+            $timeLeft = 0;
+        }
+
+        $html = view('partials.page', ['content' => $adv->content])->render();
+
+        $output = json_encode([
+            'html' => $html,
+            'timeLeft' => $timeLeft
+        ]);
 
         return $output;
     }

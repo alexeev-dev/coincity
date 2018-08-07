@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\House;
 use App\Models\Page;
 use App\Models\Tweet;
+use App\Models\UserHouse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,17 +21,31 @@ class HomeController extends Controller
                 ->orderBy('money_per_hour', 'DESC')->get();
             $allUserHouses = $user->user_houses()->get();
             $userHouses = $user->user_houses()->whereNotNull('position')->orderBy('position')->get();
+            $built_last_24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
+                Carbon::now()->subHours(24)->toDateTimeString())->count();
+            $isBlocked = ($built_last_24h >= 3 ? 1 : 0);
+
+            if ($userHouses->count() > 0) {
+                $timeLeft = gmdate('H:i:s',
+                    $user->user_houses()->latest()->first()->created_at->diffInSeconds(Carbon::now()->subHours(24)));
+            } else {
+                $timeLeft = '';
+            }
         } else {
             $houses = House::all();
             $allUserHouses = [];
             $userHouses = [];
+            $isBlocked = false;
+            $timeLeft = '';
         }
 
         return view('home', [
             'houses' => $houses,
             'allUserHouses' => $allUserHouses,
             'userHouses' => $userHouses,
-            'tweets' => $tweets
+            'tweets' => $tweets,
+            'buildBlocked' => $isBlocked,
+            'timeLeft' => $timeLeft
         ]);
     }
 
