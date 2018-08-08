@@ -62,9 +62,18 @@ class ProfileController extends Controller
             }
         }
 
+        $timeLeft = 0;
+        if ($built_last_24h >= 3) {
+            $lastHouseDate = $user->user_houses()->latest()->first()->created_at;
+            $yesterday = Carbon::now()->subHours(24)->addSeconds(1);
+            if ($lastHouseDate > $yesterday) {
+                $timeLeft = gmdate('H:i:s', $lastHouseDate->diffInSeconds($yesterday));
+            }
+        }
+
         return json_encode([
             'totalMoneyPerHour' => $user->user_stat->total_money_per_hour,
-            'timeLeft' => ($built_last_24h >= 3 ? '23:59:59' : 0)
+            'timeLeft' => $timeLeft
         ]);
     }
 
