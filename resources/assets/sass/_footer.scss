@@ -31,6 +31,10 @@
 		display: none; align-items: flex-end; justify-content: flex-start; padding: 5px 5px 7px; min-height: 40px; margin-bottom: 7px;
 		overflow-x: auto;
 
+		@media (max-height: 615px) {
+			padding: 5px 0; margin-bottom: 5px;
+		}
+
 		@include respond-to(xs) {
 			padding: 5px 0; margin-bottom: 5px;
 		}
@@ -38,6 +42,10 @@
 		&::-webkit-scrollbar {
 			height: 15px;
 			border: solid 2px #59bfff; border-radius: 100px;
+
+			@media (max-height: 615px) {
+				height: 8px;
+			}
 
 			@include respond-to(xs) {
 				height: 8px;
@@ -69,15 +77,26 @@
 			@media (max-height: 689px) {
 				width: 60px;
 			}
+			@media (max-height: 615px) {
+				width: 50px; margin-right: 5px;
+			}
 
 			@include respond-to(md) {
-				width: 60px;
+				max-width: 60px;
 			}
 			@include respond-to(sm) {
-				width: 50px; margin-right: 10px;
+				max-width: 50px; margin-right: 10px;
 			}
 			@include respond-to(xs) {
-				width: 30px; margin-right: 5px;
+				margin-right: 5px;
+			}
+
+			&.no-dnd {
+				section {
+					&:not(.adv) {
+						pointer-events: none;
+					}
+				}
 			}
 
 			header {
@@ -93,14 +112,18 @@
 						border-radius: 50%;
 						overflow: hidden;
 
+						@media (max-height: 615px) {
+							width: 16px; height: 16px;
+						}
+
 						@include respond-to(md) {
-							width: 26px; height: 26px;
+							max-width: 26px; max-height: 26px;
 						}
 						@include respond-to(sm) {
-							width: 22px; height: 22px;
+							max-width: 22px; max-height: 22px;
 						}
 						@include respond-to(xs) {
-							width: 18px; height: 18px;
+							max-width: 16px; max-height: 16px;
 						}
 
 						&:hover {
@@ -147,6 +170,10 @@
 					& > img {
 						max-width: 100%; max-height: 105px;
 
+						@media (max-height: 615px) {
+							max-height: 50px;
+						}
+
 						@include respond-to(xs) {
 							max-height: 50px;
 						}
@@ -168,6 +195,9 @@
 					@media (max-height: 689px) {
 						padding: 2px;
 					}
+					@media (max-height: 615px) {
+						padding: 2px;
+					}
 
 					@include respond-to(xs) {
 						padding: 2px;
@@ -176,12 +206,10 @@
 					img {
 						max-width: 20px; margin-right: 5px;
 
-						@include respond-to(md) {
-							max-width: 30px;
+						@media (max-height: 615px) {
+							max-width: 16px; margin-right: 5px;
 						}
-						@include respond-to(sm) {
-							max-width: 20px;
-						}
+
 						@include respond-to(xs) {
 							max-width: 16px; margin-right: 5px;
 						}
@@ -194,15 +222,18 @@
 						@media (max-height: 689px) {
 							font-size: 14px;
 						}
+						@media (max-height: 615px) {
+							font-size: 12px;
+						}
 
 						@include respond-to(md) {
-							font-size: 13px;
+							font-size: 14px;
 						}
 						@include respond-to(sm) {
-							font-size: 10px;
+							font-size: 13px;
 						}
 						@include respond-to(xs) {
-							font-size: 7px;
+							font-size: 12px;
 						}
 					}
 				}
@@ -226,6 +257,11 @@
 					font-size: 20px; font-family: $text;
 					display: flex; width: 100%; align-items: center; justify-content: center; padding: 5px; flex-shrink: 0;
 
+					@media (max-height: 615px) {
+						font-size: 12px;
+						padding: 5px 3px;
+					}
+
 					@include respond-to(md) {
 						font-size: 16px;
 					}
@@ -233,7 +269,7 @@
 						font-size: 13px;
 					}
 					@include respond-to(xs) {
-						font-size: 7px;
+						font-size: 12px;
 						padding: 5px 3px;
 					}
 
@@ -349,14 +385,15 @@
 						display: flex; align-items: center; justify-content: center; margin-right: 10px; width: 20px; height: 20px; flex-shrink: 0;
 						background: $white; border-radius: 50%;
 
-						@include respond-to(md) {
-							width: 30px; height: 30px;
+						@media (max-height: 615px) {
+							width: 16px; height: 16px; margin-right: 5px;
 						}
+
 						@include respond-to(sm) {
-							width: 24px; height: 24px; margin-right: 10px;
+							margin-right: 10px;
 						}
 						@include respond-to(xs) {
-							width: 16px; height: 16px; margin-right: 5px;
+							max-width: 16px; max-height: 16px; margin-right: 5px;
 						}
 
 						svg {

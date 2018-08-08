@@ -2,9 +2,12 @@
 	min-width: 320px; height: 100vh; position: relative; z-index: 1; padding: 95px 0 0; display: flex; align-items: center; justify-content: flex-end; flex-direction: column;
 	background: url('../img/backgrounds/mountain.png') center center no-repeat; background-size: cover;
 	overflow: hidden;
-
+	
 	@media (max-height: 615px) {
-		height: 615px;
+		padding: 80px 0 0;
+	}
+	@media (max-height: 480px) {
+		height: 480px;
 	}
 
 	// &:after {
@@ -22,6 +25,10 @@
 
 		&-header {
 			z-index: 6; width: 100%; position: absolute; left: 50%; top: 20px; transform: translateX(-50%);
+
+			@media (max-height: 615px) {
+				top: 5px;
+			}
 		}
 
 		&-houses {
@@ -29,16 +36,30 @@
 			overflow-x: auto; overflow-y: hidden;
 			transition: height 0.4s ease-out;
 
-			&.margin {
-				height: calc(100% - 200px);
-
-				@include respond-to(xs) {
-					height: calc(100% - 80px);
-				}
+			@media (max-height: 615px) {
+				padding-top: 10px;
 			}
 
 			@include respond-to(sm) {
 				padding-top: 10px;
+			}
+
+			&.margin {
+				height: calc(100% - 200px);
+
+				@include respond-to(sm) {
+					height: calc(100% - 300px);
+				}
+				@media (max-height: 890px) {
+					height: calc(100% - 80px);
+				}
+				@media (max-height: 615px) {
+					height: calc(100% - 80px);
+				}
+
+				@include respond-to(xs) {
+					height: calc(100% - 110px);
+				}
 			}
 			
 			.container {
@@ -51,11 +72,21 @@
 				@media (max-height: 890px) {
 					max-height: 620px;
 				}
+				@include respond-to(sm) {
+					max-height: 620px;
+				}
 				@media (max-height: 759px) {
 					max-height: 550px;
 				}
 				@media (max-height: 689px) {
 					max-height: 480px;
+				}
+				@media (max-height: 615px) {
+					max-height: 390px;
+				}
+
+				@include respond-to(xs) {
+					max-height: 390px;
 				}
 
 				& > .scroll-content {
@@ -64,7 +95,18 @@
 			}
 
 			a.scroll-button {
-				position: absolute; top: 200px; display: block; z-index: 5;
+				position: absolute; top: 50%; display: block; z-index: 5; transform: translateY(-50%);
+
+				@media (max-height: 759px) {
+					top: 30%;
+				}
+				@media (max-height: 615px) {
+					width: 40px;
+				}
+
+				@include respond-to(xs) {
+					width: 25px;
+				}
 
 				&.disabled {
 					display: none;
@@ -76,14 +118,26 @@
 
 				&.left {
 					left: 10px;
+
+					@include respond-to(xs) {
+						left: 5px;
+					}
 				}
 
 				&.right {
 					right: 10px;
 
+					@include respond-to(xs) {
+						right: 5px;
+					}
+
 					img {
 						transform: rotate(180deg);
 					}
+				}
+
+				img {
+					max-width: 100%;
 				}
 			}
 		}
@@ -93,18 +147,22 @@
 			background: #ebebeb; border-radius: 10px;
 			transition: 0.4s ease-out;
 
+			@media (max-height: 615px) {
+				bottom: 0;
+			}
+
 			@include respond-to(sm) {
-				width: calc(100% - 30px); bottom: 30px;
+				width: calc(100% - 30px);
 			}
 			@include respond-to(xs) {
-				bottom: 15px; width: calc(100% - 10px);
+				width: calc(100% - 10px);
 			}
 
 			&.active {
 				transform: translate(-50%, -10px);
 
-				@include respond-to(md) {
-					transform: translate(-50%, -10px);
+				@media (max-height: 615px) {
+					transform: translate(-50%, -5px);
 				}
 
 				a.footerShowHide {
@@ -115,6 +173,14 @@
 					&:after {
 						top: auto; bottom: 20px;
 						border-bottom: none; border-top: 5px solid #59bfff;
+
+						@media (max-height: 615px) {
+							bottom: 30px;
+						}
+
+						@include respond-to(md) {
+							bottom: 30px;
+						}
 					}
 				}
 			}
@@ -124,14 +190,22 @@
 				background: #ebebeb; border-radius: 100px;
 				transition: 0.4s ease-out;
 
-				@include respond-to(xs) {
-					width: 60px; height: 40px; top: -20px;
+				@media (max-height: 615px) {
+					width: 60px; height: 40px; top: -15px;
+				}
+
+				@include respond-to(md) {
+					width: 60px; height: 40px; top: -15px;
 				}
 
 				&:before {
 					content: '';
 					display: block; width: 5px; height: 10px; position: absolute; left: 50%; top: 7px; transform: translateX(-50%);
 					background: #59bfff;
+
+					@media (max-height: 615px) {
+						content: none;
+					}
 
 					@include respond-to(md) {
 						content: none;
@@ -141,6 +215,10 @@
 					content: '';
 					display: block; position: absolute; left: 50%; top: 3px; transform: translateX(-50%);
 					border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #59bfff;
+
+					@media (max-height: 615px) {
+						border-left-width: 8px; border-right-width: 8px; border-bottom-width: 8px; top: 5px;
+					}
 
 					@include respond-to(md) {
 						border-left-width: 8px; border-right-width: 8px; border-bottom-width: 8px; top: 5px;
