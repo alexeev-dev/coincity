@@ -4,7 +4,7 @@
     <section class="wr-houses">
         <a href="#" class="scroll-button left js-scrollHouses disabled"><img src="{{ asset('img/icons/scroll_arrow.svg') }}"></a>
         <a href="#" class="scroll-button right js-scrollHouses disabled"><img src="{{ asset('img/icons/scroll_arrow.svg') }}"></a>
-        <div class="scrollbar">
+        <div class="scrollbar dragscroll">
             <div class="houses drop" id="left-lovehandles">
 
                 @foreach ($userHouses as $userHouse)

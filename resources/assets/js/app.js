@@ -279,3 +279,6 @@ function scrollHouses() {
     });
 
 }
+
+// dragging js
+require('dragscroll');
