@@ -27,6 +27,13 @@ const drag = dragula([document.getElementById("left-lovehandles"), document.getE
     sendHousesState();
 });
 
+// countdown function
+require('jquery-countdown');
+var countdownDate = $('.js-adv').attr('data-countdowndate');
+$(".js-adv").countdown(countdownDate, function(event) {
+    var $this = $(this).html(event.strftime('%H:%M<span>:%S</span>'));
+});
+
 function calculateHousesWidth() {
     var housesWidth = $(".houses.drop").outerWidth();
     var housesWidth_ = 0;
@@ -108,6 +115,9 @@ $(document).ready(function() {
     scrollHouses();
 
     newsResize();
+
+    // initialize countdown
+    // housesCountdown()
 });
 
 $(window).resize(function() {

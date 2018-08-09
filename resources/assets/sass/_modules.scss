@@ -256,23 +256,27 @@
 			.houses-count { 
 				display: flex; align-items: center; flex-direction: column;
 
+				&.collected {
+					pointer-events: none;
+					span {
+						animation: getCoins 0.4s 1 ease-out;
+					}
+					a {
+						animation: getCoins 0.4s 1 ease-out;
+						opacity: 0;
+					}
+				}
+
 				span {
-					color: $white; font-size: 48px; font-family: $text; text-align: center; text-shadow: 1px 1px 0 #000;
-					margin-bottom: 30px;
+					color: $white; font-size: 28px; font-family: $text; text-align: center; text-shadow: 1px 1px 0 #000;
+					margin-bottom: 10px;
+					opacity: 0;
 
 					@media (max-height: 615px) {
-						font-size: 30px;
-						margin-bottom: 15px;
+						font-size: 24px;
+						margin-bottom: 5px;
 					}
 
-					@include respond-to(lg) {
-						font-size: 42px;
-						margin-bottom: 25px;
-					}
-					@include respond-to(md) {
-						font-size: 36px;
-						margin-bottom: 20px;
-					}
 					@include respond-to(sm) {
 						font-size: 30px;
 						margin-bottom: 15px;

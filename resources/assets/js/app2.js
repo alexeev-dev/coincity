@@ -196,7 +196,8 @@ $(document).ready(function() {
     // house popup
     $('.house-item .houses-count a').click(function() {
         const self = $(this).parents('.house-item');
-        $(this).hide();
+        var this_ = $(this);
+        this_.parent().addClass('collected');
 
         axios.post('/user/gather-money', {
             houseId: self.data('house-id')
@@ -211,6 +212,10 @@ $(document).ready(function() {
         }).catch(function (error) {
             // ...
         });
+
+        // setTimeout(function(){
+        //     this_.parent().html('');
+        // },400);
 
         return false;
     });

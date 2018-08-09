@@ -11,7 +11,7 @@
                 <div class="house-item{{ $userHouse->fav ? ' house-featured' : '' }} user-house" data-house-id="{{ $userHouse->house->id }}">
                     <header>
                         <div class="houses-count">
-                            <!-- <span>+2.500</span> -->
+                            <span>+2.500</span>
                             <a href="#"><em></em></a>
                         </div>
                         <div class="footer-buttons js-footerButtons">
@@ -55,20 +55,6 @@
         </div>
     </section>
 
-    <style>
-        .house-item .adv {
-            display:none;
-            top: 44px;
-            font-size: 10px;
-            color: #555;
-            background-color: #fff;
-            padding: 3px;
-            z-index: 1000 !important;
-            text-align: center;
-        }
-        .house-item.no-dnd .adv {display:block}
-    </style>
-
     <footer class="wr-footer active">
         <a href="#" class="footerShowHide js-footerShowHide"></a>
         <div class="container">
@@ -95,7 +81,7 @@
                             </div>
                         </header>
                         <section class="adv">
-                            <p><a class="js-adv" href="#">{{ $timeLeft }}</a></p>
+                            <p><a class="js-adv" href="#" data-countdowndate="2018-08-10 00:00:00"></a></p>
                         </section>
                         <section>
                             <figure class="footer-image">
