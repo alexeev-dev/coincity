@@ -75,7 +75,7 @@
 							<img src="{{ asset('img/header/coin_header.png') }}">
 
 							@auth
-							<p class="js-total-money">{{ Auth::user()->user_stat->money_text }}</p>
+							<p class="js-total-money odometer" id="odometer">{{ Auth::user()->user_stat->money_text }}</p>
 							@endauth
 
                             @guest
@@ -129,6 +129,7 @@
 
     <script src="{{ compile_assets('js/app.js') }}"></script>
     <script src="{{ compile_assets('js/app2.js') }}"></script>
+    <script src="{{ compile_assets('js/odometer.min.js') }}"></script>
 
     @stack('scripts-footer')
 

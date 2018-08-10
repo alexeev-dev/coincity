@@ -318,6 +318,10 @@
 		& > section {
 			margin-bottom: 20px;
 
+			&.adv {
+				display: none !important;
+			}
+
 			@media (max-height: 615px) {
 				margin-bottom: 5px;
 			}
@@ -579,5 +583,21 @@
 	&-y {
 		height: 100px;
 		display: none !important;
+	}
+}
+
+// odometer
+.odometer {
+	&-formatting {
+		&-mark {
+			color: transparent;
+			position: relative;
+
+			&:after {
+				content: '.';
+				color: #000000;
+				position: absolute; left: 0; bottom: 0;
+			}
+		}
 	}
 }

@@ -81,7 +81,7 @@
                             </div>
                         </header>
                         <section class="adv">
-                            <p><a class="js-adv" href="#" data-countdowndate="2018-08-10 00:00:00"></a></p>
+                            <p><a class="js-adv" href="#" data-countdowndate="2018-08-11 00:00:00"></a></p>
                         </section>
                         <section>
                             <figure class="footer-image">
