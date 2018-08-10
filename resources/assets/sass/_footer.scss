@@ -190,12 +190,38 @@
 					display: none; position: absolute; left: 50%; top: calc(50% - 10px); transform: translate(-50%,-50%); width: 100%; z-index: 2;
 					background: #9058FF;
 
+					@media (max-height: 615px) {
+						top: calc(50% - 5px);
+					}
+
+					@include respond-to(md) {
+						top: calc(50% - 5px);
+					}
+
 					p {
 						color: #fff; font-size: 14px; font-family: $text; line-height: 18px; text-align: center;
+
+						@media (max-height: 615px) {
+							font-size: 12px; line-height: 14px;
+						}
+
+						@include respond-to(md) {
+							font-size: 12px; line-height: 14px;
+						}
 
 						a {
 							color: inherit; font-size: inherit; font-family: inherit; line-height: inherit; text-align: center;
 							display: block;
+
+							span {
+								@media (max-height: 615px) {
+									display: none;
+								}
+
+								@include respond-to(xs) {
+									display: none;
+								}
+							}
 						}
 					}
 				}

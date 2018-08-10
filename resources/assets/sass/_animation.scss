@@ -52,7 +52,15 @@
 	}
 }
 
-@keyframes getCoins {
+@keyframes getCoins_opacity {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes getCoins_translate {
 	0% {
 		opacity: 1; transform: translateY(0);
 	}

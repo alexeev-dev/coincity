@@ -53,12 +53,11 @@
 				@media (max-height: 890px) {
 					height: calc(100% - 80px);
 				}
-				@media (max-height: 615px) {
+				@include respond-to(xs) {
 					height: calc(100% - 80px);
 				}
-
-				@include respond-to(xs) {
-					height: calc(100% - 110px);
+				@media (max-height: 615px) {
+					height: 100%;
 				}
 			}
 			
@@ -68,6 +67,10 @@
 
 			.scroll-wrapper {
 				max-height: 800px; height: 100%;
+
+				@include respond-to(xs) {
+					max-height: 390px;
+				}
 
 				@media (max-height: 890px) {
 					max-height: 620px;
@@ -85,7 +88,13 @@
 					max-height: 390px;
 				}
 
-				@include respond-to(xs) {
+				@media (max-width: 480px) and (max-height: 759px) {
+					max-height: 450px;
+				}
+				@media (max-width: 480px) and (max-height: 689px) {
+					max-height: 410px;
+				}
+				@media (max-width: 480px) and (max-height: 615px) {
 					max-height: 390px;
 				}
 

@@ -16,6 +16,13 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <meta property="og:url" content=""/>
+    <meta property="og:type" content=""/>
+    <meta property="og:title" content="Title"/>
+    <meta property="og:description" content="Description"/>
+    <meta property="og:image" content=""/>
+    <link rel="image_src" href="">
+
 	<link href="{{ compile_assets('css/app.css') }}" rel="stylesheet">
 	<link href="{{ compile_assets('css/dragula.min.css') }}" rel="stylesheet">
 	<link href="{{ compile_assets('css/jquery.scrollbar.css') }}" rel="stylesheet">
