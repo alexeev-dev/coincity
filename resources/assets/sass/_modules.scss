@@ -11,25 +11,63 @@
 /*********************************/
 /*********** Modules *************/
 /*********************************/
+.parallax {
+	&-mountain,
+	&-lake {
+		bottom: 785px; z-index: -1;
+
+		@media (max-height: 890px) {
+			bottom: 510px;
+		}
+		@media (max-height: 759px) {
+			bottom: 460px;
+		}
+		@media (max-height: 689px) {
+			bottom: 400px;
+		}
+		@media (max-height: 615px) {
+			bottom: 350px;
+		}
+	}
+
+	&-mountain {
+		position: fixed; left: 0; width: calc(100% + 50px);
+
+		img {
+			width: 100%;
+		}
+	}
+	&-lake {
+		position: fixed; left: 0; width: calc(100% + 100px); transform: translateY(82.63158%);
+
+		img {
+			width: 100%;
+		}
+	}
+}
+
 .houses {
 	height: 100%; width: 100%;
 
 	&.drop{
-		display: flex; align-items: flex-start; position: relative;
-		background: url(../img/backgrounds/ground.png) left top -290px repeat-x; background-size: 2700px auto;
+		display: flex; align-items: flex-end; position: relative; padding-bottom: 320px;
+		background: url(../img/backgrounds/ground.png) left bottom -85px repeat-x; background-size: 2700px auto;
 		overflow: hidden;
+		transition: padding 0.4s ease-out, background-position 0.4s ease-out;
 
 		@media (max-height: 890px) {
-			background: url(../img/backgrounds/ground.png) left top -295px repeat-x; background-size: 2300px auto;
+			padding-bottom: 270px;
+			background: url(../img/backgrounds/ground.png) left bottom -65px repeat-x; background-size: 2300px auto;
 		}
 		@include respond-to(sm) {
 			background: url(../img/backgrounds/ground.png) left top -300px repeat-x; background-size: 2300px auto;
 		}
 		@media (max-height: 759px) {
-			background: url(../img/backgrounds/ground.png) left top -265px repeat-x; background-size: 1900px auto;
+			background: url(../img/backgrounds/ground.png) left bottom 0px repeat-x; background-size: 1900px auto;
 		}
 		@media (max-height: 689px) {
-			background: url(../img/backgrounds/ground.png) left top -200px repeat-x; background-size: 1500px auto;
+			padding-bottom: 210px;
+			background: url(../img/backgrounds/ground.png) left bottom 15px repeat-x; background-size: 1500px auto;
 		}
 
 		// @include respond-to(lg) {
@@ -55,10 +93,24 @@
 			align-items: flex-end;
 			padding-bottom: 105px;
 			background: url(../img/backgrounds/ground.png) left bottom -60px repeat-x; background-size: 1500px auto;
-			transition: padding 0.4s linear, background-position 0.4s linear;
 		}
 
 		.margin & {
+			padding-bottom: 100px;
+			background: url(../img/backgrounds/ground.png) left bottom -305px repeat-x; background-size: 2700px auto;
+
+			@media (max-height: 890px) {
+				padding-bottom: 80px;
+				background: url(../img/backgrounds/ground.png) left bottom -255px repeat-x; background-size: 2300px auto;
+			}
+			@media (max-height: 759px) {
+				background: url(../img/backgrounds/ground.png) left bottom -190px repeat-x; background-size: 1900px auto;
+			}
+			@media (max-height: 689px) {
+				padding-bottom: 50px;
+				background: url(../img/backgrounds/ground.png) left bottom -145px repeat-x; background-size: 1500px auto;
+			}
+
 			@media (max-height: 615px) {
 				align-items: flex-end;
 				padding-bottom: 20px;
@@ -628,7 +680,7 @@
 			 bottom: 230px;
 		}
 		@media (max-height: 689px) {
-			bottom: 205px; height: 6px;
+			bottom: 185px; height: 6px;
 		}
 		@media (max-height: 615px) {
 			bottom: 100px;
@@ -655,7 +707,7 @@
 			bottom: 40px;
 
 			@media (max-height: 689px) {
-				bottom: 25px;
+				bottom: 30px;
 			}
 			@media (max-height: 615px) {
 				bottom: 30px;

@@ -7,6 +7,7 @@ require('jquery.scrollbar');
 $('.scrollbar').scrollbar({
 	"scrollx": $('.scrollbar_x'),
     onScroll: function() {
+        parallaxBackground();
         showHideScrollButtons();
     }
 });
@@ -79,6 +80,7 @@ function sendHousesState() {
 
 $(document).ready(function() {
     calculateHousesWidth();
+    parallaxBackground();
 
     // settings menu
     $('.js-settings').click(function(e) {
@@ -278,6 +280,22 @@ function scrollHouses() {
         },scrollAnimationTime);
     });
 
+}
+
+// parallax mountain and lake
+function parallaxBackground() {
+    var windowWidth = $(window).width(),
+        housesContainerWidth = $('.houses.drop').width(),
+        parallaxLength = housesContainerWidth - windowWidth,
+        currentScrollPosition = $('.scrollbar.scroll-content').scrollLeft();
+
+        if(parallaxLength>100) {
+            $('.parallax-mountain').css('transform','translate3d(' + -(50*currentScrollPosition/parallaxLength) + 'px, 0, 0)');
+            $('.parallax-lake').css('transform','translate3d(' + -(100*currentScrollPosition/parallaxLength) + 'px, 82.63158%, 0)');
+        } else {
+            $('.parallax-mountain').css('transform','translate3d(0, 0, 0)');
+            $('.parallax-lake').css('transform','translate3d(0, 82.63158%, 0)');
+        }
 }
 
 // dragging js
