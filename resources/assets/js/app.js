@@ -293,8 +293,8 @@ function parallaxBackground() {
             $('.parallax-mountain').css('transform','translate3d(' + -(50*currentScrollPosition/parallaxLength) + 'px, 0, 0)');
             $('.parallax-lake').css('transform','translate3d(' + -(100*currentScrollPosition/parallaxLength) + 'px, 82.63158%, 0)');
         } else {
-            $('.parallax-mountain').css('transform','translate3d(0, 0, 0)');
-            $('.parallax-lake').css('transform','translate3d(0, 82.63158%, 0)');
+            $('.parallax-mountain').css('transform','translate3d(-26px, 0, 0)');
+            $('.parallax-lake').css('transform','translate3d(-51px, 82.63158%, 0)');
         }
 }
 
