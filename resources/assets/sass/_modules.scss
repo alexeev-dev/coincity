@@ -440,8 +440,8 @@
 
 				em {
 					width: 80px; height: 80px; display: block; transform-origin: 0% 0%; transform: scale(0.625);
-					background: url('../img/coin/coin_sprite.png') center center no-repeat;
-					animation: coinRotateAnimation 1.2s linear infinite;
+					background: url('../img/coin/coin.gif') center center no-repeat;
+					// animation: coinRotateAnimation 1.2s linear infinite;
 
 					@media (max-height: 759px) {
 						transform: scale(0.375);

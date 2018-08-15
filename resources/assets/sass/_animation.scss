@@ -69,64 +69,94 @@
 	}
 }
 
-@keyframes coinRotateAnimation {
-	0% {background-position: -80px 0px;}
-	3.44827999999% {background-position: -80px 0px;}
-	3.44828% {background-position: -240px -240px;}
-	6.89654999999% {background-position: -240px -240px;}
-	6.89655% {background-position: 0px -80px;}
-	10.34482999999% {background-position: 0px -80px;}
-	10.34483% {background-position: -80px -80px;}
-	13.79309999999% {background-position: -80px -80px;}
-	13.7931% {background-position: -160px 0px;}
-	17.24137999999% {background-position: -160px 0px;}
-	17.24138% {background-position: -160px -80px;}
-	20.68965999999% {background-position: -160px -80px;}
-	20.68966% {background-position: 0px -160px;}
-	24.13792999999% {background-position: 0px -160px;}
-	24.13793% {background-position: -80px -160px;}
-	27.58620999999% {background-position: -80px -160px;}
-	27.58621% {background-position: -160px -160px;}
-	31.03447999999% {background-position: -160px -160px;}
-	31.03448% {background-position: -240px 0px;}
-	34.48275999999% {background-position: -240px 0px;}
-	34.48276% {background-position: -240px -80px;}
-	37.93102999999% {background-position: -240px -80px;}
-	37.93103% {background-position: -240px -160px;}
-	41.37930999999% {background-position: -240px -160px;}
-	41.37931% {background-position: 0px -240px;}
-	44.82758999999% {background-position: 0px -240px;}
-	44.82759% {background-position: -80px -240px;}
-	48.27585999999% {background-position: -80px -240px;}
-	48.27586% {background-position: -160px -240px;}
-	51.72413999999% {background-position: -160px -240px;}
-	51.72414% {background-position: 0px 0px;}
-	55.17240999999% {background-position: 0px 0px;}
-	55.17241% {background-position: -320px 0px;}
-	58.62068999999% {background-position: -320px 0px;}
-	58.62069% {background-position: -320px -80px;}
-	62.06896999999% {background-position: -320px -80px;}
-	62.06897% {background-position: -320px -160px;}
-	65.51723999999% {background-position: -320px -160px;}
-	65.51724% {background-position: -320px -240px;}
-	68.96551999999% {background-position: -320px -240px;}
-	68.96552% {background-position: 0px -320px;}
-	72.41378999999% {background-position: 0px -320px;}
-	72.41379% {background-position: -80px -320px;}
-	75.86206999999% {background-position: -80px -320px;}
-	75.86207% {background-position: -160px -320px;}
-	79.31033999999% {background-position: -160px -320px;}
-	79.31034% {background-position: -240px -320px;}
-	82.75861999999% {background-position: -240px -320px;}
-	82.75862% {background-position: -320px -320px;}
-	86.20689999999% {background-position: -320px -320px;}
-	86.2069% {background-position: -400px 0px;}
-	89.65516999999% {background-position: -400px 0px;}
-	89.65517% {background-position: -400px -80px;}
-	93.10344999999% {background-position: -400px -80px;}
-	93.10345% {background-position: -400px -160px;}
-	96.55171999999% {background-position: -400px -160px;}
-	96.55172% {background-position: -400px -240px;}
-	99.99999999999% {background-position: -400px -240px;}
-	100% {background-position: -400px -320px;}
-}
+// @keyframes coinRotateAnimation {
+	// 0% {background: url('../img/coin/coin_01.png') center center no-repeat;}
+	// 3.44828% {background: url('../img/coin/coin_02.png') center center no-repeat;}
+	// 6.89655% {background: url('../img/coin/coin_03.png') center center no-repeat;}
+	// 10.34483% {background: url('../img/coin/coin_04.png') center center no-repeat;}
+	// 13.7931% {background: url('../img/coin/coin_05.png') center center no-repeat;}
+	// 17.24138% {background: url('../img/coin/coin_06.png') center center no-repeat;}
+	// 20.68966% {background: url('../img/coin/coin_07.png') center center no-repeat;}
+	// 24.13793% {background: url('../img/coin/coin_08.png') center center no-repeat;}
+	// 27.58621% {background: url('../img/coin/coin_09.png') center center no-repeat;}
+	// 31.03448% {background: url('../img/coin/coin_10.png') center center no-repeat;}
+	// 34.48276% {background: url('../img/coin/coin_11.png') center center no-repeat;}
+	// 37.93103% {background: url('../img/coin/coin_12.png') center center no-repeat;}
+	// 41.37931% {background: url('../img/coin/coin_13.png') center center no-repeat;}
+	// 44.82759% {background: url('../img/coin/coin_14.png') center center no-repeat;}
+	// 48.27586% {background: url('../img/coin/coin_15.png') center center no-repeat;}
+	// 51.72414% {background: url('../img/coin/coin_16.png') center center no-repeat;}
+	// 55.17241% {background: url('../img/coin/coin_17.png') center center no-repeat;}
+	// 58.62069% {background: url('../img/coin/coin_18.png') center center no-repeat;}
+	// 62.06897% {background: url('../img/coin/coin_19.png') center center no-repeat;}
+	// 65.51724% {background: url('../img/coin/coin_20.png') center center no-repeat;}
+	// 68.96552% {background: url('../img/coin/coin_21.png') center center no-repeat;}
+	// 72.41379% {background: url('../img/coin/coin_22.png') center center no-repeat;}
+	// 75.86207% {background: url('../img/coin/coin_23.png') center center no-repeat;}
+	// 79.31034% {background: url('../img/coin/coin_24.png') center center no-repeat;}
+	// 82.75862% {background: url('../img/coin/coin_25.png') center center no-repeat;}
+	// 86.2069% {background: url('../img/coin/coin_26.png') center center no-repeat;}
+	// 89.65517% {background: url('../img/coin/coin_27.png') center center no-repeat;}
+	// 93.10345% {background: url('../img/coin/coin_28.png') center center no-repeat;}
+	// 96.55172% {background: url('../img/coin/coin_29.png') center center no-repeat;}
+	// 100% {background: url('../img/coin/coin_30.png') center center no-repeat;}
+	// 0% {background-position: -80px 0px;}
+	// 3.4482799% {background-position: -80px 0px;}
+	// 3.44828% {background-position: -240px -240px;}
+	// 6.8965499% {background-position: -240px -240px;}
+	// 6.89655% {background-position: 0px -80px;}
+	// 10.3448299% {background-position: 0px -80px;}
+	// 10.34483% {background-position: -80px -80px;}
+	// 13.7930999% {background-position: -80px -80px;}
+	// 13.7931% {background-position: -160px 0px;}
+	// 17.2413799% {background-position: -160px 0px;}
+	// 17.24138% {background-position: -160px -80px;}
+	// 20.6896599% {background-position: -160px -80px;}
+	// 20.68966% {background-position: 0px -160px;}
+	// 24.1379299% {background-position: 0px -160px;}
+	// 24.13793% {background-position: -80px -160px;}
+	// 27.5862099% {background-position: -80px -160px;}
+	// 27.58621% {background-position: -160px -160px;}
+	// 31.0344799% {background-position: -160px -160px;}
+	// 31.03448% {background-position: -240px 0px;}
+	// 34.4827599% {background-position: -240px 0px;}
+	// 34.48276% {background-position: -240px -80px;}
+	// 37.9310299% {background-position: -240px -80px;}
+	// 37.93103% {background-position: -240px -160px;}
+	// 41.3793099% {background-position: -240px -160px;}
+	// 41.37931% {background-position: 0px -240px;}
+	// 44.8275899% {background-position: 0px -240px;}
+	// 44.82759% {background-position: -80px -240px;}
+	// 48.2758599% {background-position: -80px -240px;}
+	// 48.27586% {background-position: -160px -240px;}
+	// 51.7241399% {background-position: -160px -240px;}
+	// 51.72414% {background-position: 0px 0px;}
+	// 55.1724099% {background-position: 0px 0px;}
+	// 55.17241% {background-position: -320px 0px;}
+	// 58.6206899% {background-position: -320px 0px;}
+	// 58.62069% {background-position: -320px -80px;}
+	// 62.0689699% {background-position: -320px -80px;}
+	// 62.06897% {background-position: -320px -160px;}
+	// 65.5172399% {background-position: -320px -160px;}
+	// 65.51724% {background-position: -320px -240px;}
+	// 68.9655199% {background-position: -320px -240px;}
+	// 68.96552% {background-position: 0px -320px;}
+	// 72.4137899% {background-position: 0px -320px;}
+	// 72.41379% {background-position: -80px -320px;}
+	// 75.8620699% {background-position: -80px -320px;}
+	// 75.86207% {background-position: -160px -320px;}
+	// 79.3103399% {background-position: -160px -320px;}
+	// 79.31034% {background-position: -240px -320px;}
+	// 82.7586199% {background-position: -240px -320px;}
+	// 82.75862% {background-position: -320px -320px;}
+	// 86.2068999% {background-position: -320px -320px;}
+	// 86.2069% {background-position: -400px 0px;}
+	// 89.6551699% {background-position: -400px 0px;}
+	// 89.65517% {background-position: -400px -80px;}
+	// 93.1034499% {background-position: -400px -80px;}
+	// 93.10345% {background-position: -400px -160px;}
+	// 96.5517199% {background-position: -400px -160px;}
+	// 96.55172% {background-position: -400px -240px;}
+	// 99.9999999% {background-position: -400px -240px;}
+	// 100% {background-position: -400px -320px;}
+// }
