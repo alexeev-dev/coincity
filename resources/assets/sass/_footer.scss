@@ -11,6 +11,7 @@
 		display: flex;
 	}
 
+	.buld-active-block.show,
 	.featured-active-block.show {
 		.house-item {
 			section {
@@ -47,7 +48,7 @@
 				height: 8px;
 			}
 
-			@include respond-to(xs) {
+			@include respond-to(md) {
 				height: 8px;
 			}
 		}
@@ -157,7 +158,7 @@
 
 			section {
 				&:not(.adv) {
-					position: relative; z-index: 1;
+					position: relative; z-index: 1; display: block;
 					transition: transform 0.2s ease-out;
 					&:hover {
 						transform: scale(1.1125);

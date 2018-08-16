@@ -368,15 +368,16 @@
 
 .log-reg {
 	h3, h4 {
-		color: black; font-family: $text; font-size: 34px; line-height: 40px; text-align: center;
+		color: black; font-family: $header; font-size: 34px; line-height: 40px; text-align: center;
 		margin-bottom: 45px; padding: 0 30px;
 
-		@include respond-to(sm) {
-			font-size: 40px; line-height: 46px;
+		@media (max-height: 615px) {
+			font-size: 26px; line-height: 32px;
+			padding: 0 15px; margin-bottom: 20px;
 		}
 		@include respond-to(xs) {
-			font-size: 32px; line-height: 38px;
-			padding: 0 15px;
+			font-size: 26px; line-height: 32px;
+			padding: 0 15px; margin-bottom: 20px;
 		}
 	}
 
@@ -453,14 +454,31 @@
 	form {
 
 		label {
-			color: #557AFF; font-family: $text; font-size: 20px; line-height: 34px; text-align: right; text-transform: uppercase;
-			width: 160px; flex-shrink: 0; padding-right: 15px
+			color: #557AFF; font-family: $header; font-size: 18px; line-height: 22px; text-align: right; text-transform: uppercase;
+			width: 160px; flex-shrink: 0; padding-right: 15px;
+
+			@include respond-to(sm) {
+				font-size: 16px;
+				width: 130px;
+			}
+			@include respond-to(xs) {
+				text-align: left;
+				width: 100%;
+			}
 		}
 
 		input {
-			color: black; font-family: $text; font-size: 26px; line-height: 34px; text-align: center;
+			color: black; font-family: $text; font-size: 26px; line-height: 34px;
 			display: block; width: calc(100% - 160px); padding: 5px;
 			background: #ffffff;
+
+			@include respond-to(sm) {
+				font-size: 22px;
+				width: calc(100% - 130px);
+			}
+			@include respond-to(xs) {
+				width: 100%;
+			}
 		}
 
 		button {
@@ -481,6 +499,10 @@
 		.form-group {
 			display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap;
 
+			@include respond-to(xs) {
+				flex-direction: column;
+			}
+
 			&:last-child {
 				margin-bottom: 0;
 			}
@@ -500,6 +522,16 @@
 					font-size: 16px; line-height: 24px; text-align: left;
 					padding-left: 170px; width: auto; display: block;
 					cursor: pointer;
+
+					@include respond-to(sm) {
+						padding-left: 140px;
+					}
+					@media (max-height: 615px) {
+						padding-left: 0;
+					}
+					@include respond-to(xs) {
+						padding-left: 0;
+					}
 
 					input[type=checkbox] {
 						display: inline-block; width: auto;

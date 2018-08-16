@@ -110,6 +110,7 @@ $(document).ready(function() {
 
     // footer buttons actions (info popup and featured)
     footerButtonsActions();
+    scrollToBuilt();
     scrollToFeatured();
 
     // scroll right/left buttons in houses section
@@ -160,7 +161,9 @@ function footerListSort() {
             $(".footer .buld-active-block").addClass("show");
 
             $(".buld-active-block .house-item").remove();
-            $(".houses.drop .house-item").clone().appendTo(".buld-active-block.show")
+            $(".houses.drop .house-item").clone().appendTo(".buld-active-block.show");
+
+            scrollToBuilt();
         }
 
         if ($(this).hasClass('featured')) {
@@ -168,7 +171,7 @@ function footerListSort() {
             $(".footer .featured-active-block").addClass("show");
 
             $(".featured-active-block").find(".house-item").remove();
-            $(".buld-active-block").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
+            $(".houses.drop").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
             $(".new-active").find(".house-item.house-featured").clone().appendTo(".featured-active-block");
 
             scrollToFeatured();
@@ -217,6 +220,25 @@ function scrollToFeatured() {
     } else {
         $('.featured-active-block.show .house-item .footer-image').click(function(e) {
             e.preventDefault();
+
+            var houseID = $(this).parent("section").parent(".house-item").attr('data-house-id'),
+                houseScrollLeft = $('.wr-houses .houses *[data-house-id="' + houseID + '"]').position().left,
+                houseWidth = $('.wr-houses .houses *[data-house-id="' + houseID + '"]').width(),
+                housePaddingLeft = parseInt($('.wr-houses .houses *[data-house-id="' + houseID + '"]').css('padding-left')),
+                windowWidth = $(window).width();
+
+            $('.scrollbar.scroll-content').animate({scrollLeft: houseScrollLeft+housePaddingLeft+houseWidth/2-windowWidth/2}, 800);
+        });
+    }
+}
+function scrollToBuilt() {
+    if(isEmpty($('.buld-active-block.show'))) {
+        return false;
+    } else {
+        $('.buld-active-block.show .house-item .footer-image').click(function(e) {
+            e.preventDefault();
+
+            console.log('clicked');
 
             var houseID = $(this).parent("section").parent(".house-item").attr('data-house-id'),
                 houseScrollLeft = $('.wr-houses .houses *[data-house-id="' + houseID + '"]').position().left,
