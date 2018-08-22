@@ -16,8 +16,8 @@
                 @foreach ($userHouses as $userHouse)
                 <div class="house-item{{ $userHouse->fav ? ' house-featured' : '' }} user-house" data-house-id="{{ $userHouse->house->id }}">
                     <header>
-                        <div class="houses-count">
-                            <span>+2.500</span>
+                        <div class="houses-count{{ $userHouse->canGatherMoney() ? '' : ' hidden' }}">
+                            <span></span>
                             <a href="#"><em></em></a>
                         </div>
                         <div class="footer-buttons js-footerButtons">
@@ -61,24 +61,30 @@
         </div>
     </section>
 
+    <style>
+        .houses-count.hidden {display: none !important}
+    </style>
     <footer class="wr-footer active">
         <a href="#" class="footerShowHide js-footerShowHide"></a>
         <div class="container">
             <div class="footer">
                 <section class="js-footerHouseItems new-active built-active featured-active show" id="right-lovehandles">
-
                     @foreach ($houses as $house)
                     @php
+                        $showCoin = false;
                         if (!empty($allUserHouses)) {
                             $userHouse = $allUserHouses->where('house_id', $house->id)->first();
+                            if (!empty($userHouse)) {
+                                $showCoin = $userHouse->canGatherMoney();
+                            }
                         }
                         $isUserHouse = !empty($userHouse);
                         $fav = $isUserHouse && $userHouse->fav ? true : false;
                     @endphp
                     <div class="house-item{{ $fav ? ' house-featured' : '' }}{{ $isUserHouse ? ' user-house' : '' }}{{ !$isUserHouse && $buildBlocked ? ' no-dnd' : '' }}" data-house-id="{{ $house->id }}">
                         <header>
-                            <div class="houses-count">
-                                <!-- <span>+2.500</span> -->
+                            <div class="houses-count{{ $showCoin ? '' : ' hidden' }}">
+                                <span></span>
                                 <a href="#"><em></em></a>
                             </div>
                             <div class="footer-buttons js-footerButtons">
@@ -87,7 +93,7 @@
                             </div>
                         </header>
                         <section class="adv">
-                            <p><a class="js-adv" href="#" data-countdowndate="2018-08-11 00:00:00"></a></p>
+                            <p><a class="js-adv" href="#" data-countdown="{{ $timeLeft }}"></a></p>
                         </section>
                         <section>
                             <figure class="footer-image">

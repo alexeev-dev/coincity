@@ -82,7 +82,7 @@
 							<img src="{{ asset('img/header/coin_header.png') }}">
 
 							@auth
-							<p class="js-total-money odometer" id="odometer">{{ Auth::user()->user_stat->money_text }}</p>
+							<p class="js-total-money odometer" id="odometer">{{ Auth::user()->user_stat->money }}</p>
 							@endauth
 
                             @guest

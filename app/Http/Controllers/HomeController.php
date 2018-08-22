@@ -21,15 +21,18 @@ class HomeController extends Controller
                 ->orderBy('money_per_hour', 'DESC')->get();
             $allUserHouses = $user->user_houses()->get();
             $userHouses = $user->user_houses()->whereNotNull('position')->orderBy('position')->get();
+
+            $yesterday = Carbon::now()->subHours(24);
             $built_last_24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
-                Carbon::now()->subHours(24)->toDateTimeString())->count();
+                $yesterday->toDateTimeString())->count();
+
             $isBlocked = ($built_last_24h >= 3 ? 1 : 0);
 
-            if ($userHouses->count() > 0) {
-                $timeLeft = gmdate('H:i:s',
-                    $user->user_houses()->latest()->first()->created_at->diffInSeconds(Carbon::now()->subHours(24)));
+            if ($isBlocked) {
+                $timeLeft = $user->user_houses()->latest()->first()->created_at->diffInSeconds(
+                    Carbon::now()->subHours(24));
             } else {
-                $timeLeft = '';
+                $timeLeft = 0;
             }
         } else {
             $houses = House::all();

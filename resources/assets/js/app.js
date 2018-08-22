@@ -28,12 +28,9 @@ const drag = dragula([document.getElementById("left-lovehandles"), document.getE
     sendHousesState();
 });
 
-// countdown function
-require('jquery-countdown');
-var countdownDate = $('.js-adv').attr('data-countdowndate');
-$(".js-adv").countdown(countdownDate, function(event) {
-    var $this = $(this).html(event.strftime('%H:%M<span>:%S</span>'));
-});
+window.odometerOptions = {
+    format: '(.ddd)'
+};
 
 function calculateHousesWidth() {
     var housesWidth = $(".houses.drop").outerWidth();
@@ -68,7 +65,10 @@ function sendHousesState() {
             if (response.data.timeLeft === 0) {
                 $(".js-footerHouseItems .house-item:not('.user-house')").removeClass('no-dnd');
             } else {
-                $('.js-adv').text(response.data.timeLeft);
+                var countDate = new Date(new Date().getTime() + response.data.timeLeft * 1000);
+                $('.js-adv').countdown(countDate, function (event) {
+                    $(this).html(event.strftime('%H:%M<span>:%S</span>'));
+                });
                 $(".js-footerHouseItems .house-item:not('.user-house')").addClass('no-dnd');
             }
         }
@@ -118,9 +118,6 @@ $(document).ready(function() {
     scrollHouses();
 
     newsResize();
-
-    // initialize countdown
-    // housesCountdown()
 });
 
 $(window).resize(function() {

@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    const SERVER_PING_TIME = 10;
+
+    const SECONDS_TILL_NEXT_MONEY = 60;
+    const HOURS_PER_ADV_CLICK = 8;
+    const SECONDS_PER_MONEY_GATHER = 60;
+
     public function switchSound() {
         $userStat = Auth::user()->user_stat;
         $userStat->sound = ($userStat->sound == 0 ? 1 : 0);
@@ -38,7 +44,7 @@ class ProfileController extends Controller
 
         UserHouse::where('user_id', $user->id)->update(['position' => null]);
 
-        $built_last_24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
+        $builtLast24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
             Carbon::now()->subHours(24)->toDateTimeString())->count();
 
         foreach ($housesData as $houseData) {
@@ -47,13 +53,14 @@ class ProfileController extends Controller
 
             $userHouse = UserHouse::where([['user_id', $user->id], ['house_id', $houseId]])->first();
 
-            if ($built_last_24h < 3 && empty($userHouse)) {
+            if ($builtLast24h < 3 && empty($userHouse)) {
                 $userHouse = new UserHouse();
                 $userHouse->user_id = $user->id;
                 $userHouse->house_id = $houseId;
+                $userHouse->money_collected = Carbon::now();
                 $userHouse->save();
 
-                $built_last_24h++;
+                $builtLast24h++;
             }
 
             if (!empty($userHouse)) {
@@ -63,11 +70,11 @@ class ProfileController extends Controller
         }
 
         $timeLeft = 0;
-        if ($built_last_24h >= 3) {
+        if ($builtLast24h >= 3) {
             $lastHouseDate = $user->user_houses()->latest()->first()->created_at;
             $yesterday = Carbon::now()->subHours(24)->addSeconds(1);
             if ($lastHouseDate > $yesterday) {
-                $timeLeft = gmdate('H:i:s', $lastHouseDate->diffInSeconds($yesterday));
+                $timeLeft = $lastHouseDate->diffInSeconds($yesterday);
             }
         }
 
@@ -108,7 +115,7 @@ class ProfileController extends Controller
             // get tweets
             $tweets = $userHouse->house->tweets;
             $html = view('partials.house', ['userHouse' => $userHouse, 'tweets' => $tweets])->render();
-            $output = json_encode(['money' => $userStat->money_text, 'html' => $html]);
+            $output = json_encode(['money' => $userStat->money, 'html' => $html]);
 
         } else {
             $html = view('partials.error')->render();
@@ -153,20 +160,28 @@ class ProfileController extends Controller
                 $startPoint = $userHouse->created_at;
             }
             $secondsPassed = $now->diffInSeconds($startPoint);
-            $moneyEarned = floor($userHouse->money_per_hour * $secondsPassed / 3600);
-            if ($moneyEarned > $userHouse->max_money) {
-                $moneyEarned = $userHouse->max_money;
+
+            if ($secondsPassed > $this::SECONDS_TILL_NEXT_MONEY) {
+                $moneyEarned = floor($userHouse->money_per_hour * $secondsPassed / 3600);
+                if ($moneyEarned > $userHouse->max_money) {
+                    $moneyEarned = $userHouse->max_money;
+                }
+
+                $userStat = $user->user_stat;
+                $lastMoney = $userStat->money;
+                $userStat->money = $lastMoney + $moneyEarned;
+                $userStat->save();
+
+                $userHouse->money_collected = $now;
+                $userHouse->save();
+
+                $output = json_encode([
+                    'totalMoney' => $userStat->money,
+                    'gatheredMoney' => $moneyEarned
+                ]);
+            } else {
+                $output = 1;
             }
-
-            $userStat = $user->user_stat;
-            $lastMoney = $userStat->money;
-            $userStat->money = $lastMoney + $moneyEarned;
-            $userStat->save();
-
-            $userHouse->money_collected = $now;
-            $userHouse->save();
-
-            $output = json_encode(['totalMoney' => $userStat->money_text]);
         } else {
             $output = 1;
         }
@@ -229,11 +244,11 @@ class ProfileController extends Controller
     public function getAdv(Request $request) {
         $user = Auth::user();
 
-        $housesLast24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
+        $builtLast24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
             Carbon::now()->subHours(24)->toDateTimeString())->get();
 
-        foreach ($housesLast24h as $house) {
-            $house->created_at = $house->created_at->subHours(3);
+        foreach ($builtLast24h as $house) {
+            $house->created_at = $house->created_at->subHours($this::HOURS_PER_ADV_CLICK);
             $house->save();
         }
 
@@ -241,9 +256,8 @@ class ProfileController extends Controller
 
         $lastHouseDate = $user->user_houses()->latest()->first()->created_at;
         $yesterday = Carbon::now()->subHours(24);
-
         if ($lastHouseDate > $yesterday) {
-            $timeLeft = gmdate('H:i:s', $lastHouseDate->diffInSeconds($yesterday));
+            $timeLeft = $lastHouseDate->diffInSeconds($yesterday);
         } else {
             $timeLeft = 0;
         }
@@ -255,6 +269,20 @@ class ProfileController extends Controller
             'timeLeft' => $timeLeft
         ]);
 
+        return $output;
+    }
+
+    public function updateAll() {
+        $user = Auth::user();
+        $userHouseIds = $user->user_houses()
+            ->where('money_collected', '<', Carbon::now()->subSeconds($this::SECONDS_PER_MONEY_GATHER)
+                ->toDateTimeString())->pluck('house_id');
+
+        $output = json_encode([
+            'houseIds' => $userHouseIds->toArray(),
+            'newcount' => 66,
+            'next' => $this::SERVER_PING_TIME
+        ]);
         return $output;
     }
 }

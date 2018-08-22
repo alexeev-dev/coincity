@@ -21,6 +21,7 @@ Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('add-to-fav', 'User\ProfileController@addToFav');
 
     Route::post('adv', 'User\ProfileController@getAdv');
+    Route::post('update-all', 'User\ProfileController@updateAll');
 });
 
 Auth::routes();

@@ -1,12 +1,60 @@
 window.$ = window.jQuery = require('jquery');
-
 const commonError = "Something went wrong. Try again later.";
+
+require('jquery-countdown');
+
+var countSeconds = parseInt($('.js-adv').attr('data-countdown'));
+if (countSeconds > 0) {
+    var countDate = new Date(new Date().getTime() + countSeconds * 1000);
+    $('.js-adv').countdown(countDate, function (event) {
+        $(this).html(event.strftime('%H:%M<span>:%S</span>'));
+    });
+}
+
+// server pinger
+function pingServer() {
+    axios.post('/user/update-all', {
+    }).then(function (response) {
+
+        if (response.data.newcount > 0) {
+            $('.js-news span').text(response.data.newcount);
+            for (let i = 0; i < response.data.houseIds.length; i++) {
+                $('[data-house-id="' + response.data.houseIds[i] + '"] .houses-count').removeClass('collected hidden');
+            }
+        }
+
+        if (response.data.next > 0) {
+            setTimeout(pingServer, response.data.next * 1000);
+        }
+
+    }).catch(function (error) {
+        // ...
+    });
+}
+setTimeout(pingServer, 10000);
+
+let isBusy = false;
+function busyCheck() {
+    if (isBusy) {
+        return true;
+    } else {
+        isBusy = true;
+        setTimeout(function() {
+            isBusy = false;
+        }, 1000);
+        return false;
+    }
+}
 
 $(document).ready(function() {
     let body = $('body');
 
     // switch sound
 	$('.js-sound').click(function() {
+	    if (busyCheck()) {
+	        return false;
+        }
+
         const self = $(this);
         self.addClass('loading');
 
@@ -53,6 +101,10 @@ $(document).ready(function() {
 
     // static pages menu
     $('.settings li a[href^="#"]').click(function() {
+        if (busyCheck()) {
+            return false;
+        }
+
         $('.app').removeClass('active-settings');
         $('.js-settings').removeClass('active');
 
@@ -79,6 +131,10 @@ $(document).ready(function() {
 
     // news menu
     $('.js-news').click(function(e) {
+        if (busyCheck()) {
+            return false;
+        }
+
         $('.app').toggleClass('active-news');
         $(this).toggleClass('active');
 
@@ -104,9 +160,14 @@ $(document).ready(function() {
 
     // house popup
     body.on('click', '.house-item .coins', function() {
+        if (busyCheck()) {
+            return false;
+        }
+
         const self = $(this).parents('.house-item');
         const popup = $('.popup');
 
+        self.find('.houses-count').removeClass('collected').addClass('hidden');
         $('.popup-house-info, .popup').addClass('active');
 
         popup.find('.house-info').empty();
@@ -133,6 +194,10 @@ $(document).ready(function() {
 
     // house i popup
     body.on('click', '.house-item .info', function() {
+        if (busyCheck()) {
+            return false;
+        }
+
         const self = $(this).parents('.house-item');
         const popup = $('.popup');
 
@@ -161,6 +226,10 @@ $(document).ready(function() {
 
     // house update
     body.on('click', '.js-update', function() {
+        if (busyCheck()) {
+            return false;
+        }
+
         const self = $(this);
         self.addClass('loading');
 
@@ -195,9 +264,12 @@ $(document).ready(function() {
     // coin click - gather money
     // house popup
     $('.house-item .houses-count a').click(function() {
+        if (busyCheck()) {
+            return false;
+        }
+
         const self = $(this).parents('.house-item');
-        var this_ = $(this);
-        this_.parent().addClass('collected');
+        self.removeClass('collected');
 
         axios.post('/user/gather-money', {
             houseId: self.data('house-id')
@@ -207,21 +279,22 @@ $(document).ready(function() {
                 // ...
             } else {
                 $('.js-total-money').text(response.data.totalMoney);
+                self.find('.houses-count').addClass('collected').find('span').text(response.data.gatheredMoney);
             }
 
         }).catch(function (error) {
             // ...
         });
 
-        // setTimeout(function(){
-        //     this_.parent().html('');
-        // },400);
-
         return false;
     });
 
     // house feature
     body.on('click', '.js-footerButtons .featured', function() {
+        if (busyCheck()) {
+            return false;
+        }
+
         const houseId = $(this).parents('.house-item').data('house-id');
         const isFav = $(this).hasClass('active');
 
@@ -245,6 +318,10 @@ $(document).ready(function() {
 
     // adv
     body.on('click', '.js-adv', function() {
+        if (busyCheck()) {
+            return false;
+        }
+
         const self = $(this);
         const popup = $('.popup');
 
@@ -260,10 +337,13 @@ $(document).ready(function() {
             popup.find('.page-content').html(response.data.html);
 
             if (response.data.timeLeft === 0) {
+                $('.js-adv').data('countdowndate', '');
                 $('.no-dnd').removeClass('no-dnd');
-                $('.js-adv').text('');
             } else {
-                $('.js-adv').text(response.data.timeLeft);
+                var countDate = new Date(new Date().getTime() + response.data.timeLeft * 1000);
+                $('.js-adv').countdown(countDate, function (event) {
+                    $(this).html(event.strftime('%H:%M<span>:%S</span>'));
+                });
             }
 
         }).catch(function (error) {

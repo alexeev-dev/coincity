@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\User\ProfileController;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class UserHouse extends Model
@@ -22,6 +24,17 @@ class UserHouse extends Model
 
     public function user_house_updates() {
         return $this->hasMany('App\Models\UserHouseUpdate');
+    }
+
+    public function canGatherMoney() {
+        if (!empty($this->money_collected)) {
+            $startPoint = $this->money_collected;
+        } else {
+            $startPoint = $this->created_at;
+        }
+        $secondsPassed = Carbon::now()->diffInSeconds($startPoint);
+
+        return $secondsPassed >= ProfileController::SECONDS_PER_MONEY_GATHER;
     }
 
     public function getMoneyPerHourAttribute() {
