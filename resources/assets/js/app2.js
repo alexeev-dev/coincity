@@ -17,7 +17,12 @@ function pingServer() {
     }).then(function (response) {
 
         if (response.data.newcount > 0) {
-            $('.js-news span').text(response.data.newcount);
+            if (response.data.newTweetCount > 0) {
+                $('.js-news span').text(response.data.newTweetCount);
+            } else {
+                $('.js-news span').hide();
+            }
+
             for (let i = 0; i < response.data.houseIds.length; i++) {
                 $('[data-house-id="' + response.data.houseIds[i] + '"] .houses-count').removeClass('collected hidden');
             }
@@ -142,8 +147,7 @@ $(document).ready(function() {
         popup.empty();
         popup.addClass('loading');
 
-        // todo tmp
-        $(this).find('span').remove();
+        $(this).find('span').hide();
 
         axios.post('/news', {
         }).then(function (response) {
@@ -183,6 +187,12 @@ $(document).ready(function() {
             } else {
                 popup.find('.house-info').html(response.data.html);
                 $('.js-total-money').text(response.data.money);
+                if (response.data.newTweetCount > 0) {
+                    $('.js-news span').text(response.data.newTweetCount);
+                } else {
+                    $('.js-news span').hide();
+                }
+
             }
 
         }).catch(function (error) {

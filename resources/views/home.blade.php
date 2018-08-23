@@ -61,9 +61,6 @@
         </div>
     </section>
 
-    <style>
-        .houses-count.hidden {display: none !important}
-    </style>
     <footer class="wr-footer active">
         <a href="#" class="footerShowHide js-footerShowHide"></a>
         <div class="container">
@@ -188,7 +185,11 @@
 
 @section('news')
     <div class="news">
-        <a href="#" class="js-news"><span>{{ count($tweets) }}</span></a>
+        <a href="#" class="js-news">
+            @if (!empty($newTweetCount))
+            <span>{{ $newTweetCount }}</span>
+            @endif
+        </a>
         <div class="news-inner">
         </div>
     </div>

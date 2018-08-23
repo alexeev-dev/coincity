@@ -1,7 +1,11 @@
-<p>News<span>{{ count($tweets) }}</span></p>
+<p>News
+    @if (!empty($newTweetCount))
+    <span>{{ $newTweetCount }}</span>
+    @endif
+</p>
 <ul>
     @foreach ($tweets as $tweet)
-        <li class="unseen">
+        <li class="{{ empty($tweet->current_user_read()) ? 'unseen' : '' }}">
             <section>
                 {!! $tweet->content !!}
             </section>

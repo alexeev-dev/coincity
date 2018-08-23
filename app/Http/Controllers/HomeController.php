@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\User\ProfileController;
 use App\Models\House;
 use App\Models\Page;
 use App\Models\Tweet;
 use App\Models\UserHouse;
+use App\Models\UserReadTweet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +16,6 @@ class HomeController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        $tweets = Tweet::all();
 
         if (!empty($user)) {
             $houses = House::whereRaw('id NOT IN (SELECT house_id FROM user_houses WHERE user_id = '.$user->id.' AND position IS NOT NULL)')
@@ -34,19 +35,24 @@ class HomeController extends Controller
             } else {
                 $timeLeft = 0;
             }
+
+            // new tweet count
+            $newTweetCount = $this->getNewTweetCount();
+
         } else {
             $houses = House::all();
             $allUserHouses = [];
             $userHouses = [];
             $isBlocked = false;
             $timeLeft = '';
+            $newTweetCount = 0;
         }
 
         return view('home', [
             'houses' => $houses,
             'allUserHouses' => $allUserHouses,
             'userHouses' => $userHouses,
-            'tweets' => $tweets,
+            'newTweetCount' => $newTweetCount,
             'buildBlocked' => $isBlocked,
             'timeLeft' => $timeLeft
         ]);
@@ -63,13 +69,48 @@ class HomeController extends Controller
     }
 
     public function getNews() {
-        $tweets = Tweet::all();
+        $user = Auth::user();
+        $tweets = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)->get();
+
         if (!empty($tweets)) {
-            $html = view('partials.tweets', ['tweets' => $tweets])->render();
+            $newTweetCount = 0;
+            if (!empty($user)) {
+                $newTweetCount = $this->getNewTweetCount();
+            }
+
+            $html = view('partials.tweets', [
+                'tweets' => $tweets,
+                'newTweetCount' => $newTweetCount
+            ])->render();
+
         } else {
             $html = view('errors.404')->render();
         }
-        return json_encode(['html' => $html]);
+
+        if (!empty($user)) {
+            // mark as seen
+            foreach ($tweets as $tweet) {
+                $userReadTweet = $tweet->current_user_read();
+                if (empty($userReadTweet)) {
+                    $userReadTweet = new UserReadTweet();
+                    $userReadTweet->user_id = $user->id;
+                }
+
+                $userReadTweet->tweet_id = $tweet->id;
+                $userReadTweet->status = 1;
+                $userReadTweet->save();
+            }
+            //$newTweetCount = $this->getNewTweetCount();
+
+        } else {
+            //$newTweetCount = 0;
+        }
+
+
+        return json_encode([
+            'html' => $html
+            //'newTweetCount' => $newTweetCount
+        ]);
     }
 
     public function singleNews(Request $request) {
@@ -77,5 +118,13 @@ class HomeController extends Controller
         return view('single_news', [
             'singleNews' => $singleNews
         ]);
+    }
+
+    private function getNewTweetCount() {
+        $newTweetCount = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+            ->whereDoesntHave('user_read_tweets', function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->count();
+        return $newTweetCount;
     }
 }

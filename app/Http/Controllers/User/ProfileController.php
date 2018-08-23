@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Adv;
+use App\Models\Tweet;
 use App\Models\UserHouseUpdate;
 use App\Models\TweetUpdate;
 use App\Models\House;
 use App\Models\UserHouse;
+use App\Models\UserReadTweet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,6 +21,8 @@ class ProfileController extends Controller
     const SECONDS_TILL_NEXT_MONEY = 60;
     const HOURS_PER_ADV_CLICK = 8;
     const SECONDS_PER_MONEY_GATHER = 60;
+
+    const TWEETS_SHOW_COUNT = 10;
 
     public function switchSound() {
         $userStat = Auth::user()->user_stat;
@@ -113,13 +117,39 @@ class ProfileController extends Controller
             $userHouse->save();
 
             // get tweets
-            $tweets = $userHouse->house->tweets;
-            $html = view('partials.house', ['userHouse' => $userHouse, 'tweets' => $tweets])->render();
-            $output = json_encode(['money' => $userStat->money, 'html' => $html]);
+            $tweets = $userHouse->house->tweets()
+                ->orderBy('pub_date', 'desc')->take($this::TWEETS_SHOW_COUNT)->get();
+
+            // mark as seen
+            foreach ($tweets as $tweet) {
+                $userReadTweet = $tweet->current_user_read();
+                if (empty($userReadTweet)) {
+                    $userReadTweet = new UserReadTweet();
+                    $userReadTweet->user_id = $user->id;
+                }
+
+                $userReadTweet->tweet_id = $tweet->id;
+                $userReadTweet->status = 1;
+                $userReadTweet->save();
+            }
+
+            $html = view('partials.house', [
+                'userHouse' => $userHouse,
+                'tweets' => $tweets
+            ])->render();
+
+            $output = json_encode([
+                'money' => $userStat->money,
+                'html' => $html,
+                'newTweetCount' => $this->getNewTweetCount()
+            ]);
 
         } else {
             $html = view('partials.error')->render();
-            $output = json_encode(['html' => $html]);
+            $output = json_encode([
+                'html' => $html,
+                'newTweetCount' => 0
+            ]);
         }
 
         return $output;
@@ -280,9 +310,17 @@ class ProfileController extends Controller
 
         $output = json_encode([
             'houseIds' => $userHouseIds->toArray(),
-            'newcount' => 66,
+            'newTweetCount' => $this->getNewTweetCount(),
             'next' => $this::SERVER_PING_TIME
         ]);
         return $output;
+    }
+
+    private function getNewTweetCount() {
+        $newTweetCount = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+            ->whereDoesntHave('user_read_tweets', function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->count();
+        return $newTweetCount;
     }
 }
