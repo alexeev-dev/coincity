@@ -16,16 +16,14 @@ function pingServer() {
     axios.post('/user/update-all', {
     }).then(function (response) {
 
-        if (response.data.newcount > 0) {
-            if (response.data.newTweetCount > 0) {
-                $('.js-news span').text(response.data.newTweetCount);
-            } else {
-                $('.js-news span').hide();
-            }
+        if (response.data.newTweetCount > 0) {
+            $('.js-news span').text(response.data.newTweetCount).show();
+        } else {
+            $('.js-news span').hide();
+        }
 
-            for (let i = 0; i < response.data.houseIds.length; i++) {
-                $('[data-house-id="' + response.data.houseIds[i] + '"] .houses-count').removeClass('collected hidden');
-            }
+        for (let i = 0; i < response.data.houseIds.length; i++) {
+            $('[data-house-id="' + response.data.houseIds[i] + '"] .houses-count').removeClass('collected hidden');
         }
 
         if (response.data.next > 0) {
@@ -188,7 +186,7 @@ $(document).ready(function() {
                 popup.find('.house-info').html(response.data.html);
                 $('.js-total-money').text(response.data.money);
                 if (response.data.newTweetCount > 0) {
-                    $('.js-news span').text(response.data.newTweetCount);
+                    $('.js-news span').text(response.data.newTweetCount).show();
                 } else {
                     $('.js-news span').hide();
                 }
@@ -272,7 +270,6 @@ $(document).ready(function() {
     });
 
     // coin click - gather money
-    // house popup
     $('.house-item .houses-count a').click(function() {
         if (busyCheck()) {
             return false;
@@ -289,7 +286,7 @@ $(document).ready(function() {
                 // ...
             } else {
                 $('.js-total-money').text(response.data.totalMoney);
-                self.find('.houses-count').addClass('collected').find('span').text(response.data.gatheredMoney);
+                self.find('.houses-count').addClass('collected hidden').find('span').text(response.data.gatheredMoney);
             }
 
         }).catch(function (error) {
