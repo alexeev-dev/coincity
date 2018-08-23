@@ -60,10 +60,7 @@
             </div>
         </div>
     </section>
-
-    <style>
-        .houses-count.hidden {display: none !important}
-    </style>
+    
     <footer class="wr-footer active">
         <a href="#" class="footerShowHide js-footerShowHide"></a>
         <div class="container">

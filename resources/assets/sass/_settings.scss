@@ -50,7 +50,7 @@
 $main-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 body {
-	height: auto !important;
+	height: auto;
 	&.onload {overflow:hidden;}
 
 	* {
@@ -59,7 +59,7 @@ body {
 }
 
 body, html {
-	overflow: hidden;
+	overflow: hidden; height: 100%;
 
 	@media (max-height: 615px) {
 		overflow-y: auto;
