@@ -104,11 +104,11 @@
 		}
 		@media (max-height: 615px) {
 			padding-bottom: 160px;
-			background: url(../img/backgrounds/ground.png) left bottom -75px repeat-x; background-size: 1500px auto;
+			background: url(../img/backgrounds/ground.png) left bottom -55px repeat-x; background-size: 1500px auto;
 		}
 		@include respond-to(xs) {
 			padding-bottom: 160px;
-			background: url(../img/backgrounds/ground.png) left bottom -75px repeat-x; background-size: 1500px auto;
+			background: url(../img/backgrounds/ground.png) left bottom -55px repeat-x; background-size: 1500px auto;
 		}
 
 		.margin & {
@@ -386,7 +386,7 @@
 
 			.houses-count { 
 				display: flex; align-items: center; flex-direction: column; position: relative;
-				transition: opacity 0.4s ease-out;
+				transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 
 				// @media (max-height: 615px) {
 				// 	opacity: 0; pointer-events: none;
@@ -397,6 +397,11 @@
 				// 		opacity: 1; pointer-events: auto;
 				// 	}
 				// }
+
+				&.hidden {
+					transform: translateY(50px);
+					opacity: 0; pointer-events: none;
+				}
 
 				&.collected {
 					pointer-events: none;
@@ -635,6 +640,31 @@
 
 			&.draggable {
 				display: block;
+
+				img {
+					@media (max-height: 890px) {
+						width: 160px;
+					}
+					@media (max-height: 759px) {
+						width: 120px;
+					}
+					@media (max-height: 689px) {
+						width: 100px;
+					}
+					@media (max-height: 615px) {
+						max-width: 100px; width: auto; max-height: 140px;
+					}
+
+					@include respond-to(lg) {
+						max-width: 160px;
+					}
+					@include respond-to(md) {
+						max-width: 140px;
+					}
+					@include respond-to(xs) {
+						max-width: 120px; width: auto; max-height: 160px;
+					}
+				}
 			}
 		}
 
