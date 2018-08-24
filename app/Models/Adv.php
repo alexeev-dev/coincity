@@ -6,4 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Adv extends Model
 {
+    protected $fillable = ['content'];
 }

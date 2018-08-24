@@ -9,6 +9,9 @@ Route::post('/page/{alias}', 'HomeController@getPage');
 Route::post('/news', 'HomeController@getNews');
 Route::get('/news/{alias}', 'HomeController@singleNews');
 
+Route::get('/admin', 'Admin\AdminController@index')->name('admin');
+Route::post('/admin', 'Admin\AdminController@update')->name('admin_update');
+
 Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');
     Route::post('change-name', 'User\ProfileController@changeName');
@@ -37,6 +40,8 @@ Route::group([ 'prefix' => 'register', 'middleware' => 'guest'], function() {
         return view('auth.verified');
     });
 });
+
+
 
 
 

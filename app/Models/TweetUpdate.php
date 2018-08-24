@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class TweetUpdate extends Model
 {
+    protected $fillable = ['tweet_id', 'update_type_id', 'value'];
+
     public function update_type() {
         return $this->belongsTo('App\Models\UpdateType');
     }

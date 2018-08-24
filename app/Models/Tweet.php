@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Tweet extends Model
 {
+    protected $fillable = ['title', 'description', 'link', 'alias', 'content'];
     protected $dates = ['pub_date'];
 
     public function tweet_update() {

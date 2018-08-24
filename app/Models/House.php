@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class House extends Model
 {
+    protected $fillable = ['name', 'ico', 'image', 'image_small', 'max_money', 'money_per_hour'];
+
     public function tweets() {
         return $this->belongsToMany('App\Models\Tweet', 'tweet_assignments');
     }

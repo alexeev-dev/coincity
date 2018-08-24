@@ -31,6 +31,7 @@
 	
 	<title>{{ config('app.name', 'Coincity') }}</title>
 </head>
+
 <body>
 	<!--[if lt IE 10]>
 	<p class="browsehappy">Вы используете <strong>УСТАРЕВШИЙ Internet Explorer</strong> браузер. Пожалуйста, <a href="http://browsehappy.com/">обновите ваш Браузер</a> чтобы увидеть больше возможностей на сайтах!</p>

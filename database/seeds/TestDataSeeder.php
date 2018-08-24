@@ -12,6 +12,7 @@ class TestDataSeeder extends Seeder
 {
     public function run()
     {
+        /*
         // houses - categories
         $houses = collect([
             ['id' => 1, 'name' => 'Тестовая категория',
@@ -325,5 +326,6 @@ class TestDataSeeder extends Seeder
             $row->fill($item);
             $row->save();
         });
+        */
     }
 }
