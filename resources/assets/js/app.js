@@ -66,7 +66,7 @@ function sendHousesState() {
                 $(".js-footerHouseItems .house-item:not('.user-house')").removeClass('no-dnd');
             } else {
                 var countDate = new Date(new Date().getTime() + response.data.timeLeft * 1000);
-                $('.js-adv').countdown(countDate, function (event) {
+                $('.js-adv-cd').countdown(countDate, function (event) {
                     $(this).html(event.strftime('%H:%M<span>:%S</span>'));
                 });
                 $(".js-footerHouseItems .house-item:not('.user-house')").addClass('no-dnd');

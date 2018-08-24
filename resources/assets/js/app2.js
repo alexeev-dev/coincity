@@ -3,10 +3,10 @@ const commonError = "Something went wrong. Try again later.";
 
 require('jquery-countdown');
 
-var countSeconds = parseInt($('.js-adv').attr('data-countdown'));
+var countSeconds = parseInt($('.js-adv-cd').attr('data-countdown'));
 if (countSeconds > 0) {
     var countDate = new Date(new Date().getTime() + countSeconds * 1000);
-    $('.js-adv').countdown(countDate, function (event) {
+    $('.js-adv-cd').countdown(countDate, function (event) {
         $(this).html(event.strftime('%H:%M<span>:%S</span>'));
     });
 }
@@ -344,11 +344,11 @@ $(document).ready(function() {
             popup.find('.page-content').html(response.data.html);
 
             if (response.data.timeLeft === 0) {
-                $('.js-adv').data('countdowndate', '');
+                $('.js-adv-cd').data('countdowndate', '');
                 $('.no-dnd').removeClass('no-dnd');
             } else {
                 var countDate = new Date(new Date().getTime() + response.data.timeLeft * 1000);
-                $('.js-adv').countdown(countDate, function (event) {
+                $('.js-adv-cd').countdown(countDate, function (event) {
                     $(this).html(event.strftime('%H:%M<span>:%S</span>'));
                 });
             }

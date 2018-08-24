@@ -90,7 +90,7 @@
                             </div>
                         </header>
                         <section class="adv">
-                            <p><a class="js-adv" href="#" data-countdown="{{ $timeLeft }}"></a></p>
+                            <a class="js-adv" href="#"><p class="js-adv-cd" data-countdown="{{ $timeLeft }}"></p><img src="{{ asset('img/footer/video-icon.svg') }}"></a>
                         </section>
                         <section>
                             <figure class="footer-image">
