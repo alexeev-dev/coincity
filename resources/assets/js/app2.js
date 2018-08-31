@@ -201,7 +201,7 @@ $(document).ready(function() {
     });
 
     // house i popup
-    body.on('click', '.house-item .info', function() {
+    body.on('click', '.house-item .info, .houses .house-item .houses-images', function() {
         if (busyCheck()) {
             return false;
         }

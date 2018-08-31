@@ -201,7 +201,7 @@ function newsResize() {
     var windowWidth = $(window).width();
 
     if(windowWidth < 768) {
-        $('.js-news').next().css('width', (windowWidth - 70));
+        $('.js-news').next().css('width', (windowWidth - 30));
     } else {
         $('.js-news').next().attr('style', '');
     }

@@ -67,6 +67,7 @@
 
 .houses {
 	height: 100%; width: 100%;
+	pointer-events: none;
 
 	&.drop{
 		display: flex; align-items: flex-end; position: relative; padding-bottom: 250px;
@@ -377,6 +378,12 @@
 			}
 		}
 
+		& > header,
+		& > section,
+		& > footer {
+			pointer-events: auto;
+		}
+
 		& > header {
 			display: block; margin-bottom: 15px;
 
@@ -487,6 +494,7 @@
 				
 				&.houses-images {
 					display: flex; align-items: center; justify-content: center;
+					cursor: pointer;
 
 					perspective: 100px;
 				}
@@ -742,10 +750,10 @@
 			bottom: 140px;
 		}
 		@media (max-height: 615px) {
-			bottom: 110px;
+			bottom: 100px;
 		}
 		@include respond-to(xs) {
-			bottom: 110px;
+			bottom: 100px;
 		}
 
 		&.scroll-scrollx_visible {

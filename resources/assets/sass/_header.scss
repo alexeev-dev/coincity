@@ -227,7 +227,7 @@
 
 
 			@include respond-to(sm) {
-				height: 34px; padding-left: 34px;
+				height: 34px; padding-left: 34px; padding-right: 17px;
 			}
 
 			img {
@@ -267,7 +267,7 @@
 			}
 
 			@include respond-to(sm) {
-				height: 28px; padding-left: 34px;
+				height: 28px; padding-left: 28px; padding-right: 14px;
 			}
 
 			img {
@@ -482,6 +482,9 @@
 			@include respond-to(md) {
 				width: 690px;
 			}
+			@include respond-to(sm) {
+				right: 0; bottom: -15px; max-height: calc(100vh - 80px); padding: 10px 0;
+			}
 
 			&.loading {
 				&:after {
@@ -495,6 +498,10 @@
 				content: '';
 				display: block; width: 20px; height: 30px; position: absolute; right: 0; top: 8px; transform: translateY(-100%); z-index: -1;
 				border-right: solid 10px #ebebeb; border-bottom: solid 15px #ebebeb; border-top: solid 15px transparent; border-left: solid 10px transparent;
+
+				@include respond-to(sm) {
+					content: none;
+				}
 			}
 
 			& > p {
