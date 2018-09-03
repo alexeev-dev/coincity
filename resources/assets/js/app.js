@@ -118,6 +118,12 @@ $(document).ready(function() {
     scrollHouses();
 
     newsResize();
+
+    $('.js-closeTutorial').click(function(e){
+        e.preventDefault();
+
+        $('.app').removeClass('tutorial');
+    });
 });
 
 $(window).resize(function() {

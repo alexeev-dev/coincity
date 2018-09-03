@@ -69,6 +69,15 @@
 	}
 }
 
+@keyframes tutorialHandAnimation {
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(150px, -200px);
+	}
+}
+
 // @keyframes coinRotateAnimation {
 	// 0% {background: url('../img/coin/coin_01.png') center center no-repeat;}
 	// 3.44828% {background: url('../img/coin/coin_02.png') center center no-repeat;}

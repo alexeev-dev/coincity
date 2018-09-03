@@ -65,6 +65,15 @@
         <a href="#" class="footerShowHide js-footerShowHide"></a>
         <div class="container">
             <div class="footer">
+                <div class="first-tutorial">
+                    <img class="tutorial-arrow" src="{{ asset('img/tutorial/arrow.svg') }}">
+                    <img class="tutorial-hand" src="{{ asset('img/tutorial/hand.svg') }}">
+                    <div class="shadow-overlay"></div>
+                    <div class="text-overlay">
+                        <p>Tap and drag the house</p>
+                        <a href="#" class="js-closeTutorial">OK</a>
+                    </div>
+                </div>
                 <section class="js-footerHouseItems new-active built-active featured-active show" id="right-lovehandles">
                     @foreach ($houses as $house)
                     @php
