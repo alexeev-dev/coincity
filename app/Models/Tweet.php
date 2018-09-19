@@ -27,8 +27,14 @@ class Tweet extends Model
         return $this->user_read_tweets()->where('user_id', Auth::user()->id)->first();
     }
 
-    public function is_old() {
-        return $this->pub_date < Carbon::now()->subDays(2);
+    public function is_unseen() {
+        $user = Auth::user();
+
+        if (empty($user)) {
+            return true;
+        }
+
+        return empty($this->current_user_read()) && $this->pub_date > $user->user_stat->last_tweet_read;
     }
 
     public function getTimeLeftAttribute() {

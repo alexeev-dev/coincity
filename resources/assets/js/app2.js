@@ -359,4 +359,28 @@ $(document).ready(function() {
 
         return false;
     });
+
+    // load more
+    body.on('click', '.js-more', function() {
+        if (busyCheck()) {
+            return false;
+        }
+
+        const self = $(this);
+        self.addClass('loading');
+
+        axios.post('/more-news', {
+            tweets: self.parent().siblings('li').length
+        }).then(function (response) {
+
+            let par = self.parent().parent();
+            self.parent().remove();
+            par.append(response.data.html);
+
+        }).catch(function (error) {
+            popup.find('.page-content').html(commonError);
+        });
+
+        return false;
+    });
 });

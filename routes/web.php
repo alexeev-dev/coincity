@@ -7,6 +7,7 @@ App::setLocale('ru');
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/page/{alias}', 'HomeController@getPage');
 Route::post('/news', 'HomeController@getNews');
+Route::post('/more-news', 'HomeController@moreNews');
 Route::get('/news/{alias}', 'HomeController@singleNews');
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin');

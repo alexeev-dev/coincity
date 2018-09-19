@@ -23,6 +23,7 @@ class ProfileController extends Controller
     const SECONDS_PER_MONEY_GATHER = 60;
 
     const TWEETS_SHOW_COUNT = 10;
+    const MAX_TWEETS_SHOW_COUNT = 100;
 
     public function switchSound() {
         $userStat = Auth::user()->user_stat;
@@ -126,11 +127,10 @@ class ProfileController extends Controller
                 if (empty($userReadTweet)) {
                     $userReadTweet = new UserReadTweet();
                     $userReadTweet->user_id = $user->id;
+                    $userReadTweet->tweet_id = $tweet->id;
+                    $userReadTweet->status = 1;
+                    $userReadTweet->save();
                 }
-
-                $userReadTweet->tweet_id = $tweet->id;
-                $userReadTweet->status = 1;
-                $userReadTweet->save();
             }
 
             $html = view('partials.house', [
@@ -317,11 +317,30 @@ class ProfileController extends Controller
     }
 
     private function getNewTweetCount() {
-        $newTweetCount = Tweet::where('pub_date', '>=', Carbon::now()->subDays(2)->toDateTimeString())
-            ->orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
-            ->whereDoesntHave('user_read_tweets', function ($query) {
-                $query->where('user_id', Auth::user()->id);
-            })->count();
+        $user = Auth::user();
+        $newTweetCount = 0;
+
+        if (!empty($user)) {
+            $lastTweetRead = $user->user_stat->last_tweet_read;
+
+            if (empty($lastTweetRead)) {
+                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+                    ->whereDoesntHave('user_read_tweets', function ($query) {
+                        $query->where('user_id', Auth::user()->id);
+                    })->count();
+            } else {
+                $newTweetCount = Tweet::where('pub_date', '>', $lastTweetRead)
+                    ->orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+                    ->whereDoesntHave('user_read_tweets', function ($query) {
+                        $query->where('user_id', Auth::user()->id);
+                    })->count();
+            }
+
+            if ($newTweetCount > 99) {
+                $newTweetCount = 99;
+            }
+        }
+
         return $newTweetCount;
     }
 }

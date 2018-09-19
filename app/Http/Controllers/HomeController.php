@@ -70,62 +70,110 @@ class HomeController extends Controller
 
     public function getNews() {
         $user = Auth::user();
-        $tweets = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)->get();
+        $tweets = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT + 1)->get();
 
-        if (!empty($tweets)) {
-            $newTweetCount = 0;
-            if (!empty($user)) {
-                $newTweetCount = $this->getNewTweetCount();
-            }
-
-            $html = view('partials.tweets', [
-                'tweets' => $tweets,
-                'newTweetCount' => $newTweetCount
-            ])->render();
-
-        } else {
-            $html = view('errors.404')->render();
+        if (empty($tweets)) {
+            abort(404);
         }
+
+        $newTweetCount = 0;
+        if (!empty($user)) {
+            $newTweetCount = $this->getNewTweetCount();
+        }
+
+        $html = view('partials.tweets', [
+            'tweets' => $tweets,
+            'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
+            'newTweetCount' => $newTweetCount,
+        ])->render();
 
         if (!empty($user)) {
-            // mark as seen
-            foreach ($tweets as $tweet) {
-                $userReadTweet = $tweet->current_user_read();
-                if (empty($userReadTweet)) {
-                    $userReadTweet = new UserReadTweet();
-                    $userReadTweet->user_id = $user->id;
-                }
-
-                $userReadTweet->tweet_id = $tweet->id;
-                $userReadTweet->status = 1;
-                $userReadTweet->save();
-            }
-            //$newTweetCount = $this->getNewTweetCount();
-
-        } else {
-            //$newTweetCount = 0;
+            $user->user_stat->last_tweet_read = $tweets->first()->pub_date;
+            $user->user_stat->save();
         }
-
 
         return json_encode([
             'html' => $html
-            //'newTweetCount' => $newTweetCount
         ]);
     }
 
-    public function singleNews(Request $request) {
+    public function moreNews(Request $request) {
+        if (empty($request->tweets) || $request->tweets >= ProfileController::MAX_TWEETS_SHOW_COUNT) {
+            abort(404);
+        }
+
+        if (ProfileController::MAX_TWEETS_SHOW_COUNT - $request->tweets > ProfileController::TWEETS_SHOW_COUNT) {
+            $tweetsToTake = ProfileController::TWEETS_SHOW_COUNT + 1;
+        } else {
+            $tweetsToTake = ProfileController::MAX_TWEETS_SHOW_COUNT - $request->tweets;
+        }
+
+        $tweets = Tweet::orderBy('pub_date', 'desc')->skip($request->tweets)
+            ->take($tweetsToTake)->get();
+
+        if (empty($tweets)) {
+            abort(404);
+        }
+
+        $html = view('partials.more_tweets', [
+            'tweets' => $tweets,
+            'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
+        ])->render();
+
+        return json_encode([
+            'html' => $html
+        ]);
+    }
+
+    public function singleNews(Request $request)
+    {
         $singleNews = Tweet::where('alias', $request['alias'])->first();
+        if (empty($singleNews)) {
+            abort(404);
+        }
+
+        $user = Auth::user();
+        if (!empty($user)) {
+            $userReadTweet = $singleNews->current_user_read();
+            if (empty($userReadTweet)) {
+                $userReadTweet = new UserReadTweet();
+                $userReadTweet->user_id = $user->id;
+                $userReadTweet->tweet_id = $singleNews->id;
+                $userReadTweet->status = 2;
+                $userReadTweet->save();
+            }
+        }
+
         return view('single_news', [
             'singleNews' => $singleNews
         ]);
     }
 
     private function getNewTweetCount() {
-        $newTweetCount = Tweet::where('pub_date', '>=', Carbon::now()->subDays(2)->toDateTimeString())
-            ->orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
-            ->whereDoesntHave('user_read_tweets', function ($query) {
-                $query->where('user_id', Auth::user()->id);
-            })->count();
+        $user = Auth::user();
+        $newTweetCount = 0;
+
+        if (!empty($user)) {
+            $lastTweetRead = $user->user_stat->last_tweet_read;
+
+            if (empty($lastTweetRead)) {
+                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+                    ->whereDoesntHave('user_read_tweets', function ($query) {
+                        $query->where('user_id', Auth::user()->id);
+                    })->count();
+            } else {
+                $newTweetCount = Tweet::where('pub_date', '>', $lastTweetRead)
+                    ->orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+                    ->whereDoesntHave('user_read_tweets', function ($query) {
+                        $query->where('user_id', Auth::user()->id);
+                    })->count();
+            }
+
+            if ($newTweetCount > 99) {
+                $newTweetCount = 99;
+            }
+        }
+
         return $newTweetCount;
     }
 }

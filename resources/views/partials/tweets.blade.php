@@ -5,7 +5,10 @@
 </p>
 <ul>
     @foreach ($tweets as $tweet)
-        <li class="{{ empty($tweet->current_user_read()) && !$tweet->is_old() ? 'unseen' : '' }}">
+        @if ($loop->last && count($tweets) > $pageSize)
+            @break
+        @endif
+        <li class="{{ $tweet->is_unseen() ? 'unseen' : '' }}">
             <section>
                 {!! $tweet->content !!}
             </section>
@@ -37,4 +40,9 @@
             </footer>
         </li>
     @endforeach
+    @if (count($tweets) > $pageSize)
+    <li>
+        <a href="#" class="load_more js-more">LOAD MORE</a>
+    </li>
+    @endif
 </ul>
