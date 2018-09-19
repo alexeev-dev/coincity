@@ -27,6 +27,10 @@ class Tweet extends Model
         return $this->user_read_tweets()->where('user_id', Auth::user()->id)->first();
     }
 
+    public function is_old() {
+        return $this->pub_date < Carbon::now()->subDays(2);
+    }
+
     public function getTimeLeftAttribute() {
         $expires_at = $this->pub_date->addHours(24);
         $now = Carbon::now();

@@ -5,7 +5,7 @@
 </p>
 <ul>
     @foreach ($tweets as $tweet)
-        <li class="{{ empty($tweet->current_user_read()) ? 'unseen' : '' }}">
+        <li class="{{ empty($tweet->current_user_read()) && !$tweet->is_old() ? 'unseen' : '' }}">
             <section>
                 {!! $tweet->content !!}
             </section>

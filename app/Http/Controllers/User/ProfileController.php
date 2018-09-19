@@ -317,7 +317,8 @@ class ProfileController extends Controller
     }
 
     private function getNewTweetCount() {
-        $newTweetCount = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+        $newTweetCount = Tweet::where('pub_date', '>=', Carbon::now()->subDays(2)->toDateTimeString())
+            ->orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
             ->whereDoesntHave('user_read_tweets', function ($query) {
                 $query->where('user_id', Auth::user()->id);
             })->count();
