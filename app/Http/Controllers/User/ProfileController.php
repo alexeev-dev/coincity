@@ -91,8 +91,12 @@ class ProfileController extends Controller
 
     public function getUserHouseInfo(Request $request) {
         $user = Auth::user();
-        $houseId = $request['houseId'];
 
+        if (empty($user) || !isset($request->houseId)) {
+            abort(404);
+        }
+
+        $houseId = $request->houseId;
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
         if (!empty($userHouse)) {
 
@@ -119,7 +123,7 @@ class ProfileController extends Controller
 
             // get tweets
             $tweets = $userHouse->house->tweets()
-                ->orderBy('pub_date', 'desc')->take($this::TWEETS_SHOW_COUNT)->get();
+                ->orderBy('pub_date', 'desc')->take($this::TWEETS_SHOW_COUNT + 1)->get();
 
             // mark as seen
             foreach ($tweets as $tweet) {
@@ -135,6 +139,7 @@ class ProfileController extends Controller
 
             $html = view('partials.house', [
                 'userHouse' => $userHouse,
+                'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
                 'tweets' => $tweets
             ])->render();
 
@@ -153,6 +158,57 @@ class ProfileController extends Controller
         }
 
         return $output;
+    }
+
+    public function getMoreTweets(Request $request) {
+        if (empty($request->tweets) || $request->tweets >= ProfileController::MAX_TWEETS_SHOW_COUNT) {
+            abort(404);
+        }
+
+        if (ProfileController::MAX_TWEETS_SHOW_COUNT - $request->tweets > ProfileController::TWEETS_SHOW_COUNT) {
+            $tweetsToTake = ProfileController::TWEETS_SHOW_COUNT + 1;
+        } else {
+            $tweetsToTake = ProfileController::MAX_TWEETS_SHOW_COUNT - $request->tweets;
+        }
+
+        $user = Auth::user();
+
+        if (empty($user) || !isset($request->houseId)) {
+            abort(404);
+        }
+
+        $houseId = $request->houseId;
+        $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
+
+        $tweets = $userHouse->house->tweets()
+            ->orderBy('pub_date', 'desc')->skip($request->tweets)
+            ->take($tweetsToTake)->get();
+
+        if (empty($tweets)) {
+            abort(404);
+        }
+
+        // mark as seen
+        foreach ($tweets as $tweet) {
+            $userReadTweet = $tweet->current_user_read();
+            if (empty($userReadTweet)) {
+                $userReadTweet = new UserReadTweet();
+                $userReadTweet->user_id = $user->id;
+                $userReadTweet->tweet_id = $tweet->id;
+                $userReadTweet->status = 1;
+                $userReadTweet->save();
+            }
+        }
+
+        $html = view('partials.more_userhouse_tweets', [
+            'userHouse' => $userHouse,
+            'tweets' => $tweets,
+            'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
+        ])->render();
+
+        return json_encode([
+            'html' => $html
+        ]);
     }
 
     public function getUserHouseInfoSmall(Request $request) {

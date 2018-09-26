@@ -3,8 +3,10 @@
     <figcaption>
         <ul>
             <li class="time">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     width="98.76px" height="92.215px" viewBox="0 0 98.76 92.215" enable-background="new 0 0 98.76 92.215" xml:space="preserve">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     width="98.76px" height="92.215px" viewBox="0 0 98.76 92.215"
+                     enable-background="new 0 0 98.76 92.215" xml:space="preserve">
                     <g>
                         <g>
                             <path fill="#FFFFFF" d="M71.76,47.031c1.176,1.002,2.916,0.957,4.027-0.152c1.066-1.068,1.154-2.723,0.262-3.877l-0.043-0.043
@@ -36,36 +38,46 @@
 </figure>
 <ul>
     @foreach ($tweets as $tweet)
-    <li>
-        <section>
-            {!! $tweet->content !!}
-        </section>
-        <footer>
-            <ul class="timer">
-                <li><img src="{{ asset($userHouse->house->ico) }}"></li>
-                <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $tweet->time_left }}</span></li>
-            </ul>
-            <ul class="btns">
-                @auth
-                @if ($tweet->is_house_built
-                    && !empty($tweet->tweet_update)
-                    && count($tweet->tweet_update->current_user_houses()) == 0)
-                <li>
-                    <a data-update-id="{{ $tweet->tweet_update->id }}" href="#" class="js-update{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
-                </li>
-                @endif
-                @endauth
-                @if (!empty($tweet->link))
-                <li>
-                    <a target="_blank" href="{{ $tweet->link }}" class="more">More</a>
-                </li>
-                @elseif (!empty($tweet->alias))
-                <li>
-                    <a href="/news/{{ $tweet->alias }}" class="more">More</a>
-                </li>
-                @endif
-            </ul>
-        </footer>
-    </li>
+        @if ($loop->last && count($tweets) > $pageSize)
+            @break
+        @endif
+        <li>
+            <section>
+                {!! $tweet->content !!}
+            </section>
+            <footer>
+                <ul class="timer">
+                    <li><img src="{{ asset($userHouse->house->ico) }}"></li>
+                    <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $tweet->time_left }}</span>
+                    </li>
+                </ul>
+                <ul class="btns">
+                    @auth
+                        @if ($tweet->is_house_built
+                            && !empty($tweet->tweet_update)
+                            && count($tweet->tweet_update->current_user_houses()) == 0)
+                            <li>
+                                <a data-update-id="{{ $tweet->tweet_update->id }}" href="#"
+                                   class="js-update{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
+                            </li>
+                        @endif
+                    @endauth
+                    @if (!empty($tweet->link))
+                        <li>
+                            <a target="_blank" href="{{ $tweet->link }}" class="more">More</a>
+                        </li>
+                    @elseif (!empty($tweet->alias))
+                        <li>
+                            <a href="/news/{{ $tweet->alias }}" class="more">More</a>
+                        </li>
+                    @endif
+                </ul>
+            </footer>
+        </li>
     @endforeach
+    @if (count($tweets) > $pageSize)
+        <li>
+            <a href="#" class="load_more js-more-house" data-house-id="{{ $userHouse->house->id }}">LOAD MORE</a>
+        </li>
+    @endif
 </ul>
