@@ -49,7 +49,75 @@ function busyCheck() {
     }
 }
 
+// houses
+import * as dragula from "dragula";
+
+const drag = dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
+    moves: function (el, container, handle) {
+        return handle.classList.contains('handle') && !el.classList.contains('no-dnd');
+    },
+    accepts: function(el, target) {
+        return !el.classList.contains('no-dnd')
+    }
+}).on('drop', function (el) {
+    el.className += ' dropped user-house';
+    el.classList.remove('dropped');
+
+    calculateHousesWidth();
+
+    // sendHousesState
+    var houses = [];
+    $(".houses.drop .house-item").each(function(i) {
+        houses.push({id: $(this).data('house-id'), position: i});
+    });
+
+    axios.post('/user/change-houses-state', {
+        houses: houses
+    }).then(function (response) {
+
+        if (response.data === 1) {
+            // ...
+
+        } else {
+            $('.js-tmph').text(response.data.totalMoneyPerHour + ' per hour');
+
+            if (response.data.timeLeft === 0) {
+                $(".js-footerHouseItems .house-item:not('.user-house')").removeClass('no-dnd');
+            } else {
+                var countDate = new Date(new Date().getTime() + response.data.timeLeft * 1000);
+                $('.js-adv-cd').countdown(countDate, function (event) {
+                    $(this).html(event.strftime('%H:%M<span>:%S</span>'));
+                });
+                $(".js-footerHouseItems .house-item:not('.user-house')").addClass('no-dnd');
+            }
+        }
+
+    }).catch(function (error) {
+        // ...
+    });
+});
+
+$(window).resize(function() {
+    calculateHousesWidth();
+});
+
+function calculateHousesWidth() {
+    var housesWidth = $(".houses.drop").outerWidth();
+    var housesWidth_ = 0;
+    for(var i = 0; i < $(".houses.drop .house-item").length; i++) {
+        housesWidth_ += $(".houses.drop .house-item").eq(i).outerWidth();
+    }
+
+    if (housesWidth_ > $(window).width()){
+        $(".houses.drop").attr("style", "width: "+ housesWidth_ +"px;");
+    } else {
+        $(".houses.drop").attr("style", "width: 100%;");
+    }
+}
+
 $(document).ready(function() {
+    calculateHousesWidth();
+
     let body = $('body');
 
     // switch sound

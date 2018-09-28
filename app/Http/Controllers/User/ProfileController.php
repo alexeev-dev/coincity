@@ -34,8 +34,8 @@ class ProfileController extends Controller
 
     public function changeName(Request $request) {
         $user = Auth::user();
-        if (strlen($request['name']) < 16) {
-            $user->name = $request['name'];
+        if (strlen($request->name) < 16) {
+            $user->name = $request->name;
             $user->save();
             return 0;
         } else {
@@ -45,7 +45,7 @@ class ProfileController extends Controller
 
     public function changeHousesState(Request $request) {
         $user = Auth::user();
-        $housesData = $request['houses'];
+        $housesData = $request->houses;
 
         UserHouse::where('user_id', $user->id)->update(['position' => null]);
 
@@ -92,7 +92,7 @@ class ProfileController extends Controller
     public function getUserHouseInfo(Request $request) {
         $user = Auth::user();
 
-        if (empty($user) || !isset($request->houseId)) {
+        if (!isset($request->houseId)) {
             abort(404);
         }
 
@@ -173,7 +173,7 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-        if (empty($user) || !isset($request->houseId)) {
+        if (!isset($request->houseId)) {
             abort(404);
         }
 
@@ -213,9 +213,14 @@ class ProfileController extends Controller
 
     public function getUserHouseInfoSmall(Request $request) {
         $user = Auth::user();
-        $houseId = $request['houseId'];
 
+        if (!isset($request->houseId)) {
+            abort(404);
+        }
+
+        $houseId = $request->houseId;
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
+
         if (!empty($userHouse)) {
             $html = view('partials.user_house_small', ['userHouse' => $userHouse])->render();
             $output = json_encode(['html' => $html]);
@@ -235,9 +240,14 @@ class ProfileController extends Controller
 
     public function gatherMoney(Request $request) {
         $user = Auth::user();
-        $houseId = $request['houseId'];
 
+        if (!isset($request->houseId)) {
+            abort(404);
+        }
+
+        $houseId = $request->houseId;
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
+
         if (!empty($userHouse)) {
             $now = Carbon::now();
             if (!empty($userHouse->money_collected)) {
@@ -277,7 +287,12 @@ class ProfileController extends Controller
 
     public function updateHouse(Request $request) {
         $user = Auth::user();
-        $updateId = $request['updateId'];
+
+        if (!isset($request->updateId)) {
+            abort(404);
+        }
+
+        $updateId = $request->updateId;
 
         $tweetUpdate = TweetUpdate::where('id', $updateId)->first();
         $userHouses = UserHouse::whereIn('house_id', $tweetUpdate->tweet->houses()->pluck('houses.id'))
@@ -312,7 +327,12 @@ class ProfileController extends Controller
 
     public function addToFav(Request $request) {
         $user = Auth::user();
-        $houseId = $request['houseId'];
+
+        if (!isset($request->houseId)) {
+            abort(404);
+        }
+
+        $houseId = $request->houseId;
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
 
         if (!empty($userHouse)) {
@@ -360,6 +380,7 @@ class ProfileController extends Controller
 
     public function updateAll() {
         $user = Auth::user();
+
         $userHouseIds = $user->user_houses()
             ->where('money_collected', '<', Carbon::now()->subSeconds($this::SECONDS_PER_MONEY_GATHER)
                 ->toDateTimeString())->pluck('house_id');

@@ -1,9 +1,9 @@
 require('./bootstrap');
-window.Vue = require('vue');
 
 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 require('jquery.scrollbar');
+
 $('.scrollbar').scrollbar({
 	"scrollx": $('.scrollbar_x'),
     onScroll: function() {
@@ -12,74 +12,11 @@ $('.scrollbar').scrollbar({
     }
 });
 
-import * as dragula from "dragula";
-const drag = dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
-    moves: function (el, container, handle) {
-        return handle.classList.contains('handle') && !el.classList.contains('no-dnd');
-    },
-    accepts: function(el, target) {
-        return !el.classList.contains('no-dnd')
-    }
-}).on('drop', function (el) {
-    el.className += ' dropped user-house';
-    el.classList.remove('dropped');
-
-    calculateHousesWidth();
-    sendHousesState();
-});
-
 window.odometerOptions = {
     format: '(.ddd)'
 };
 
-function calculateHousesWidth() {
-    var housesWidth = $(".houses.drop").outerWidth();
-    var housesWidth_ = 0;
-    for(var i = 0; i < $(".houses.drop .house-item").length; i++) {
-        housesWidth_ += $(".houses.drop .house-item").eq(i).outerWidth();
-    }
-
-    if (housesWidth_ > $(window).width()){
-        $(".houses.drop").attr("style", "width: "+ housesWidth_ +"px;");
-    } else {
-        $(".houses.drop").attr("style", "width: 100%;");
-    }
-}
-
-function sendHousesState() {
-    var houses = [];
-    $(".houses.drop .house-item").each(function(i) {
-        houses.push({id: $(this).data('house-id'), position: i});
-    });
-
-    axios.post('/user/change-houses-state', {
-        houses: houses
-    }).then(function (response) {
-
-        if (response.data === 1) {
-            self.addClass('error');
-
-        } else {
-            $('.js-tmph').text(response.data.totalMoneyPerHour + ' per hour');
-
-            if (response.data.timeLeft === 0) {
-                $(".js-footerHouseItems .house-item:not('.user-house')").removeClass('no-dnd');
-            } else {
-                var countDate = new Date(new Date().getTime() + response.data.timeLeft * 1000);
-                $('.js-adv-cd').countdown(countDate, function (event) {
-                    $(this).html(event.strftime('%H:%M<span>:%S</span>'));
-                });
-                $(".js-footerHouseItems .house-item:not('.user-house')").addClass('no-dnd');
-            }
-        }
-
-    }).catch(function (error) {
-        globalHandlerError(error.response);
-    });
-}
-
 $(document).ready(function() {
-    calculateHousesWidth();
     parallaxBackground();
 
     // settings menu
@@ -127,12 +64,10 @@ $(document).ready(function() {
 });
 
 $(window).resize(function() {
-	calculateHousesWidth();
     newsResize();
 });
 
 $(document).mouseup(function (e) {
-
 	// close popup on click free space
 	var popup = $('.popup > div');
 	if(popup.has(e.target).length === 0 && !popup.is(e.target)) {
