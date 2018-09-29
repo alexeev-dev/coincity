@@ -41,8 +41,12 @@
 	<div class="preloader"></div>
 
 	<!-- Application -->
-	<div class="app">
-
+    @guest
+    <div class="app tutorial">
+    @endguest
+    @auth
+    <div class="app">
+    @endauth
 		<header class="wr-header">
 			<div class="container">
 		
@@ -112,7 +116,7 @@
 									<a href="#" class="login">Log In</a>
 								</li>
 								<li>
-									<a href="{{ route('register') }}" class="register">Register</a>
+									<a href="#" class="register">Register</a>
 								</li>
 							</ul>
 						</div>
@@ -136,7 +140,12 @@
     @stack('popups')
 
     <script src="{{ compile_assets('js/app.js') }}"></script>
+    @guest
+    <script src="{{ compile_assets('js/guest.js') }}"></script>
+    @endguest
+    @auth
     <script src="{{ compile_assets('js/app2.js') }}"></script>
+    @endauth
     <script src="{{ compile_assets('js/odometer.min.js') }}"></script>
 
     @stack('scripts-footer')

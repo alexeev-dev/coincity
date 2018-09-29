@@ -39,7 +39,14 @@ $(document).ready(function() {
     $('.log-reg .login').click(function(e) {
         e.preventDefault();
 
-        $('.popup-log-reg, .popup').addClass('active');
+        $('.js-log, .popup').addClass('active');
+    });
+
+    // register popup
+    $('.log-reg .register').click(function(e) {
+        e.preventDefault();
+
+        $('.js-reg, .popup').addClass('active');
     });
 
     // footer list sorting
