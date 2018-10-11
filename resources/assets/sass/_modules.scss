@@ -67,7 +67,6 @@
 
 .houses {
 	height: 100%; width: 100%;
-	pointer-events: none;
 
 	&.drop{
 		display: flex; align-items: flex-end; position: relative; padding-bottom: 250px;

@@ -4,7 +4,7 @@
     <section class="wr-houses">
         <a href="#" class="scroll-button left js-scrollHouses disabled"><img src="{{ asset('img/icons/scroll_arrow.svg') }}"></a>
         <a href="#" class="scroll-button right js-scrollHouses disabled"><img src="{{ asset('img/icons/scroll_arrow.svg') }}"></a>
-        <div class="scrollbar dragscroll" nochilddrag>
+        <div class="scrollbar">
             <div class="parallax-mountain">
                 <img src="{{ asset('img/backgrounds/mountain.svg') }}">
             </div>
@@ -44,7 +44,7 @@
                         <div class="houses-price">
                             <a href="#" class="info"></a>
                             <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $userHouse->money_per_hour_text }}</span></a>
-                            <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
+                            <a href="#" class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></a>
                         </div>
                     </footer>
                 </div>
@@ -120,7 +120,7 @@
                             <div class="houses-price">
                                 <a href="#" class="info"></a>
                                 <a href="#" class="coins"><img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}"><span>{{ $house->money_per_hour_text }}</span></a>
-                                <span class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></span>
+                                <a href="#" class="replace"><img class="handle" src="{{ asset('img/house-info/remove_btn.png') }}"></a>
                             </div>
                         </footer>
                     </div>

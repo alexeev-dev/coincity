@@ -21,9 +21,9 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
-        "dragscroll": "0.0.8",
         "dragula": "^3.7.2",
         "jquery-countdown": "^2.2.0",
+        "jquery-mousewheel": "^3.1.13",
         "jquery.scrollbar": "^0.2.11"
     }
 }
