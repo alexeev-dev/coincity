@@ -78,6 +78,18 @@
 	}
 }
 
+@keyframes loadingNextArticle {
+	0% {
+		background: #e0dfdf;
+	}
+	85% {
+		background: #f4f4f4;
+	}
+	100% {
+		background: #e0dfdf;
+	}
+}
+
 // @keyframes coinRotateAnimation {
 	// 0% {background: url('../img/coin/coin_01.png') center center no-repeat;}
 	// 3.44828% {background: url('../img/coin/coin_02.png') center center no-repeat;}
