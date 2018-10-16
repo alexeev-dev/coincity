@@ -305,5 +305,551 @@
                 </form>
             </div>
         </div>
+
+        <div class="popup-house-info-full">
+            <div class="house-info-full">
+                <a href="#" class="close js-closePopup"></a>
+                <header>
+                    <div class="banner"></div>
+                </header>
+                <section>
+                    <div class="info-full">
+                        <header>
+                            <figure>
+                                <img src="{{ asset('img/full-info/logo.png') }}">
+                                <figcaption>
+                                    <h2>Verifier (VRF)</h2>
+                                    <h4>Verifier is a blockchain based solution that verifies data quickly, accurately, reliably, and securely.incididunt ut labore et dolore magna aliqua. </h4>
+                                    <ul>
+                                        <li>Xiaomi is an electronics and software company that </li>
+                                        <li>Xiaomi is an electronics and software company that </li>
+                                        <li>Xiaomi is an electronics</li>
+                                        <li>Xiaomi is an electronics and software company that focuses on mobile devices and technology.</li>
+                                        <li>Xiaomi is an electronics</li>
+                                    </ul>
+                                    <p>Xiaomi is an electronics and software company that focuses on mobile devices and technology. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                </figcaption>
+                            </figure>
+                        </header>
+                        <section>
+                            <h3>Articles</h3>
+                            <div class="articles">
+                                <ul>
+                                    <li><a href="#">Australian Financial Regulator Develops New Rules Crypto</a></li>
+                                    <li><a href="#">Australian Financial Regulator Develops New Rules Crypto</a></li>
+                                    <li><a href="#">Australian Financial Regulator Develops New Rules Crypto</a></li>
+                                </ul>
+                                <a href="#">All articles</a>
+                            </div>
+                            <h3>Details</h3>
+                            <div class="details">
+                                <ul>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/graphic.png') }}#">
+                                            <figcaption>
+                                                <span>Market cup</span>
+                                                <p>$576,933,163 EOS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/twenty-four-hours.png') }}">
+                                            <figcaption>
+                                                <span>Volume 24H</span>
+                                                <p>576,933,163 EOS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/blockchain.png') }}">
+                                            <figcaption>
+                                                <span>Blockchain</span>
+                                                <p>Own Blockchain</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/path.png') }}">
+                                            <figcaption>
+                                                <span>Circulationg suplly</span>
+                                                <p>576,933,163 EOS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/total-suplly.png') }}">
+                                            <figcaption>
+                                                <span>Total suplly</span>
+                                                <p>576,933,163 EOS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/shield.png') }}">
+                                            <figcaption>
+                                                <span>Proof type</span>
+                                                <p>Proof of Stake (POS)</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/algorithm.png') }}">
+                                            <figcaption>
+                                                <span>Algorithm</span>
+                                                <p>DPoS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/marker.png') }}">
+                                            <figcaption>
+                                                <span>Team location</span>
+                                                <p>Internation</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/megaphone.png') }}">
+                                            <figcaption>
+                                                <span>First announced</span>
+                                                <p>May 6, 2017</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3>Exchanges Trading</h3>
+                            <div class="trades">
+                                <ul>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-1.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-2.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-3.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-4.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-1.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-2.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-3.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-4.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-1.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-2.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-3.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/trades-4.png') }}">
+                                        </figure>
+                                        <a href="#"><img src="{{ asset('img/full-info/link.png') }}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3>ICO Details</h3>
+                            <div class="details">
+                                <ul>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/start-date.png') }}">
+                                            <figcaption>
+                                                <span>ICO start date</span>
+                                                <p>Jun 1 2017, <br>11:59 pm UTS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/end-date.png') }}">
+                                            <figcaption>
+                                                <span>ICO end date</span>
+                                                <p>Jun 1, 11:59 pm UTS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/path.png') }}">
+                                            <figcaption>
+                                                <span>ICO conversion</span>
+                                                <p>Own Blockchain</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/circle.png') }}">
+                                            <figcaption>
+                                                <span>Total suplly</span>
+                                                <p>1,576,933,163 EOS</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/circle.png') }}">
+                                            <figcaption>
+                                                <span>Investor suplly</span>
+                                                <p>Set by market demond</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('img/full-info/coins.png') }}">
+                                            <figcaption>
+                                                <span>Total raised</span>
+                                                <p>$ 4 billion USD</p>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3>Team</h3>
+                            <div class="team">
+                                <ul>
+                                    <li>
+                                        <div class="user">
+                                            <figure>
+                                                <img src="{{ asset('img/full-info/team-member.png') }}">
+                                            </figure>
+                                            <div>
+                                                <span>CEO</span>
+                                                <p>Konstantin Ivanov</p>
+                                            </div>
+                                        </div>
+                                        <ul class="socials">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="user">
+                                            <figure>
+                                                <img src="{{ asset('img/full-info/team-member.png') }}">
+                                            </figure>
+                                            <div>
+                                                <span>CEO</span>
+                                                <p>Konstantin Ivanov</p>
+                                            </div>
+                                        </div>
+                                        <ul class="socials">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="user">
+                                            <figure>
+                                                <img src="{{ asset('img/full-info/team-member.png') }}">
+                                            </figure>
+                                            <div>
+                                                <span>CEO</span>
+                                                <p>Konstantin Ivanov</p>
+                                            </div>
+                                        </div>
+                                        <ul class="socials">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3>Advisers</h3>
+                            <div class="team">
+                                <ul>
+                                    <li>
+                                        <div class="user">
+                                            <figure>
+                                                <img src="{{ asset('img/full-info/team-member.png') }}">
+                                            </figure>
+                                            <div>
+                                                <span>CEO</span>
+                                                <p>Konstantin Ivanov</p>
+                                            </div>
+                                        </div>
+                                        <ul class="socials">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="user">
+                                            <figure>
+                                                <img src="{{ asset('img/full-info/team-member.png') }}">
+                                            </figure>
+                                            <div>
+                                                <span>CEO</span>
+                                                <p>Konstantin Ivanov</p>
+                                            </div>
+                                        </div>
+                                        <ul class="socials">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="user">
+                                            <figure>
+                                                <img src="{{ asset('img/full-info/team-member.png') }}">
+                                            </figure>
+                                            <div>
+                                                <span>CEO</span>
+                                                <p>Konstantin Ivanov</p>
+                                            </div>
+                                        </div>
+                                        <ul class="socials">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="user">
+                                            <figure>
+                                                <img src="{{ asset('img/full-info/team-member.png') }}">
+                                            </figure>
+                                            <div>
+                                                <span>CEO</span>
+                                                <p>Konstantin Ivanov</p>
+                                            </div>
+                                        </div>
+                                        <ul class="socials">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="info-sidebar">
+                        <div class="links">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-globe"></i>
+                                        www.sitecrypto.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="far fa-file"></i>
+                                        Whitepaper
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-facebook"></i>
+                                        Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                        Twitter
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-medium-m"></i>
+                                        Medium
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-reddit-alien"></i>
+                                        Reddit
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="fab fa-btc"></i>
+                                        Not available
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-telegram-plane"></i>
+                                        Telegram
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="fab fa-github-alt"></i>
+                                        Not available
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <i class="fab fa-discord"></i>
+                                        Not available
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="house-image">
+                            <figure>
+                                <img src="{{ asset('img/houses/house-9.svg') }}">
+                            </figure>
+                        </div>
+                        <div class="subscribe">
+                            <h4>Newsletter</h4>
+                            <p>Join our list to receive latest <br>Blockchain, Crypto & Fintech news:</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your e-mail">
+                                <button>Subscribe</button>
+                            </form>
+                        </div>
+                        <div class="banner"></div>
+                        <div class="posts">
+                            <h2>Posts</h2>
+                            <ul>
+                                <li>
+                                    <figure>
+                                        <img src="{{ asset('img/article/userphoto.png') }}">
+                                    </figure>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a href="#">Username</a>
+                                            </li>
+                                            <li>
+                                                <span><img src="{{ asset('img/icons/posts_time.png') }}"> 1 week ago</span>
+                                            </li>
+                                        </ul>
+                                        <a>Bitfinex Reveals Details on EOSfinex, Beta Launch in September</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <figure>
+                                        <img src="{{ asset('img/article/userphoto.png') }}">
+                                    </figure>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a href="#">Username</a>
+                                            </li>
+                                            <li>
+                                                <span><img src="{{ asset('img/icons/posts_time.png') }}"> 1 week ago</span>
+                                            </li>
+                                        </ul>
+                                        <a>Bitfinex Reveals Details on EOSfinex, Beta Launch in September</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <figure>
+                                        <img src="{{ asset('img/article/userphoto.png') }}">
+                                    </figure>
+                                    <div>
+                                        <ul>
+                                            <li>
+                                                <a href="#">Username</a>
+                                            </li>
+                                            <li>
+                                                <span><img src="{{ asset('img/icons/posts_time.png') }}"> 1 week ago</span>
+                                            </li>
+                                        </ul>
+                                        <a>Bitfinex Reveals Details on EOSfinex, Beta Launch in September</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a href="#">See more</a>
+                        </div>
+                        <div class="currency">
+                            <ul>
+                                <li>
+                                    <div class="name"><figure><img src="{{ asset('img/currency/bitcoin.png') }}"></figure>Bitcoin</div>
+                                    <div class="current">$6,405.56</div>
+                                    <div class="percentage positive">+3%</div>
+                                </li>
+                                <li>
+                                    <div class="name"><figure><img src="{{ asset('img/currency/ethereum.png') }}"></figure>Ethereum</div>
+                                    <div class="current">$506.56</div>
+                                    <div class="percentage positive">+22%</div>
+                                </li>
+                                <li>
+                                    <div class="name"><figure><img src="{{ asset('img/currency/xrp.png') }}"></figure>XRP</div>
+                                    <div class="current">$0.56</div>
+                                    <div class="percentage negative">-82%</div>
+                                </li>
+                                <li>
+                                    <div class="name"><figure><img src="{{ asset('img/currency/bitcoin_cash.png') }}"></figure>Bitcoin Cash</div>
+                                    <div class="current">$6,405.56</div>
+                                    <div class="percentage positive">+45%</div>
+                                </li>
+                                <li>
+                                    <div class="name"><figure><img src="{{ asset('img/currency/litecoin.png') }}"></figure>Litecoin</div>
+                                    <div class="current">$6,405.56</div>
+                                    <div class="percentage positive">+3%</div>
+                                </li>
+                            </ul>
+                            <a href="#">All currency</a>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="banner"></div>
+                </footer>
+            </div>
+        </div>
     </div>
 @endpush
