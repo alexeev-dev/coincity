@@ -205,7 +205,8 @@
 @endsection
 
 @push('popups')
-    <div class="popup{{ $errors->any() ? ' active' : '' }}">
+    <!-- <div class="popup{{ $errors->any() ? ' active' : '' }}"> -->
+    <div class="popup active">
         <div class="popup-house-info">
             <a href="#" class="close js-closePopup"></a>
             <div class="house-info">
@@ -849,6 +850,160 @@
                 <footer>
                     <div class="banner"></div>
                 </footer>
+            </div>
+        </div>
+
+        <div class="popup-statistics active">
+            <div class="statistics">
+                <a href="#" class="close js-closePopup"></a>
+                <header></header>
+                <section>
+                    <h3>Statistics</h3>
+                    <div class="table">
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Speed</th>
+                                <th>Earned coins</th>
+                                <th>Speed</th>
+                                <th>Earned coins</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="title">
+                                        <figure>
+                                            <img src="{{ asset('img/icons/statistics-image.png') }}">
+                                        </figure>
+                                        <p>Title of game</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="title">
+                                        <figure>
+                                            <img src="{{ asset('img/icons/statistics-image.png') }}">
+                                        </figure>
+                                        <p>Title of game</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="title">
+                                        <figure>
+                                            <img src="{{ asset('img/icons/statistics-image.png') }}">
+                                        </figure>
+                                        <p>Title of game</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="title">
+                                        <figure>
+                                            <img src="{{ asset('img/icons/statistics-image.png') }}">
+                                        </figure>
+                                        <p>Title of game</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="title">
+                                        <figure>
+                                            <img src="{{ asset('img/icons/statistics-image.png') }}">
+                                        </figure>
+                                        <p>Title of game</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="title">
+                                        <figure>
+                                            <img src="{{ asset('img/icons/statistics-image.png') }}">
+                                        </figure>
+                                        <p>Title of game</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/timer_clock.png') }}"> <span>4:05:23</span></p>
+                                </td>
+                                <td>
+                                    <p><img src="{{ asset('img/icons/coin.png') }}"> 22 000</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+                <footer></footer>
             </div>
         </div>
     </div>
