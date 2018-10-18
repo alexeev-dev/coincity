@@ -28,6 +28,8 @@ Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
 
     Route::post('adv', 'User\ProfileController@getAdv');
     Route::post('update-all', 'User\ProfileController@updateAll');
+
+    Route::post('stats', 'User\ProfileController@getStats');
 });
 
 Auth::routes();

@@ -119,6 +119,7 @@ class ProfileController extends Controller
             $userStat->save();
 
             $userHouse->money_collected = $now;
+            $userHouse->money = $userHouse->money + $moneyEarned;
             $userHouse->save();
 
             // get tweets
@@ -269,6 +270,7 @@ class ProfileController extends Controller
                 $userStat->save();
 
                 $userHouse->money_collected = $now;
+                $userHouse->money = $userHouse->money + $moneyEarned;
                 $userHouse->save();
 
                 $output = json_encode([
@@ -420,4 +422,14 @@ class ProfileController extends Controller
 
         return $newTweetCount;
     }
+
+    public function getStats(Request $request) {
+        $user = Auth::user();
+
+        $html = view('partials.stats', ['userHouses' => $user->user_houses])->render();
+        $output = json_encode(['html' => $html]);
+
+        return $output;
+    }
+
 }

@@ -277,9 +277,11 @@ $(document).ready(function() {
         const self = $(this).parents('.house-item');
         const popup = $('.popup');
 
-        $('.popup-house-info-small, .popup').addClass('active');
+        // $('.popup-house-info-small, .popup').addClass('active');
+        $('.popup-house-info-full, .popup').addClass('active');
 
-        popup.find('.house-info-small').empty();
+        // popup.find('.house-info-small').empty();
+        popup.find('.house-info-full').empty();
         popup.addClass('loading');
 
         axios.post('/user/get-user-house-info-small', {
@@ -288,13 +290,16 @@ $(document).ready(function() {
 
             popup.removeClass('loading');
             if (response.data === 1) {
-                popup.find('.house-info-small').html(commonError);
+                // popup.find('.house-info-small').html(commonError);
+                popup.find('.house-info-full').html(commonError);
             } else {
-                popup.find('.house-info-small').html(response.data.html);
+                // popup.find('.house-info-small').html(response.data.html);
+                popup.find('.house-info-full').html(response.data.html);
             }
 
         }).catch(function (error) {
-            popup.find('.house-info-small').html(commonError);
+            // popup.find('.house-info-small').html(commonError);
+            popup.find('.house-info-full').html(commonError);
         });
 
         return false;
@@ -472,6 +477,33 @@ $(document).ready(function() {
 
         }).catch(function (error) {
             popup.find('.page-content').html(commonError);
+        });
+
+        return false;
+    });
+
+    // statistics
+    $('.js-stats').click(function() {
+        if (busyCheck()) {
+            return false;
+        }
+
+        const self = $(this);
+        const popup = $('.popup');
+
+        $('.popup-statistics, .popup').addClass('active');
+
+        popup.find('.statistics').empty();
+        popup.addClass('loading');
+
+        axios.post('/user/stats', {
+        }).then(function (response) {
+
+            popup.removeClass('loading');
+            popup.find('.statistics').html(response.data.html);
+
+        }).catch(function (error) {
+            popup.find('.statistics').html(commonError);
         });
 
         return false;

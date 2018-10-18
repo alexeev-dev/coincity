@@ -75,6 +75,9 @@
 								</li>
                                 @auth
 								<li>
+									<a href="" class="js-stats">Statistics</a>
+								</li>
+								<li>
 									<a href="{{ route('logout') }}" class="log-out"
                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log Out</a>
 								</li>
