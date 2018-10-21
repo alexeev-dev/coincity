@@ -257,7 +257,7 @@
                             @endif
 
                             @if ( session('not_confirmed')  )
-                                <a class="btn btn-link" href="{{ '/register/resend-verification?email=' . old('email') }}">Отправить подтверждение повторно!</a>
+                                <a class="btn btn-link" href="{{ '/register/resend-verification?email=' . old('email') }}">Resend verification code!</a>
                             @endif
                         </div>
 
