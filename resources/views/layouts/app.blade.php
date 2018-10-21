@@ -42,7 +42,7 @@
 
 	<!-- Application -->
     @guest
-    <div class="app tutorial">
+    <div class="app{{ !$errors->any() ? ' tutorial' : '' }}">
     @endguest
     @auth
     <div class="app">

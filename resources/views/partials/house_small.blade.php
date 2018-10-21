@@ -1,5 +1,5 @@
 <figure>
-    <img src="{{ !empty($house->ico) ? asset($house->ico) : '#' }}">
+    <img src="{{ !empty($house->ico) ? asset($house->icon) : '#' }}">
 </figure>
 <h4>{{ $house->name }}</h4>
 <ul>

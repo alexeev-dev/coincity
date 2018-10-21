@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\UserHouse;
 use App\User;
 use App\Services\UserService;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -36,9 +38,17 @@ class RegisterController extends Controller {
         $user = User::create([
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
-            //'confirmation_code' => str_random(30)
-            'confirmed' => 1
+            'confirmation_code' => str_random(30)
         ]);
+
+        if (!empty($request->sh)) {
+            $userHouse = new UserHouse();
+            $userHouse->user_id = $user->id;
+            $userHouse->house_id = $request->sh;
+            $userHouse->money_collected = Carbon::now();
+            $userHouse->position = 0;
+            $userHouse->save();
+        }
 
         $request->session()->flash('code_sent_to_email', $request->input('email'));
         return $this->registered($request, $user) ?: redirect($this->redirectPath());

@@ -47,7 +47,7 @@
             </section>
             <footer>
                 <ul class="timer">
-                    <li><img src="{{ asset($userHouse->house->ico) }}"></li>
+                    <li><img src="{{ asset($userHouse->house->icon) }}"></li>
                     <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $tweet->time_left }}</span>
                     </li>
                 </ul>

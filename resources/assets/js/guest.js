@@ -19,6 +19,12 @@ const drag = dragula([document.getElementById("left-lovehandles"), document.getE
 
     // show reg popup
     setTimeout(function() {
+        let firstHouse = $(".houses.drop .house-item:first");
+        if (firstHouse.length) {
+            $('.js-sh').val(firstHouse.data('house-id'));
+        } else {
+            $('.js-sh').val('');
+        }
         $('.js-reg, .popup').addClass('active');
     }, 100);
 });
@@ -129,31 +135,6 @@ $(document).ready(function() {
 
         axios.post('/more-news', {
             tweets: self.parent().siblings('li').length
-        }).then(function (response) {
-
-            let par = self.parent().parent();
-            self.parent().remove();
-            par.append(response.data.html);
-
-        }).catch(function (error) {
-            popup.find('.page-content').html(commonError);
-        });
-
-        return false;
-    });
-
-    // load more userhouse tweets
-    body.on('click', '.js-more-house', function() {
-        if (busyCheck()) {
-            return false;
-        }
-
-        const self = $(this);
-        self.addClass('loading');
-
-        axios.post('/user/get-more-tweets', {
-            tweets: self.parent().siblings('li').length,
-            houseId: self.data('house-id')
         }).then(function (response) {
 
             let par = self.parent().parent();

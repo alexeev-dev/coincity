@@ -205,9 +205,9 @@
 @endsection
 
 @push('popups')
-    <!-- <div class="popup{{ $errors->any() ? ' active' : '' }}"> -->
-    <div class="popup">
+    <div class="popup{{ $errors->any() ? ' active' : '' }}">
 
+        @auth
         <div class="popup-house-info">
             <a href="#" class="close js-closePopup"></a>
             <div class="house-info">
@@ -220,12 +220,26 @@
             <a href="#" class="close js-closePopup"></a>
         </div>
 
+        <div class="popup-house-info-full">
+            <a href="#" class="close js-closePopup"></a>
+            <div class="house-info-full">
+            </div>
+        </div>
+
+        <div class="popup-statistics">
+            <a href="#" class="close js-closePopup"></a>
+            <div class="statistics">
+            </div>
+        </div>
+        @endauth
+
         <div class="popup-page-content">
             <div class="page-content">
             </div>
             <a href="#" class="close js-closePopup"></a>
         </div>
 
+        @guest
         <div class="js-log popup-log-reg{{ $errors->any() ? ' active' : '' }}">
             <a href="#" class="close js-closePopup"></a>
             <div class="log-reg">
@@ -284,6 +298,7 @@
                 <h3>Create your account to save the progress</h3>
                 <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
+                    <input class="js-sh" type="hidden" name="sh" value="">
                     <section>
                         <div class="form-group">
                             <label for="email">E-Mail</label>
@@ -307,17 +322,6 @@
                 </form>
             </div>
         </div>
-
-        <div class="popup-house-info-full">
-            <a href="#" class="close js-closePopup"></a>
-            <div class="house-info-full">
-            </div>
-        </div>
-
-        <div class="popup-statistics">
-            <a href="#" class="close js-closePopup"></a>
-            <div class="statistics">
-            </div>
-        </div>
+        @endguest
     </div>
 @endpush

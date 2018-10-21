@@ -65,13 +65,14 @@ class AdminController extends Controller
             $items[] = [
                 'id' => $worksheet->getCell('B'.$i)->getValue(),
                 'name' => $worksheet->getCell('C'.$i)->getValue(),
-                'ico' => $worksheet->getCell('T'.$i)->getValue(),
+                'icon' => $worksheet->getCell('T'.$i)->getValue(),
                 'image' => $worksheet->getCell('L'.$i)->getValue(),
                 'image_small' => $worksheet->getCell('P'.$i)->getValue(),
                 'max_money' => $worksheet->getCell('G'.$i)->getValue(),
                 'money_per_hour' => $worksheet->getCell('I'.$i)->getValue(),
                 'title' => $worksheet->getCell('X'.$i)->getValue(),
                 'description' => $worksheet->getCell('Z'.$i)->getValue(),
+                'content' => $worksheet->getCell('AC'.$i)->getValue(),
                 'overwrite' => $worksheet->getCell('A'.$i)->getValue()
             ];
             $i++;

@@ -183,8 +183,6 @@ function scrollToBuilt() {
         $('.buld-active-block.show .house-item .footer-image').click(function(e) {
             e.preventDefault();
 
-            console.log('clicked');
-
             var houseID = $(this).parent("section").parent(".house-item").attr('data-house-id'),
                 houseScrollLeft = $('.wr-houses .houses *[data-house-id="' + houseID + '"]').position().left,
                 houseWidth = $('.wr-houses .houses *[data-house-id="' + houseID + '"]').width(),

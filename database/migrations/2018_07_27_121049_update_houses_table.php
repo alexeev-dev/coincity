@@ -16,7 +16,7 @@ class UpdateHousesTable extends Migration
         Schema::table('houses', function($table) {
             $table->string('image')->after('name')->nullable();
             $table->string('image_small')->after('name')->nullable();
-            $table->string('ico')->after('name')->nullable();
+            $table->string('icon')->after('name')->nullable();
         });
 
         Schema::table('tweets', function($table) {
@@ -38,7 +38,7 @@ class UpdateHousesTable extends Migration
         Schema::table('houses', function($table) {
             $table->dropColumn('image');
             $table->dropColumn('image_small');
-            $table->dropColumn('ico');
+            $table->dropColumn('icon');
         });
 
         Schema::table('tweets', function($table) {

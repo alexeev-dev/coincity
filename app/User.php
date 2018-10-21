@@ -18,7 +18,7 @@ class User extends Authenticatable
 
         static::created(function($user){
             if (!$user->confirmed) {
-                //$user->sendConfirmation();
+                $user->sendConfirmation();
             }
 
             if (empty($user->user_stat)) {
@@ -46,10 +46,10 @@ class User extends Authenticatable
     }
 
     public function sendPasswordResetNotification($token) {
-        //Mail::to($this->email)->queue(new EmailResetPassword($token));
+        Mail::to($this->email)->queue(new EmailResetPassword($token));
     }
 
     public function sendConfirmation() {
-        //Mail::to($this->email)->queue(new EmailConfirmation($this->confirmation_code));
+        Mail::to($this->email)->queue(new EmailConfirmation($this->confirmation_code));
     }
 }
