@@ -23,7 +23,7 @@
     <meta property="og:image" content=""/>
     <link rel="image_src" href="">
 
-    <link href="{{ compile_assets('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ compile_assets('css/app.css') }}" rel="stylesheet">
 
     @stack('styles-header')
 
@@ -31,29 +31,25 @@
 </head>
 
 <body>
+<!--[if lt IE 10]>
+<p class="browsehappy">Вы используете <strong>УСТАРЕВШИЙ Internet Explorer</strong> браузер. Пожалуйста, <a
+        href="http://browsehappy.com/">обновите ваш Браузер</a> чтобы увидеть больше возможностей на сайтах!</p>
+<![endif]-->
 
-<div id="app" class="main-container" style="padding:30px 0">
-    @if ( session('message')  )
-        <div class="alert alert-warning alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-            <p><strong>Warning!</strong></p>
-            <p>{!! session('message') !!}</p>
-        </div>
-    @endif
+<!-- Preloader  -->
+<div class="preloader"></div>
 
-    @if ( session('success-message')  )
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-            <p><strong>{!! session('success-message') !!}</strong></p>
-        </div>
-    @endif
+<!-- Application -->
+<div class="app">
 
     @yield('content')
+
 </div>
 
-<script src="{{ compile_assets('js/admin.js') }}"></script>
+
+@yield('tmp-popup')
+
+@stack('popups')
 
 @stack('scripts-footer')
 

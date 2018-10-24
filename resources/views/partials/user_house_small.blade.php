@@ -28,6 +28,7 @@
                 </figcaption>
             </figure>
         </header>
+        <!--
         <section>
             <h3>Articles</h3>
             <div class="articles">
@@ -376,7 +377,10 @@
                 </ul>
             </div>
         </section>
+        -->
     </div>
+
+    <!--
     <div class="info-sidebar">
         <div class="links">
             <ul>
@@ -541,8 +545,11 @@
             <a href="#">All currency</a>
         </div>
     </div>
+    -->
 </section>
+<!--
 <footer>
     <div class="banner"></div>
 </footer>
+-->
 

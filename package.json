@@ -24,6 +24,7 @@
         "dragula": "^3.7.2",
         "jquery-countdown": "^2.2.0",
         "jquery-mousewheel": "^3.1.13",
-        "jquery.scrollbar": "^0.2.11"
+        "jquery.scrollbar": "^0.2.11",
+        "tinymce": "^4.8.4"
     }
 }

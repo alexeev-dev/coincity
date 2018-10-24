@@ -18,6 +18,10 @@ class AdminController extends Controller
         return view('admin.loader');
     }
 
+    public function editor() {
+        return view('admin.editor');
+    }
+
     /**
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception

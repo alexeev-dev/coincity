@@ -12,6 +12,7 @@ Route::get('/news/{alias}', 'HomeController@singleNews');
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin');
 Route::post('/admin', 'Admin\AdminController@update')->name('admin_update');
+Route::get('/editor', 'Admin\AdminController@editor');
 
 Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');

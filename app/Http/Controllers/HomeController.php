@@ -129,7 +129,7 @@ class HomeController extends Controller
     {
         $singleNews = Tweet::where('alias', $request['alias'])->first();
         if (empty($singleNews)) {
-            abort(404);
+            abort(403);
         }
 
         $user = Auth::user();
