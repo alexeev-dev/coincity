@@ -17,14 +17,14 @@ class User extends Authenticatable
         parent::boot();
 
         static::created(function($user){
-            if (!$user->confirmed) {
-                $user->sendConfirmation();
-            }
-
             if (empty($user->user_stat)) {
                 $userStat = new UserStat();
                 $userStat->user_id = $user->id;
                 $userStat->save();
+            }
+
+            if (!$user->confirmed) {
+                $user->sendConfirmation();
             }
         });
     }
@@ -46,10 +46,10 @@ class User extends Authenticatable
     }
 
     public function sendPasswordResetNotification($token) {
-        Mail::to($this->email)->queue(new EmailResetPassword($token));
+        Mail::to($this->email)->send(new EmailResetPassword($token));
     }
 
     public function sendConfirmation() {
-        Mail::to($this->email)->queue(new EmailConfirmation($this->confirmation_code));
+        Mail::to($this->email)->send(new EmailConfirmation($this->confirmation_code));
     }
 }

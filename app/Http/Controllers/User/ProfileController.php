@@ -93,7 +93,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
-            abort(404);
+            abort(403);
         }
 
         $houseId = $request->houseId;
@@ -163,7 +163,7 @@ class ProfileController extends Controller
 
     public function getMoreTweets(Request $request) {
         if (empty($request->tweets) || $request->tweets >= ProfileController::MAX_TWEETS_SHOW_COUNT) {
-            abort(404);
+            abort(403);
         }
 
         if (ProfileController::MAX_TWEETS_SHOW_COUNT - $request->tweets > ProfileController::TWEETS_SHOW_COUNT) {
@@ -175,7 +175,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
-            abort(404);
+            abort(403);
         }
 
         $houseId = $request->houseId;
@@ -186,7 +186,7 @@ class ProfileController extends Controller
             ->take($tweetsToTake)->get();
 
         if (empty($tweets)) {
-            abort(404);
+            abort(403);
         }
 
         // mark as seen
@@ -216,7 +216,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
-            abort(404);
+            abort(403);
         }
 
         $houseId = $request->houseId;
@@ -243,7 +243,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
-            abort(404);
+            abort(403);
         }
 
         $houseId = $request->houseId;
@@ -291,7 +291,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!isset($request->updateId)) {
-            abort(404);
+            abort(403);
         }
 
         $updateId = $request->updateId;
@@ -331,7 +331,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
-            abort(404);
+            abort(403);
         }
 
         $houseId = $request->houseId;

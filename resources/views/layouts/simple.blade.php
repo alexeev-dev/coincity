@@ -36,10 +36,8 @@
         href="http://browsehappy.com/">обновите ваш Браузер</a> чтобы увидеть больше возможностей на сайтах!</p>
 <![endif]-->
 
-<!-- Preloader  -->
 <div class="preloader"></div>
 
-<!-- Application -->
 <div class="app">
 
     @yield('content')

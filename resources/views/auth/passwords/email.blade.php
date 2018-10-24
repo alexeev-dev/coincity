@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tmp')
 
 @section('tmp-popup')
     <div class="popup active">

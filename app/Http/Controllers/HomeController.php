@@ -73,7 +73,7 @@ class HomeController extends Controller
         $tweets = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT + 1)->get();
 
         if (empty($tweets)) {
-            abort(404);
+            abort(403);
         }
 
         $newTweetCount = 0;
@@ -99,7 +99,7 @@ class HomeController extends Controller
 
     public function moreNews(Request $request) {
         if (empty($request->tweets) || $request->tweets >= ProfileController::MAX_TWEETS_SHOW_COUNT) {
-            abort(404);
+            abort(403);
         }
 
         if (ProfileController::MAX_TWEETS_SHOW_COUNT - $request->tweets > ProfileController::TWEETS_SHOW_COUNT) {
@@ -112,7 +112,7 @@ class HomeController extends Controller
             ->take($tweetsToTake)->get();
 
         if (empty($tweets)) {
-            abort(404);
+            abort(403);
         }
 
         $html = view('partials.more_tweets', [
