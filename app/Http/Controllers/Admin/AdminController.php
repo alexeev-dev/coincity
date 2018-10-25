@@ -9,6 +9,7 @@ use App\Models\Page;
 use App\Models\Tweet;
 use App\Models\TweetAssignment;
 use App\Models\TweetUpdate;
+use DateTime;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -30,7 +31,7 @@ class AdminController extends Controller
     public function update(Request $request) {
 
         if ($request['password'] != '123123') {
-            abort('404');
+            abort('403');
         }
 
         if (!empty($request['datafile'])) {
@@ -62,24 +63,30 @@ class AdminController extends Controller
         $worksheet = $spreadsheet->getActiveSheet();
         $i = 2;
         $items = [];
+        $emptyCounter = 0;
         while (true) {
-            if ($worksheet->getCell('B'.$i)->getValue() == '') {
+            if ($worksheet->getCell('B'.$i)->getValue() != '') {
+                $emptyCounter = 0;
+                $items[] = [
+                    'id' => $worksheet->getCell('B'.$i)->getValue(),
+                    'name' => $worksheet->getCell('C'.$i)->getValue(),
+                    'icon' => $worksheet->getCell('Q'.$i)->getValue(),
+                    'image' => $worksheet->getCell('J'.$i)->getValue(),
+                    'image_small' => $worksheet->getCell('M'.$i)->getValue(),
+                    'max_money' => $worksheet->getCell('F'.$i)->getValue(),
+                    'money_per_hour' => $worksheet->getCell('H'.$i)->getValue(),
+                    'title' => $worksheet->getCell('U'.$i)->getValue(),
+                    'description' => $worksheet->getCell('W'.$i)->getValue(),
+                    'content' => $worksheet->getCell('Y'.$i)->getValue(),
+                    'overwrite' => $worksheet->getCell('A'.$i)->getValue()
+                ];
+            } else {
+                $emptyCounter++;
+            }
+            $i++;
+            if ($emptyCounter >= 5) {
                 break;
             }
-            $items[] = [
-                'id' => $worksheet->getCell('B'.$i)->getValue(),
-                'name' => $worksheet->getCell('C'.$i)->getValue(),
-                'icon' => $worksheet->getCell('T'.$i)->getValue(),
-                'image' => $worksheet->getCell('L'.$i)->getValue(),
-                'image_small' => $worksheet->getCell('P'.$i)->getValue(),
-                'max_money' => $worksheet->getCell('G'.$i)->getValue(),
-                'money_per_hour' => $worksheet->getCell('I'.$i)->getValue(),
-                'title' => $worksheet->getCell('X'.$i)->getValue(),
-                'description' => $worksheet->getCell('Z'.$i)->getValue(),
-                'content' => $worksheet->getCell('AC'.$i)->getValue(),
-                'overwrite' => $worksheet->getCell('A'.$i)->getValue()
-            ];
-            $i++;
         }
         $houses = collect($items);
         $houses->each(function ($item) {
@@ -102,20 +109,28 @@ class AdminController extends Controller
         $worksheet = $spreadsheet->getActiveSheet();
         $i = 2;
         $items = [];
+        $emptyCounter = 0;
         while (true) {
-            if ($worksheet->getCell('B'.$i)->getValue() == '') {
+            if ($worksheet->getCell('B'.$i)->getValue() != '') {
+                $emptyCounter = 0;
+                $items[] = [
+                    'id' => $worksheet->getCell('B'.$i)->getValue(),
+                    'title' => $worksheet->getCell('T'.$i)->getValue(),
+                    'description' => $worksheet->getCell('W'.$i)->getValue(),
+                    'link' => $worksheet->getCell('O'.$i)->getValue(),
+                    'alias' => $worksheet->getCell('R'.$i)->getValue(),
+                    'introtext' => $worksheet->getCell('E'.$i)->getValue(),
+                    'content' => $worksheet->getCell('H'.$i)->getValue(),
+                    'pub_date' => $worksheet->getCell('C'.$i)->getValue(),
+                    'overwrite' => $worksheet->getCell('A'.$i)->getValue()
+                ];
+            } else {
+                $emptyCounter++;
+            }
+            $i++;
+            if ($emptyCounter >= 5) {
                 break;
             }
-            $items[] = [
-                'id' => $worksheet->getCell('B'.$i)->getValue(),
-                'title' => $worksheet->getCell('C'.$i)->getValue(),
-                'description' => $worksheet->getCell('F'.$i)->getValue(),
-                'link' => $worksheet->getCell('I'.$i)->getValue(),
-                'alias' => $worksheet->getCell('L'.$i)->getValue(),
-                'content' => $worksheet->getCell('N'.$i)->getValue(),
-                'overwrite' => $worksheet->getCell('A'.$i)->getValue()
-            ];
-            $i++;
         }
         $tweets = collect($items);
         $tweets->each(function ($item) {
@@ -138,17 +153,23 @@ class AdminController extends Controller
         $worksheet = $spreadsheet->getActiveSheet();
         $i = 2;
         $items = [];
+        $emptyCounter = 0;
         while (true) {
-            if ($worksheet->getCell('B'.$i)->getValue() == '') {
+            if ($worksheet->getCell('B'.$i)->getValue() != '') {
+                $emptyCounter = 0;
+                $items[] = [
+                    'id' => $worksheet->getCell('B'.$i)->getValue(),
+                    'tweet_id' => $worksheet->getCell('D'.$i)->getValue(),
+                    'house_id' => $worksheet->getCell('F'.$i)->getValue(),
+                    'overwrite' => $worksheet->getCell('A'.$i)->getValue()
+                ];
+            } else {
+                $emptyCounter++;
+            }
+            $i++;
+            if ($emptyCounter >= 5) {
                 break;
             }
-            $items[] = [
-                'id' => $worksheet->getCell('B'.$i)->getValue(),
-                'tweet_id' => $worksheet->getCell('D'.$i)->getValue(),
-                'house_id' => $worksheet->getCell('F'.$i)->getValue(),
-                'overwrite' => $worksheet->getCell('A'.$i)->getValue()
-            ];
-            $i++;
         }
         $tw = collect($items);
         $tw->each(function ($item) {
@@ -171,18 +192,24 @@ class AdminController extends Controller
         $worksheet = $spreadsheet->getActiveSheet();
         $i = 2;
         $items = [];
+        $emptyCounter = 0;
         while (true) {
-            if ($worksheet->getCell('B'.$i)->getValue() == '') {
+            if ($worksheet->getCell('B'.$i)->getValue() != '') {
+                $emptyCounter = 0;
+                $items[] = [
+                    'id' => $worksheet->getCell('B'.$i)->getValue(),
+                    'tweet_id' => $worksheet->getCell('D'.$i)->getValue(),
+                    'update_type_id' => $worksheet->getCell('F'.$i)->getValue(),
+                    'value' => $worksheet->getCell('H'.$i)->getValue(),
+                    'overwrite' => $worksheet->getCell('A'.$i)->getValue()
+                ];
+            } else {
+                $emptyCounter++;
+            }
+            $i++;
+            if ($emptyCounter >= 5) {
                 break;
             }
-            $items[] = [
-                'id' => $worksheet->getCell('B'.$i)->getValue(),
-                'tweet_id' => $worksheet->getCell('D'.$i)->getValue(),
-                'update_type_id' => $worksheet->getCell('F'.$i)->getValue(),
-                'value' => $worksheet->getCell('H'.$i)->getValue(),
-                'overwrite' => $worksheet->getCell('A'.$i)->getValue()
-            ];
-            $i++;
         }
         $twu = collect($items);
         $twu->each(function ($item) {
@@ -205,17 +232,23 @@ class AdminController extends Controller
         $worksheet = $spreadsheet->getActiveSheet();
         $i = 2;
         $items = [];
+        $emptyCounter = 0;
         while (true) {
-            if ($worksheet->getCell('B'.$i)->getValue() == '') {
+            if ($worksheet->getCell('B'.$i)->getValue() != '') {
+                $emptyCounter = 0;
+                $items[] = [
+                    'id' => $worksheet->getCell('B'.$i)->getValue(),
+                    'alias' => $worksheet->getCell('D'.$i)->getValue(),
+                    'content' => $worksheet->getCell('F'.$i)->getValue(),
+                    'overwrite' => $worksheet->getCell('A'.$i)->getValue()
+                ];
+            } else {
+                $emptyCounter++;
+            }
+            $i++;
+            if ($emptyCounter >= 5) {
                 break;
             }
-            $items[] = [
-                'id' => $worksheet->getCell('B'.$i)->getValue(),
-                'alias' => $worksheet->getCell('D'.$i)->getValue(),
-                'content' => $worksheet->getCell('F'.$i)->getValue(),
-                'overwrite' => $worksheet->getCell('A'.$i)->getValue()
-            ];
-            $i++;
         }
         $page = collect($items);
         $page->each(function ($item) {
@@ -238,16 +271,22 @@ class AdminController extends Controller
         $worksheet = $spreadsheet->getActiveSheet();
         $i = 2;
         $items = [];
+        $emptyCounter = 0;
         while (true) {
-            if ($worksheet->getCell('B'.$i)->getValue() == '') {
+            if ($worksheet->getCell('B'.$i)->getValue() != '') {
+                $emptyCounter = 0;
+                $items[] = [
+                    'id' => $worksheet->getCell('B'.$i)->getValue(),
+                    'content' => $worksheet->getCell('D'.$i)->getValue(),
+                    'overwrite' => $worksheet->getCell('A'.$i)->getValue()
+                ];
+            } else {
+                $emptyCounter++;
+            }
+            $i++;
+            if ($emptyCounter >= 5) {
                 break;
             }
-            $items[] = [
-                'id' => $worksheet->getCell('B'.$i)->getValue(),
-                'content' => $worksheet->getCell('D'.$i)->getValue(),
-                'overwrite' => $worksheet->getCell('A'.$i)->getValue()
-            ];
-            $i++;
         }
         $page = collect($items);
         $page->each(function ($item) {

@@ -43,7 +43,7 @@
         @endif
         <li>
             <section>
-                {!! $tweet->content !!}
+                <p>{{ $tweet->introtext }}</p>
             </section>
             <footer>
                 <ul class="timer">

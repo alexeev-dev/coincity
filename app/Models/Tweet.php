@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Tweet extends Model
 {
-    protected $fillable = ['title', 'description', 'link', 'alias', 'content'];
+    protected $fillable = ['title', 'description', 'link', 'alias', 'content', 'introtext', 'pub_date'];
     protected $dates = ['pub_date'];
 
     public function tweet_update() {
@@ -57,5 +58,15 @@ class Tweet extends Model
             }
         }
         return false;
+    }
+
+    public function setPubDateAttribute($value)
+    {
+        if (!empty($value)) {
+            $value = DateTime::createFromFormat('d.m.Y', $value);
+            $this->attributes['pub_date'] = ($value->format('Y-m-d H:i:s'));
+        } else {
+            $this->attributes['pub_date'] = new DateTime();
+        }
     }
 }

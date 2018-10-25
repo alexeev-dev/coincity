@@ -1,3 +1,4 @@
+<!--
 <figure>
     <img src="{{ !empty($house->ico) ? asset($house->icon) : '#' }}">
 </figure>
@@ -12,3 +13,21 @@
         <p>{{ $house->max_money_text }}</p>
     </li>
 </ul>
+-->
+<header>
+    <div class="banner"></div>
+</header>
+<section>
+    <div class="info-full">
+        <header>
+            <figure>
+                <img src="{{ asset($house->image) }}">
+                <figcaption>
+                    <h4>{{ $house->name }}</h4>
+                    {!! $house->content !!}
+                </figcaption>
+            </figure>
+        </header>
+    </div>
+</section>
+

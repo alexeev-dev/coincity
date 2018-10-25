@@ -124,7 +124,7 @@ class ProfileController extends Controller
 
             // get tweets
             $tweets = $userHouse->house->tweets()
-                ->orderBy('pub_date', 'desc')->take($this::TWEETS_SHOW_COUNT + 1)->get();
+                ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take($this::TWEETS_SHOW_COUNT + 1)->get();
 
             // mark as seen
             foreach ($tweets as $tweet) {
@@ -182,7 +182,7 @@ class ProfileController extends Controller
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
 
         $tweets = $userHouse->house->tweets()
-            ->orderBy('pub_date', 'desc')->skip($request->tweets)
+            ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->skip($request->tweets)
             ->take($tweetsToTake)->get();
 
         if (empty($tweets)) {
@@ -403,13 +403,13 @@ class ProfileController extends Controller
             $lastTweetRead = $user->user_stat->last_tweet_read;
 
             if (empty($lastTweetRead)) {
-                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
                     ->whereDoesntHave('user_read_tweets', function ($query) {
                         $query->where('user_id', Auth::user()->id);
                     })->count();
             } else {
                 $newTweetCount = Tweet::where('pub_date', '>', $lastTweetRead)
-                    ->orderBy('pub_date', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
+                    ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
                     ->whereDoesntHave('user_read_tweets', function ($query) {
                         $query->where('user_id', Auth::user()->id);
                     })->count();

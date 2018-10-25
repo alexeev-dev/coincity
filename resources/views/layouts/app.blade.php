@@ -83,6 +83,7 @@
 							</ul>
 						</div>
 					</div>
+
 					<div class="coins">
 						<div class="current">
 							<img src="{{ asset('img/header/coin_header.png') }}">
@@ -94,7 +95,6 @@
                             @guest
                             <p class="js-total-money">0</p>
                             @endguest
-
 						</div>
 
 						<div class="for-day">
@@ -122,7 +122,6 @@
 							</ul>
 						</div>
                         @endguest
-
 					</div>
 
                     @yield('news')

@@ -24,6 +24,7 @@
             <figure>
                 <img src="{{ asset($userHouse->house->image) }}">
                 <figcaption>
+                    <h4>{{ $userHouse->house->name }}</h4>
                     {!! $userHouse->house->content !!}
                 </figcaption>
             </figure>

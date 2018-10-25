@@ -60,12 +60,45 @@
                 <div class="coins">
                     <div class="current">
                         <img src="{{ asset('img/header/coin_header.png') }}">
-                        <p class="js-total-money">0</p>
+
+                        @auth
+                            <p class="js-total-money odometer" id="odometer">{{ Auth::user()->user_stat->money }}</p>
+                        @endauth
+
+                        @guest
+                            <p class="js-total-money">0</p>
+                        @endguest
                     </div>
 
                     <div class="for-day">
                         <img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}">
-                        <p class="js-tmph">0</p>
+
+                        @auth
+                            <p class="js-tmph">{{ Auth::user()->user_stat->total_money_per_hour }} per hour</p>
+                        @endauth
+
+                        @guest
+                            <p class="js-tmph">0</p>
+                        @endguest
+
+                    </div>
+
+                    @guest
+                        <div class="log-reg">
+                            <ul>
+                                <li>
+                                    <a href="#" class="login">Log In</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="register">Register</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endguest
+                </div>
+                <div class="news">
+                    <a href="#" class="js-news"></a>
+                    <div class="news-inner">
                     </div>
                 </div>
             </div>

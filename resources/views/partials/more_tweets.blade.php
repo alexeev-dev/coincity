@@ -4,7 +4,7 @@
     @endif
     <li class="{{ $tweet->is_unseen() ? 'unseen' : '' }}">
         <section>
-            {!! $tweet->content !!}
+            <p>{{ $tweet->introtext }}</p>
         </section>
         <footer>
             <ul class="timer">
