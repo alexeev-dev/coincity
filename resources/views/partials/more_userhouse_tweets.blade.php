@@ -37,6 +37,6 @@
 @endforeach
 @if (count($tweets) > $pageSize)
     <li>
-        <a href="#" class="load_more js-more-house" data-house-id="{{ $userHouse->house->id }}">LOAD MORE</a>
+        <a href="#" class="load_more js-more-house btn" data-house-id="{{ $userHouse->house->id }}">LOAD MORE</a>
     </li>
 @endif

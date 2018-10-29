@@ -36,7 +36,7 @@
     </li>
 @endforeach
 @if (count($tweets) > $pageSize)
-<li>
-    <a href="#" class="load_more js-more">LOAD MORE</a>
-</li>
+    <li>
+        <a href="#" class="load_more js-more btn">LOAD MORE</a>
+    </li>
 @endif
