@@ -94,6 +94,7 @@
 			p {
 				color: #9e9e9e; font-size: 40px; font-family: $text;
 				position: relative; margin-bottom: 15px;
+				pointer-events: none;
 
 				@media (max-height: 615px) {
 					font-size: 30px;
@@ -106,6 +107,7 @@
 				&:before, &:after {
 					content: '';
 					display: block; width: 36px; height: 22px; position: absolute; top: 50%;
+					pointer-events: none;
 
 					@media (max-height: 615px) {
 						width: 24px;
@@ -225,9 +227,12 @@
 				height: 34px; padding-left: 34px;
 			}
 
-
 			@include respond-to(sm) {
 				height: 34px; padding-left: 34px; padding-right: 17px;
+			}
+
+			& > * {
+				pointer-events: none;
 			}
 
 			img {
@@ -268,6 +273,10 @@
 
 			@include respond-to(sm) {
 				height: 28px; padding-left: 28px; padding-right: 14px;
+			}
+
+			& > * {
+				pointer-events: none;
 			}
 
 			img {
@@ -507,6 +516,7 @@
 			& > p {
 				color: #26c213; font-size: 40px; font-family: $text;
 				position: relative; margin-bottom: 15px;
+				pointer-events: none;
 
 				@media (max-height: 615px) {
 					font-size: 30px;
@@ -519,6 +529,7 @@
 				&:before, &:after {
 					content: '';
 					display: block; width: 36px; height: 22px; position: absolute; top: 50%;
+					pointer-events: none;
 
 					@media (max-height: 615px) {
 						width: 24px;

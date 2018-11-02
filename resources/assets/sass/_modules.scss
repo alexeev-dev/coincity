@@ -620,6 +620,10 @@
 					img {
 						width: 24px; margin-right: 7px;
 					}
+
+					& > * {
+						pointer-events: none;
+					}
 				}
 
 				.replace {

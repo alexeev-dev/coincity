@@ -7,6 +7,10 @@
 	@media (max-height: 480px) {
 		height: 480px;
 	}
+	
+	.blured {
+		filter: blur(3px);
+	}
 
 	// &:after {
 	// 	content: '';
@@ -18,9 +22,6 @@
 	&.tutorial {
 		.wr-footer {
 			z-index: 9;
-		}
-		.wr-header, .wr-houses, .wr-footer {
-			pointer-events: none;
 		}
 
 		.first-tutorial {
@@ -137,6 +138,7 @@
 
 				img {
 					max-width: 100%;
+					pointer-events: none;
 				}
 			}
 		}

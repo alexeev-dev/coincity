@@ -75,3 +75,8 @@ body, html {
 	&:before {content: ''; display: table;}
 	&:after {content: ''; display: table; clear: both;}
 }
+
+*::selection {
+	color: inherit; 
+	background: transparent; 
+}

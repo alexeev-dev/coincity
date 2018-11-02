@@ -48,12 +48,17 @@
 		.shadow-overlay {
 			position: absolute; left: 15px; top: 0; width: 85px; height: 100%; z-index: 2;
 			border-radius: 5px; box-shadow: 0 0 10000px 10000px rgba(0,0,0,0.4);
+			display: none;
 		}
 
 		.text-overlay {
 			text-align: center;
-			position: absolute; left: 140px; z-index: 6; padding: 5px 5px; width: 140px; bottom: 0;
-			background: #ebebeb; border: solid 1px #adadad; border-radius: 4px;
+			position: absolute; left: 250px; z-index: 6; padding: 5px 5px; width: 140px; top: -100px; transform: translateY(-100%);
+			background: #ebebeb; border: solid 1px #adadad; border-radius: 4px; box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+
+			@include respond-to(xs) {
+				left: 140px; top: 100px;
+			}
 
 			p {
 				font-size: 20px; line-height: 24px; font-family: $text; letter-spacing: 0.1px;

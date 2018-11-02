@@ -198,7 +198,7 @@
 
 	figure {
 		text-align: center;
-		padding-bottom: 30px; margin-top: -140px;
+		padding-bottom: 30px; margin-top: -140px; height: 320px;
 
 		@include respond-to(sm) {
 			margin-top: -80px;
@@ -208,7 +208,7 @@
 		}
 
 		& > img {
-			max-width: 300px; margin-bottom: 20px;
+			max-width: 300px; max-height: calc(100% - 60px); margin-bottom: 20px;
 
 			@include respond-to(sm) {
 				max-width: 200px;
@@ -549,7 +549,7 @@
 
 		.btn {
 			font-size: 22px;
-			padding: 10px; width: 165px; display: block;
+			padding: 10px; min-width: 165px; width: auto; display: block;
 			border-radius: 8px; border: none;
 		}
 
