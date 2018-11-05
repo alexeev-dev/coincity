@@ -199,14 +199,13 @@
 	height: 100%; display: flex; flex-direction: column; align-items: center; padding-bottom: 20px;
 
 	figure {
-		text-align: center;
-		padding-bottom: 30px; margin-top: -140px; height: 320px;
+		display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding-bottom: 30px; margin-top: -140px; height: 320px;
 
 		@include respond-to(sm) {
-			margin-top: -80px;
+			margin-top: -80px; height: 240px;
 		}
 		@include respond-to(xs) {
-			margin-top: -60px;
+			margin-top: -60px; padding-bottom: 15px; height: 180px;
 		}
 
 		& > img {
@@ -216,7 +215,7 @@
 				max-width: 200px;
 			}
 			@include respond-to(xs) {
-				max-width: 150px;
+				max-width: 150px; max-height: calc(100% - 40px); margin-bottom: 15px;
 			}
 		}
 
