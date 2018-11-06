@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,20 @@ class TweetUpdate extends Model
 
     public function current_user_houses() {
         return $this->user_houses()->where('user_id', Auth::user()->id)->get();
+    }
+
+    public function getActualValueAttribute() {
+        $tweetDate = $this->tweet->pub_date;
+        $diffInDays = Carbon::now()->diffInDays($tweetDate);
+
+        if ($diffInDays >= 1 && $diffInDays < 7) {
+            $output = $this->value / 2;
+        } else if ($diffInDays >= 7) {
+            $output = $this->value / 10;
+        } else {
+            $output = $this->value;
+        }
+        return $output;
     }
 
     public function getUpdateClassAttribute() {
@@ -50,6 +65,6 @@ class TweetUpdate extends Model
                 $output .= 'x';
                 break;
         }
-        return $output.$this->value;
+        return $output.$this->actual_value;
     }
 }

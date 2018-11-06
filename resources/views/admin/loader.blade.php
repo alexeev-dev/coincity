@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-                                <label form="file" class="col-md-4 control-label">Data file</label>
+                                <label for="file" class="col-md-4 control-label">Data file</label>
                                 <div class="col-md-6">
                                     <input type="file" id="file" name="datafile" class="inputfile">
 

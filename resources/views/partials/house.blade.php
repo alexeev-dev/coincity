@@ -54,12 +54,15 @@
                 <ul class="btns">
                     @auth
                         @if ($tweet->is_house_built
-                            && !empty($tweet->tweet_update)
-                            && count($tweet->tweet_update->current_user_houses()) == 0)
-                            <li>
-                                <a data-update-id="{{ $tweet->tweet_update->id }}" href="#"
-                                   class="js-update{{ $tweet->tweet_update->update_class }}">{{ $tweet->tweet_update->value_text }}</a>
-                            </li>
+                            && !empty($tweet->tweet_updates))
+                            @foreach ($tweet->tweet_updates as $tweet_update)
+                                @if (count($tweet_update->current_user_houses()) == 0)
+                                    <li>
+                                        <a data-update-id="{{ $tweet_update->id }}" href="#"
+                                           class="js-update{{ $tweet_update->update_class }}">{{ $tweet_update->value_text }}</a>
+                                    </li>
+                                @endif
+                            @endforeach
                         @endif
                     @endauth
                     @if (!empty($tweet->link))

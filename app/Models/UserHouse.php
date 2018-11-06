@@ -19,7 +19,8 @@ class UserHouse extends Model
     }
 
     public function tweet_updates() {
-        return $this->belongsToMany('App\Models\TweetUpdate', 'user_house_updates');
+        return $this->belongsToMany('App\Models\TweetUpdate', 'user_house_updates')
+            ->withTimestamps();
     }
 
     public function user_house_updates() {
@@ -38,13 +39,59 @@ class UserHouse extends Model
     }
 
     public function getMoneyPerHourAttribute() {
-        $updatesSum = $this->tweet_updates()->where('update_type_id','=', 1)->sum('value');
-        return $this->house->money_per_hour + $updatesSum;
+        $updates = $this->tweet_updates()
+            ->join('tweets', 'tweets.id', '=', 'tweet_updates.tweet_id')
+            ->where('update_type_id','=', 1)
+            ->addSelect('tweets.pub_date')
+            ->addSelect('tweet_updates.value')
+            ->get();
+
+        $sum = $this->house->money_per_hour;
+
+        foreach ($updates as $update) {
+            $created_at = $update->pivot->created_at;
+            $pub_date = $update->pub_date;
+
+            $diffInDays = Carbon::createFromFormat('Y-m-d H:s:i', $pub_date)->diffInDays($created_at);
+
+            if ($diffInDays >= 1 && $diffInDays < 7) {
+                $sum += $update->value / 2;
+            } else if ($diffInDays >= 7) {
+                $sum += $update->value / 10;
+            } else {
+                $sum += $update->value;
+            }
+        }
+
+        return $sum;
     }
 
     public function getMaxMoneyAttribute() {
-        $updatesSum = $this->tweet_updates()->where('update_type_id','=', 2)->sum('value');
-        return $this->house->max_money + $updatesSum;
+        $updates = $this->tweet_updates()
+            ->join('tweets', 'tweets.id', '=', 'tweet_updates.tweet_id')
+            ->where('update_type_id','=', 2)
+            ->addSelect('tweets.pub_date')
+            ->addSelect('tweet_updates.value')
+            ->get();
+
+        $sum = $this->house->money_per_hour;
+
+        foreach ($updates as $update) {
+            $created_at = $update->pivot->created_at;
+            $pub_date = $update->pub_date;
+
+            $diffInDays = Carbon::createFromFormat('Y-m-d H:s:i', $pub_date)->diffInDays($created_at);
+
+            if ($diffInDays >= 1 && $diffInDays < 7) {
+                $sum += $update->value / 2;
+            } else if ($diffInDays >= 7) {
+                $sum += $update->value / 10;
+            } else {
+                $sum += $update->value;
+            }
+        }
+
+        return $sum;
     }
 
     public function getMoneyPerHourTextAttribute() {

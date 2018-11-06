@@ -12,8 +12,8 @@ class Tweet extends Model
     protected $fillable = ['title', 'description', 'link', 'alias', 'content', 'introtext', 'pub_date'];
     protected $dates = ['pub_date'];
 
-    public function tweet_update() {
-        return $this->hasOne('App\Models\TweetUpdate');
+    public function tweet_updates() {
+        return $this->hasMany('App\Models\TweetUpdate');
     }
 
     public function houses() {
@@ -43,8 +43,8 @@ class Tweet extends Model
         $now = Carbon::now();
 
         $output = '';
-        if ($now->diffInSeconds($expires_at) > 0) {
-            $output .= gmdate('H:i:s', $now->diffInSeconds($expires_at));;
+        if ($expires_at > $now) {
+            $output .= gmdate('H:i:s', $expires_at->diffInSeconds($now));
         }
         return $output;
     }

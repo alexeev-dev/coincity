@@ -7,10 +7,10 @@ import * as dragula from "dragula";
 const drag = dragula([document.getElementById("left-lovehandles"),
     document.getElementById("right-lovehandles")], {
     moves: function (el, container, handle) {
+        $('.app').removeClass('tutorial');
         return handle.classList.contains('handle') && !el.classList.contains('no-dnd');
     },
     accepts: function(el, target) {
-        console.log($(".houses.drop .house-item").length);
         return !el.classList.contains('no-dnd') && $(".houses.drop .house-item").length <= 3;
     }
 }).on('drop', function (el) {

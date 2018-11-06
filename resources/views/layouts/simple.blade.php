@@ -38,7 +38,7 @@
 
 <div class="preloader"></div>
 
-<div class="app">
+<div class="app blured">
 
     @yield('content')
 

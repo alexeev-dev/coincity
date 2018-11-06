@@ -16,6 +16,11 @@ class UserStat extends Model
     }
 
     public function getTotalMoneyPerHourAttribute() {
-        return $this->user->user_houses->sum('money_per_hour');
+        $user_houses = $this->user->user_houses;
+        $sum = 0;
+        foreach ($user_houses as $user_house) {
+            $sum += $user_house->money_per_hour;
+        }
+        return $sum;
     }
 }

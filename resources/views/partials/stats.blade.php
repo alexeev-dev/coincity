@@ -15,9 +15,9 @@
                 <td>
                     <div class="title">
                         <figure>
-                            <img src="{{ asset('img/icons/statistics-image.png') }}">
+                            <img src="{{ asset($userHouse->house->image_small) }}">
                         </figure>
-                        <p>Title of game</p>
+                        <p>{{ $userHouse->house->name }}</p>
                     </div>
                 </td>
                 <td>

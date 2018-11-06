@@ -38,7 +38,7 @@
 
 <div class="preloader"></div>
 
-<div class="app">
+<div class="app blured">
     <header class="wr-header">
         <div class="container">
 
