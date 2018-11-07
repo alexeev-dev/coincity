@@ -301,6 +301,8 @@ class ProfileController extends Controller
                     $userHouseUpdate = new UserHouseUpdate();
                     $userHouseUpdate->tweet_update_id = $tweetUpdate->id;
                     $userHouseUpdate->user_house_id = $userHouse->id;
+                    $userHouseUpdate->update_type_id = $tweetUpdate->update_type_id;
+                    $userHouseUpdate->value = $tweetUpdate->actual_value;
                     $userHouseUpdate->save();
 
                     $housesToSend[] = [

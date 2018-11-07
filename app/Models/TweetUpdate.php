@@ -10,10 +10,6 @@ class TweetUpdate extends Model
 {
     protected $fillable = ['tweet_id', 'update_type_id', 'value'];
 
-    public function update_type() {
-        return $this->belongsTo('App\Models\UpdateType');
-    }
-
     public function tweet() {
         return $this->belongsTo('App\Models\Tweet');
     }
@@ -42,7 +38,7 @@ class TweetUpdate extends Model
 
     public function getUpdateClassAttribute() {
         $output = '';
-        switch ($this->update_type->id) {
+        switch ($this->update_type_id) {
             case 1:
             case 3:
                 $output .= ' cointime';
@@ -56,7 +52,7 @@ class TweetUpdate extends Model
 
     public function getValueTextAttribute() {
         $output = '';
-        switch ($this->update_type->id) {
+        switch ($this->update_type_id) {
             case 1:
             case 2:
                 $output .= '+';
