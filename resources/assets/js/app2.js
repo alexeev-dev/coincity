@@ -170,36 +170,6 @@ $(document).ready(function() {
         });
     });
 
-    // static pages menu
-    $('.settings li a[href^="#"]').click(function() {
-        if (busyCheck()) {
-            return false;
-        }
-
-        $('.app').removeClass('active-settings');
-        $('.js-settings').removeClass('active');
-
-        const self = $(this);
-        const popup = $('.popup');
-
-        $('.popup-house-info-full, .popup').addClass('active');
-
-        popup.find('.house-info-full').empty();
-        popup.addClass('loading');
-
-        axios.post('/page/' + self.attr('href').substr(1), {
-        }).then(function (response) {
-
-            popup.removeClass('loading');
-            popup.find('.house-info-full').html(response.data.html);
-
-        }).catch(function (error) {
-            popup.find('.page-content').html(commonError);
-        });
-
-        return false;
-    });
-
     // news menu
     $('.js-news').click(function(e) {
         if (busyCheck()) {

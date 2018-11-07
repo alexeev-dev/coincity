@@ -49,10 +49,10 @@
                         <p>Settings</p>
                         <ul>
                             <li>
-                                <a href="#about">About</a>
+                                <a href="/page/about">About</a>
                             </li>
                             <li>
-                                <a href="#rules">Rules</a>
+                                <a href="/page/rules">Rules</a>
                             </li>
                         </ul>
                     </div>
@@ -119,16 +119,9 @@
             </div>
         </div>
     </section>
-
-    @yield('content')
-
 </div>
 
-@yield('tmp-popup')
-
-@stack('popups')
-
-@stack('scripts-footer')
+@yield('single_page_content')
 
 </body>
 </html>

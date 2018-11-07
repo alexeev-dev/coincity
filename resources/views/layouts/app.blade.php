@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-	<meta name="Description" content="">
-	<meta name="Rating" content="">
-	<meta name="Author" content="">
-	<meta name="Robots" content="index,follow">
+    <meta name="Description" content="">
+    <meta name="Rating" content="">
+    <meta name="Author" content="">
+    <meta name="Robots" content="index,follow">
 
-	<meta name="format-detection" content="telephone=no">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta property="og:url" content=""/>
     <meta property="og:type" content=""/>
@@ -23,132 +23,131 @@
     <meta property="og:image" content=""/>
     <link rel="image_src" href="">
 
-	<link href="{{ compile_assets('css/app.css') }}" rel="stylesheet">
-	<link href="{{ compile_assets('css/dragula.min.css') }}" rel="stylesheet">
-	<link href="{{ compile_assets('css/jquery.scrollbar.css') }}" rel="stylesheet">
+    <link href="{{ compile_assets('css/app.css') }}" rel="stylesheet">
+    <link href="{{ compile_assets('css/dragula.min.css') }}" rel="stylesheet">
+    <link href="{{ compile_assets('css/jquery.scrollbar.css') }}" rel="stylesheet">
 
-	@stack('styles-header')
-	
-	<title>{{ config('app.name', 'Coincity') }}</title>
+    @stack('styles-header')
+
+    <title>{{ config('app.name', 'Coincity') }}</title>
 </head>
 
 <body>
-	<!--[if lt IE 10]>
-	<p class="browsehappy">Вы используете <strong>УСТАРЕВШИЙ Internet Explorer</strong> браузер. Пожалуйста, <a href="http://browsehappy.com/">обновите ваш Браузер</a> чтобы увидеть больше возможностей на сайтах!</p>
-	<![endif]-->
+<!--[if lt IE 10]>
+<p class="browsehappy">Вы используете <strong>УСТАРЕВШИЙ Internet Explorer</strong> браузер. Пожалуйста, <a
+        href="http://browsehappy.com/">обновите ваш Браузер</a> чтобы увидеть больше возможностей на сайтах!</p>
+<![endif]-->
 
-	<div class="preloader"></div>
+<div class="preloader"></div>
 
-    @guest
-    <div class="app{{ !$errors->any() ? ' tutorial' : '' }}">
-    @endguest
-    @auth
-    <div class="app">
-    @endauth
-		<header class="wr-header">
-			<div class="container">
-		
-				<div class="header">
-					<div class="settings">
-						<a href="#" class="js-settings"></a>
-						<div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-							<p>Settings</p>
-							<ul>
-								@auth
-								<li>
-									<input maxlength="16" class="js-name" type="text" placeholder="Your name" value="{{ Auth::user()->name }}">
-								</li>
-								<li>
-									<a href="" class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>
-								</li>
-								@endauth
-								<li>
-									<a href="#about">About</a>
-								</li>
-								<li>
-									<a href="#rules">Rules</a>
-								</li>
-                                @auth
-								<li>
-									<a href="" class="js-stats">Statistics</a>
-								</li>
-								<li>
-									<a href="{{ route('logout') }}" class="log-out"
-                                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log Out</a>
-								</li>
-                                @endauth
-							</ul>
-						</div>
-					</div>
+<div class="app @guest {{ !$errors->any() ? ' tutorial' : '' }} @endguest">
+    <header class="wr-header">
+        <div class="container">
 
-					<div class="coins">
-						<div class="current">
-							<img src="{{ asset('img/header/coin_header.png') }}">
+            <div class="header">
+                <div class="settings">
+                    <a href="#" class="js-settings"></a>
+                    <div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                        <p>Settings</p>
+                        <ul>
+                            @auth
+                                <li>
+                                    <input maxlength="16" class="js-name" type="text" placeholder="Your name"
+                                           value="{{ Auth::user()->name }}">
+                                </li>
+                                <li>
+                                    <a href=""
+                                       class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>
+                                </li>
+                            @endauth
+                            <li>
+                                <a href="/page/about">About</a>
+                            </li>
+                            <li>
+                                <a href="/page/rules">Rules</a>
+                            </li>
+                            @auth
+                                <li>
+                                    <a href="" class="js-stats">Statistics</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}" class="log-out"
+                                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log
+                                        Out</a>
+                                </li>
+                            @endauth
+                        </ul>
+                    </div>
+                </div>
 
-							@auth
-							<p class="js-total-money odometer" id="odometer">{{ Auth::user()->user_stat->money }}</p>
-							@endauth
+                <div class="coins">
+                    <div class="current">
+                        <img src="{{ asset('img/header/coin_header.png') }}">
 
-                            @guest
-                            <p class="js-total-money">0</p>
-                            @endguest
-						</div>
-
-						<div class="for-day">
-							<img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}">
-
-							@auth
-							<p class="js-tmph">{{ Auth::user()->user_stat->total_money_per_hour }} per hour</p>
-							@endauth
-
-							@guest
-							<p class="js-tmph">0</p>
-							@endguest
-
-						</div>
+                        @auth
+                            <p class="js-total-money odometer" id="odometer">{{ Auth::user()->user_stat->money }}</p>
+                        @endauth
 
                         @guest
-						<div class="log-reg">
-							<ul>
-								<li>
-									<a href="#" class="login">Log In</a>
-								</li>
-								<li>
-									<a href="#" class="register">Register</a>
-								</li>
-							</ul>
-						</div>
+                            <p class="js-total-money">0</p>
                         @endguest
-					</div>
+                    </div>
 
-                    @yield('news')
+                    <div class="for-day">
+                        <img src="{{ asset('img/header/h_i_button_upg_timecoins_icon.svg') }}">
 
-				</div>
-				
-			</div>
-		</header>
+                        @auth
+                            <p class="js-tmph">{{ Auth::user()->user_stat->total_money_per_hour }} per hour</p>
+                        @endauth
 
-		@yield('content')
+                        @guest
+                            <p class="js-tmph">0</p>
+                        @endguest
+                    </div>
 
-	</div>
+                    @guest
+                        <div class="log-reg">
+                            <ul>
+                                <li>
+                                    <a href="#" class="login">Log In</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="register">Register</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endguest
+                </div>
 
-    @yield('tmp-popup')
+                @yield('news')
 
-    @stack('popups')
+            </div>
 
-    <script src="{{ compile_assets('js/app.js') }}"></script>
-    @guest
+        </div>
+    </header>
+
+    @yield('content')
+
+</div>
+
+@stack('popups')
+
+<script src="{{ compile_assets('js/app.js') }}"></script>
+
+@guest
     <script src="{{ compile_assets('js/guest.js') }}"></script>
-    @endguest
-    @auth
-    <script src="{{ compile_assets('js/app2.js') }}"></script>
-    @endauth
-    <script src="{{ compile_assets('js/odometer.min.js') }}"></script>
+@endguest
 
-    @stack('scripts-footer')
+@auth
+    <script src="{{ compile_assets('js/app2.js') }}"></script>
+@endauth
+
+<script src="{{ compile_assets('js/odometer.min.js') }}"></script>
+
+@stack('scripts-footer')
 
 </body>
 </html>

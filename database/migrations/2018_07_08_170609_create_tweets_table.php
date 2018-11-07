@@ -17,6 +17,12 @@ class CreateTweetsTable extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('image')->nullable();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->string('alias')->nullable();
+            $table->string('link')->nullable();
+            $table->text('introtext')->nullable();
             $table->text('content')->nullable();
             $table->dateTime('pub_date')->default(DB::raw('CURRENT_TIMESTAMP'));
 

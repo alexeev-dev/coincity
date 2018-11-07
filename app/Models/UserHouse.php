@@ -74,7 +74,7 @@ class UserHouse extends Model
             ->addSelect('tweet_updates.value')
             ->get();
 
-        $sum = $this->house->money_per_hour;
+        $sum = $this->house->max_money;
 
         foreach ($updates as $update) {
             $created_at = $update->pivot->created_at;

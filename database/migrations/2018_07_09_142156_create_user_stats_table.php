@@ -22,6 +22,8 @@ class CreateUserStatsTable extends Migration
             $table->bigInteger('money')->default(0);
             $table->boolean('sound')->default(0);
 
+            $table->dateTime('last_tweet_read')->nullable();
+
             $table->timestamps();
         });
     }

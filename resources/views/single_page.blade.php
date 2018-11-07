@@ -1,6 +1,6 @@
-@extends('layouts.tmp')
+@extends('layouts.single')
 
-@section('tmp-popup')
+@section('single_page_content')
     <div class="popup active">
     	<div class="popup-news-single active">
     		<a href="{{ route('home') }}" class="close"></a>
@@ -11,7 +11,7 @@
     			<section>
     				<div class="news-article">
     					<div class="content">
-							{!! $singleNews->content !!}
+							{!! $content !!}
     					</div>
     				</div>
     			</section>

@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $user = Auth::user();
 
         if (!empty($user)) {
@@ -58,17 +59,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function getPage(Request $request) {
-        $page = Page::where('alias', $request['alias'])->first();
-        if (!empty($page)) {
-            $html = view('partials.page', ['content' => $page->content])->render();
-        } else {
-            $html = view('errors.404')->render();
-        }
-        return json_encode(['html' => $html]);
-    }
-
-    public function getNews() {
+    public function getNews()
+    {
         $user = Auth::user();
         $tweets = Tweet::orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT + 1)->get();
 
@@ -81,7 +73,7 @@ class HomeController extends Controller
             $newTweetCount = $this->getNewTweetCount();
         }
 
-        $html = view('partials.tweets', [
+        $html = view('partials.ajax_content.tweets', [
             'tweets' => $tweets,
             'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
             'newTweetCount' => $newTweetCount,
@@ -97,7 +89,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function moreNews(Request $request) {
+    public function moreNews(Request $request)
+    {
         if (empty($request->tweets) || $request->tweets >= ProfileController::MAX_TWEETS_SHOW_COUNT) {
             abort(403);
         }
@@ -115,7 +108,7 @@ class HomeController extends Controller
             abort(403);
         }
 
-        $html = view('partials.more_tweets', [
+        $html = view('partials.ajax_content.more_tweets', [
             'tweets' => $tweets,
             'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
         ])->render();
@@ -127,29 +120,44 @@ class HomeController extends Controller
 
     public function singleNews(Request $request)
     {
-        $singleNews = Tweet::where('alias', $request['alias'])->first();
-        if (empty($singleNews)) {
-            abort(403);
+        $singleTweetPage = Tweet::where('alias', $request['alias'])->first();
+
+        if (empty($singleTweetPage)) {
+            return view('errors.404');
         }
 
         $user = Auth::user();
         if (!empty($user)) {
-            $userReadTweet = $singleNews->current_user_read();
+            $userReadTweet = $singleTweetPage->current_user_read();
             if (empty($userReadTweet)) {
                 $userReadTweet = new UserReadTweet();
                 $userReadTweet->user_id = $user->id;
-                $userReadTweet->tweet_id = $singleNews->id;
+                $userReadTweet->tweet_id = $singleTweetPage->id;
                 $userReadTweet->status = 2;
                 $userReadTweet->save();
             }
         }
 
-        return view('single_news', [
-            'singleNews' => $singleNews
+        return view('single_page', [
+            'content' => $singleTweetPage->content
         ]);
     }
 
-    private function getNewTweetCount() {
+    public function getPage(Request $request)
+    {
+        $page = Page::where('alias', $request['alias'])->first();
+
+        if (empty($page)) {
+            return view('errors.404');
+        }
+
+        return view('single_page', [
+            'content' => $page->content
+        ]);
+    }
+
+    private function getNewTweetCount()
+    {
         $user = Auth::user();
         $newTweetCount = 0;
 

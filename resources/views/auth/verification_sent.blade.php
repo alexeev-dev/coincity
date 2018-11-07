@@ -1,6 +1,6 @@
-@extends('layouts.tmp')
+@extends('layouts.single')
 
-@section('tmp-popup')
+@section('single_page_content')
     <div class="popup active">
         <div class="popup-log-reg active">
             <a href="{{ route('home') }}" class="close"></a>

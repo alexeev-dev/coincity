@@ -98,65 +98,60 @@ class ProfileController extends Controller
 
         $houseId = $request->houseId;
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
-        if (!empty($userHouse)) {
 
-            // gather money
-            $now = Carbon::now();
-            if (!empty($userHouse->money_collected)) {
-                $startPoint = $userHouse->money_collected;
-            } else {
-                $startPoint = $userHouse->created_at;
-            }
-            $secondsPassed = $now->diffInSeconds($startPoint);
-            $moneyEarned = floor($userHouse->money_per_hour * $secondsPassed / 3600);
-            if ($moneyEarned > $userHouse->max_money) {
-                $moneyEarned = $userHouse->max_money;
-            }
-
-            $userStat = $user->user_stat;
-            $lastMoney = $userStat->money;
-            $userStat->money = $lastMoney + $moneyEarned;
-            $userStat->save();
-
-            $userHouse->money_collected = $now;
-            $userHouse->money = $userHouse->money + $moneyEarned;
-            $userHouse->save();
-
-            // get tweets
-            $tweets = $userHouse->house->tweets()
-                ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take($this::TWEETS_SHOW_COUNT + 1)->get();
-
-            // mark as seen
-            foreach ($tweets as $tweet) {
-                $userReadTweet = $tweet->current_user_read();
-                if (empty($userReadTweet)) {
-                    $userReadTweet = new UserReadTweet();
-                    $userReadTweet->user_id = $user->id;
-                    $userReadTweet->tweet_id = $tweet->id;
-                    $userReadTweet->status = 1;
-                    $userReadTweet->save();
-                }
-            }
-
-            $html = view('partials.house', [
-                'userHouse' => $userHouse,
-                'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
-                'tweets' => $tweets
-            ])->render();
-
-            $output = json_encode([
-                'money' => $userStat->money,
-                'html' => $html,
-                'newTweetCount' => $this->getNewTweetCount()
-            ]);
-
-        } else {
-            $html = view('partials.error')->render();
-            $output = json_encode([
-                'html' => $html,
-                'newTweetCount' => 0
-            ]);
+        if (empty($userHouse)) {
+            abort(403);
         }
+
+        // gather money
+        $now = Carbon::now();
+        if (!empty($userHouse->money_collected)) {
+            $startPoint = $userHouse->money_collected;
+        } else {
+            $startPoint = $userHouse->created_at;
+        }
+        $secondsPassed = $now->diffInSeconds($startPoint);
+        $moneyEarned = floor($userHouse->money_per_hour * $secondsPassed / 3600);
+        if ($moneyEarned > $userHouse->max_money) {
+            $moneyEarned = $userHouse->max_money;
+        }
+
+        $userStat = $user->user_stat;
+        $lastMoney = $userStat->money;
+        $userStat->money = $lastMoney + $moneyEarned;
+        $userStat->save();
+
+        $userHouse->money_collected = $now;
+        $userHouse->money = $userHouse->money + $moneyEarned;
+        $userHouse->save();
+
+        // get tweets
+        $tweets = $userHouse->house->tweets()
+            ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take($this::TWEETS_SHOW_COUNT + 1)->get();
+
+        // mark as seen
+        foreach ($tweets as $tweet) {
+            $userReadTweet = $tweet->current_user_read();
+            if (empty($userReadTweet)) {
+                $userReadTweet = new UserReadTweet();
+                $userReadTweet->user_id = $user->id;
+                $userReadTweet->tweet_id = $tweet->id;
+                $userReadTweet->status = 1;
+                $userReadTweet->save();
+            }
+        }
+
+        $html = view('partials.ajax_content.house', [
+            'userHouse' => $userHouse,
+            'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
+            'tweets' => $tweets
+        ])->render();
+
+        $output = json_encode([
+            'money' => $userStat->money,
+            'html' => $html,
+            'newTweetCount' => $this->getNewTweetCount()
+        ]);
 
         return $output;
     }
@@ -201,7 +196,7 @@ class ProfileController extends Controller
             }
         }
 
-        $html = view('partials.more_userhouse_tweets', [
+        $html = view('partials.ajax_content.more_userhouse_tweets', [
             'userHouse' => $userHouse,
             'tweets' => $tweets,
             'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
@@ -222,18 +217,17 @@ class ProfileController extends Controller
         $houseId = $request->houseId;
         $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
 
-        if (!empty($userHouse)) {
-            $html = view('partials.user_house_small', ['userHouse' => $userHouse])->render();
-            $output = json_encode(['html' => $html]);
+        if (empty($userHouse)) {
+            $house = House::where('id', $houseId)->first();
+            if (!empty($house)) {
+                $html = view('partials.ajax_content.house_small', ['house' => $house])->render();
+                $output = json_encode(['html' => $html]);
+            } else {
+                abort(403);
+            }
         } else {
-			$house = House::where('id', $houseId)->first();
-			if (!empty($house)) {
-				$html = view('partials.house_small', ['house' => $house])->render();
-				$output = json_encode(['html' => $html]);
-			} else {
-				$html = view('partials.error')->render();
-				$output = json_encode(['html' => $html]);
-			}				
+            $html = view('partials.ajax_content.user_house_small', ['userHouse' => $userHouse])->render();
+            $output = json_encode(['html' => $html]);
         }
 
         return $output;
@@ -370,7 +364,7 @@ class ProfileController extends Controller
             $timeLeft = 0;
         }
 
-        $html = view('partials.page', ['content' => $adv->content])->render();
+        $html = view('partials.ajax_content.adv', ['content' => $adv->content])->render();
 
         $output = json_encode([
             'html' => $html,
@@ -426,7 +420,7 @@ class ProfileController extends Controller
     public function getStats(Request $request) {
         $user = Auth::user();
 
-        $html = view('partials.stats', ['userHouses' => $user->user_houses])->render();
+        $html = view('partials.ajax_content.stats', ['userHouses' => $user->user_houses])->render();
         $output = json_encode(['html' => $html]);
 
         return $output;

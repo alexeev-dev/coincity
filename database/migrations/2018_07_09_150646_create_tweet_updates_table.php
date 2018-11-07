@@ -13,6 +13,13 @@ class CreateTweetUpdatesTable extends Migration
      */
     public function up()
     {
+        Schema::create('update_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+
+            $table->timestamps();
+        });
+
         Schema::create('tweet_updates', function (Blueprint $table) {
             $table->increments('id');
 
@@ -30,6 +37,9 @@ class CreateTweetUpdatesTable extends Migration
         Schema::create('user_house_updates', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->unsignedInteger('user_house_id')->nullable();
+            $table->foreign('user_house_id')->references('id')->on('user_houses')->onDelete('cascade');
+
             $table->unsignedInteger('tweet_update_id')->nullable();
             $table->foreign('tweet_update_id')->references('id')->on('tweet_updates')->onDelete('cascade');
 
@@ -46,5 +56,6 @@ class CreateTweetUpdatesTable extends Migration
     {
         Schema::dropIfExists('user_house_updates');
         Schema::dropIfExists('tweet_updates');
+        Schema::dropIfExists('update_types');
     }
 }

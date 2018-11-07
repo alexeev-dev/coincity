@@ -51,6 +51,7 @@
     @endif
 
     @yield('content')
+
 </div>
 
 <script src="{{ compile_assets('js/admin.js') }}"></script>
