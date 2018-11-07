@@ -44,7 +44,7 @@ function busyCheck() {
         isBusy = true;
         setTimeout(function() {
             isBusy = false;
-        }, 1000);
+        }, 500);
         return false;
     }
 }

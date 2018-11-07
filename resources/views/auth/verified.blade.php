@@ -9,8 +9,8 @@
                 <div>
                     <p>Your E-mail was successfully verified.</p>
                 </div>
-                <a class="btn green" href="/login">
-                    Login
+                <a class="btn green" href="{{ route('home') }}">
+                    Back
                 </a>
             </div>
         </div>
