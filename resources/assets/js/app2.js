@@ -55,9 +55,6 @@ import * as dragula from "dragula";
 const drag = dragula([document.getElementById("left-lovehandles"), document.getElementById("right-lovehandles")], {
     moves: function (el, container, handle) {
         return handle.classList.contains('handle') && !el.classList.contains('no-dnd');
-    },
-    accepts: function(el, target) {
-        return !el.classList.contains('no-dnd')
     }
 }).on('drop', function (el) {
     el.className += ' dropped user-house';

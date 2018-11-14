@@ -1,5 +1,5 @@
 <figure>
-    <img src="{{ asset($userHouse->house->image) }}">
+    <img src="{{ asset($userHouse->house->image_small) }}">
     <figcaption>
         <ul>
             <li class="time">

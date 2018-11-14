@@ -8,10 +8,11 @@ const drag = dragula([document.getElementById("left-lovehandles"),
     document.getElementById("right-lovehandles")], {
     moves: function (el, container, handle) {
         $('.app').removeClass('tutorial');
-        return handle.classList.contains('handle') && !el.classList.contains('no-dnd');
-    },
-    accepts: function(el, target) {
-        return !el.classList.contains('no-dnd') && $(".houses.drop .house-item").length <= 3;
+        let hc = $(".houses.drop .house-item").length;
+        if (hc >= 3) {
+            showRegPopup();
+        }
+        return handle.classList.contains('handle') && hc < 3;
     }
 }).on('drop', function (el) {
     el.className += ' dropped user-house';
@@ -20,6 +21,10 @@ const drag = dragula([document.getElementById("left-lovehandles"),
     calculateHousesWidth();
 
     // show reg popup
+    showRegPopup();
+});
+
+function showRegPopup() {
     setTimeout(function() {
         let firstHouse = $(".houses.drop .house-item:first");
         if (firstHouse.length) {
@@ -29,8 +34,7 @@ const drag = dragula([document.getElementById("left-lovehandles"),
         }
         $('.js-reg, .popup').addClass('active');
     }, 100);
-});
-
+}
 
 $(window).resize(function() {
     calculateHousesWidth();
