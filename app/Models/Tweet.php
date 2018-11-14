@@ -12,23 +12,28 @@ class Tweet extends Model
     protected $fillable = ['title', 'description', 'link', 'alias', 'content', 'introtext', 'pub_date'];
     protected $dates = ['pub_date'];
 
-    public function tweet_updates() {
+    public function tweet_updates()
+    {
         return $this->hasMany('App\Models\TweetUpdate');
     }
 
-    public function houses() {
+    public function houses()
+    {
         return $this->belongsToMany('App\Models\House', 'tweet_assignments');
     }
 
-    public function user_read_tweets() {
+    public function user_read_tweets()
+    {
         return $this->hasMany('App\Models\UserReadTweet');
     }
 
-    public function current_user_read() {
+    public function current_user_read()
+    {
         return $this->user_read_tweets()->where('user_id', Auth::user()->id)->first();
     }
 
-    public function is_unseen() {
+    public function is_unseen()
+    {
         $user = Auth::user();
 
         if (empty($user)) {
@@ -38,7 +43,8 @@ class Tweet extends Model
         return empty($this->current_user_read()) && $this->pub_date > $user->user_stat->last_tweet_read;
     }
 
-    public function getTimeLeftAttribute() {
+    public function getTimeLeftAttribute()
+    {
         $expires_at = $this->pub_date->addHours(24);
         $now = Carbon::now();
 
@@ -49,7 +55,8 @@ class Tweet extends Model
         return $output;
     }
 
-    public function getIsHouseBuiltAttribute() {
+    public function getIsHouseBuiltAttribute()
+    {
         $userId = Auth::user()->id;
         $houses = $this->houses;
         foreach ($houses as $house) {
@@ -58,6 +65,11 @@ class Tweet extends Model
             }
         }
         return false;
+    }
+
+    public function getFirstHouseAttribute()
+    {
+        return $this->houses()->first();
     }
 
     public function setPubDateAttribute($value)

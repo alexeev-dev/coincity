@@ -1,7 +1,7 @@
 <div class="js-log popup-log-reg{{ $errors->any() ? ' active' : '' }}">
     <a href="#" class="close js-closePopup"></a>
     <div class="log-reg">
-        <h3></h3>
+        <h3>Log in to your account</h3>
         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 

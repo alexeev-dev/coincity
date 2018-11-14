@@ -9,7 +9,10 @@
         <footer>
             <ul class="timer">
                 <li><img src="{{ asset($userHouse->house->icon) }}"></li>
-                <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $tweet->time_left }}</span></li>
+                @php $timeLeft = $tweet->time_left; @endphp
+                @if (!empty($timeLeft))
+                    <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $timeLeft }}</span></li>
+                @endif
             </ul>
             <ul class="btns">
                 @auth
