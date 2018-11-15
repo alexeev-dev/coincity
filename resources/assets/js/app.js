@@ -13,7 +13,7 @@ $('.scrollbar').scrollbar({
 });
 
 window.odometerOptions = {
-    format: '(.ddd)'
+    format: ' ddd'
 };
 
 $(document).ready(function() {

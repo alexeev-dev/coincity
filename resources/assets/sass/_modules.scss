@@ -782,19 +782,3 @@
 		display: none !important;
 	}
 }
-
-// odometer
-.odometer {
-	&-formatting {
-		&-mark {
-			color: transparent;
-			position: relative;
-
-			&:after {
-				content: '.';
-				color: #000000;
-				position: absolute; left: 0; bottom: 0;
-			}
-		}
-	}
-}
