@@ -21,6 +21,6 @@ class UserStat extends Model
         foreach ($user_houses as $user_house) {
             $sum += $user_house->money_per_hour;
         }
-        return $sum;
+        return number_format($sum, 0, '.', ' ');
     }
 }
