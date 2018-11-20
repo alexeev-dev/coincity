@@ -29,7 +29,25 @@
 
     @stack('styles-header')
 
+    <style>
+        .header .news div > ul > li {
+            background: #f2f2f2;
+        }
+        .header .news div > ul > li section p {
+            color:#777;
+        }
+
+    </style>
+
     <title>{{ config('app.name', 'Coincity') }}</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129496431-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-129496431-1');
+    </script>
 </head>
 
 <body>
