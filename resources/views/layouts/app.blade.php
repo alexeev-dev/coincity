@@ -36,10 +36,15 @@
         .header .news div > ul > li section p {
             color:#777;
         }
-
+        .house-info > ul > li section p {
+            color: #777;
+            font-size: 24px;
+            line-height: 28px;
+            font-family: robotocondensed-regular, sans-serif;
+        }
     </style>
 
-    <title>{{ config('app.name', 'Coincity') }}</title>
+    <title>{{ config('app.name', 'Cryptodales') }}</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129496431-1"></script>
     <script>

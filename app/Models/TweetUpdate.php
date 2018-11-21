@@ -29,7 +29,7 @@ class TweetUpdate extends Model
         if ($diffInDays >= 1 && $diffInDays < 7) {
             $output = $this->value / 2;
         } else if ($diffInDays >= 7) {
-            $output = $this->value / 10;
+            $output = 0;
         } else {
             $output = $this->value;
         }

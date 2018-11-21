@@ -55,7 +55,7 @@
                 </ul>
                 <ul class="btns">
                     @auth
-                        @if ($tweet->is_house_built
+                        @if ($tweet->is_house_built && !$tweet->is_old
                             && !empty($tweet->tweet_updates))
                             @foreach ($tweet->tweet_updates as $tweet_update)
                                 @if (count($tweet_update->current_user_houses()) == 0)

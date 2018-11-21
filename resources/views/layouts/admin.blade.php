@@ -27,7 +27,7 @@
 
     @stack('styles-header')
 
-    <title>{{ config('app.name', 'Coincity') }}</title>
+    <title>{{ config('app.name', 'Cryptodales') }}</title>
 </head>
 
 <body>

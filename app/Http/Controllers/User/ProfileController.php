@@ -25,14 +25,16 @@ class ProfileController extends Controller
     const TWEETS_SHOW_COUNT = 10;
     const MAX_TWEETS_SHOW_COUNT = 100;
 
-    public function switchSound() {
+    public function switchSound()
+    {
         $userStat = Auth::user()->user_stat;
         $userStat->sound = ($userStat->sound == 0 ? 1 : 0);
         $userStat->save();
-        return $userStat->sound == 0 ? 'Sound: off': 'Sound: on';
+        return $userStat->sound == 0 ? 'Sound: off' : 'Sound: on';
     }
 
-    public function changeName(Request $request) {
+    public function changeName(Request $request)
+    {
         $user = Auth::user();
         if (strlen($request->name) < 16) {
             $user->name = $request->name;
@@ -43,7 +45,8 @@ class ProfileController extends Controller
         }
     }
 
-    public function changeHousesState(Request $request) {
+    public function changeHousesState(Request $request)
+    {
         $user = Auth::user();
         $housesData = $request->houses;
 
@@ -89,7 +92,8 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function getUserHouseInfo(Request $request) {
+    public function getUserHouseInfo(Request $request)
+    {
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
@@ -156,7 +160,8 @@ class ProfileController extends Controller
         return $output;
     }
 
-    public function getMoreTweets(Request $request) {
+    public function getMoreTweets(Request $request)
+    {
         if (empty($request->tweets) || $request->tweets >= ProfileController::MAX_TWEETS_SHOW_COUNT) {
             abort(403);
         }
@@ -207,7 +212,8 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function getUserHouseInfoSmall(Request $request) {
+    public function getUserHouseInfoSmall(Request $request)
+    {
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
@@ -233,7 +239,8 @@ class ProfileController extends Controller
         return $output;
     }
 
-    public function gatherMoney(Request $request) {
+    public function gatherMoney(Request $request)
+    {
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
@@ -281,7 +288,8 @@ class ProfileController extends Controller
         return $output;
     }
 
-    public function updateHouse(Request $request) {
+    public function updateHouse(Request $request)
+    {
         $user = Auth::user();
 
         if (!isset($request->updateId)) {
@@ -297,7 +305,9 @@ class ProfileController extends Controller
         $housesToSend = [];
         if (!empty($tweetUpdate) && !empty($userHouses)) {
             foreach ($userHouses as $userHouse) {
-                if (!$userHouse->user_house_updates()->where('tweet_update_id', $tweetUpdate->id)->exists()) {
+                if (!$userHouse->user_house_updates()->where('tweet_update_id', $tweetUpdate->id)->exists()
+                    && $tweetUpdate->actual_value > 0) {
+
                     $userHouseUpdate = new UserHouseUpdate();
                     $userHouseUpdate->tweet_update_id = $tweetUpdate->id;
                     $userHouseUpdate->user_house_id = $userHouse->id;
@@ -323,7 +333,8 @@ class ProfileController extends Controller
         return $output;
     }
 
-    public function addToFav(Request $request) {
+    public function addToFav(Request $request)
+    {
         $user = Auth::user();
 
         if (!isset($request->houseId)) {
@@ -345,7 +356,8 @@ class ProfileController extends Controller
         return $output;
     }
 
-    public function getAdv(Request $request) {
+    public function getAdv(Request $request)
+    {
         $user = Auth::user();
 
         $builtLast24h = UserHouse::where('user_id', $user->id)->where('created_at', '>',
@@ -376,7 +388,8 @@ class ProfileController extends Controller
         return $output;
     }
 
-    public function updateAll() {
+    public function updateAll()
+    {
         $user = Auth::user();
 
         $userHouseIds = $user->user_houses()
@@ -391,7 +404,8 @@ class ProfileController extends Controller
         return $output;
     }
 
-    private function getNewTweetCount() {
+    private function getNewTweetCount()
+    {
         $user = Auth::user();
         $newTweetCount = 0;
 
@@ -419,7 +433,8 @@ class ProfileController extends Controller
         return $newTweetCount;
     }
 
-    public function getStats(Request $request) {
+    public function getStats(Request $request)
+    {
         $user = Auth::user();
 
         $html = view('partials.ajax_content.stats', ['userHouses' => $user->user_houses])->render();

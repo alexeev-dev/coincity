@@ -67,6 +67,11 @@ class Tweet extends Model
         return false;
     }
 
+    public function getIsOldAttribute()
+    {
+        return $this->pub_date < Carbon::now()->subDays(7);
+    }
+
     public function getFirstHouseAttribute()
     {
         return $this->houses()->first();
