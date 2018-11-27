@@ -360,22 +360,22 @@
 			min-width: 320px; padding: 0 15px;
 		}
 
-		&:hover {
-			footer {
-				.houses-price {
-					.info, .replace {
-						transform: scale(1);				
-					}
-					.info {
-						animation: houseButtonsBounce 0.3s 1 ease-out;	
-					}
-					.replace {
-						transition: transform 0s 0.3s ease-out;
-						animation: houseButtonsBounce 0.3s 0.3s 1 ease-out;	
-					}
-				}
-			}
-		}
+		// &:hover {
+		// 	footer {
+		// 		.houses-price {
+		// 			.info, .replace {
+		// 				transform: scale(1);				
+		// 			}
+		// 			.info {
+		// 				animation: houseButtonsBounce 0.3s 1 ease-out;	
+		// 			}
+		// 			.replace {
+		// 				transition: transform 0s 0.3s ease-out;
+		// 				animation: houseButtonsBounce 0.3s 0.3s 1 ease-out;	
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		& > header,
 		& > section,
@@ -543,7 +543,7 @@
 				display: flex; align-items: center; justify-content: center;
 
 				.info, .replace {
-					width: 34px; flex-shrink: 0; transform: scale(0);
+					width: 34px; flex-shrink: 0; // transform: scale(0);
 
 					img {
 						width: 100%;
@@ -558,11 +558,11 @@
 
 
 					&:hover {
-						transform: translateY(-2px);
+						// transform: translateY(-2px);
 						box-shadow: 0 4px 0 0 #4990ad;
 
 						&:active {
-							transform: translateY(2px);
+							// transform: translateY(2px);
 							box-shadow: 0 0px 0 0 #4990ad;
 						}
 					}
