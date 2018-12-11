@@ -8,6 +8,8 @@ if (countSeconds > 0) {
     var countDate = new Date(new Date().getTime() + countSeconds * 1000);
     $('.js-adv-cd').countdown(countDate, function (event) {
         $(this).html(event.strftime('%H:%M<span>:%S</span>'));
+    }).on('finish.countdown', function() {
+        $('.no-dnd').removeClass('no-dnd');
     });
 }
 
@@ -390,6 +392,8 @@ $(document).ready(function() {
                 var countDate = new Date(new Date().getTime() + response.data.timeLeft * 1000);
                 $('.js-adv-cd').countdown(countDate, function (event) {
                     $(this).html(event.strftime('%H:%M<span>:%S</span>'));
+                }).on('finish.countdown', function() {
+                    $('.no-dnd').removeClass('no-dnd');
                 });
             }
 

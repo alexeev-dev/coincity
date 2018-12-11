@@ -5,12 +5,12 @@
         <div class="popup-log-reg active">
             <a href="{{ route('home') }}" class="close"></a>
             <div class="log-reg">
-                <p>Reset Password</p>
+                <p>FORGOT YOUR PASSWORD?</p>
 
                 @if (session('status'))
-                    <div class="alert alert-success">
+                    <p>
                         {{ session('status') }}
-                    </div>
+                    </p>
                 @endif
 
                 <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
@@ -29,7 +29,7 @@
 
                     <footer>
                         <button type="submit" class="btn">
-                            Send Password Reset Link
+                            RESET YOUR PASSWORD
                         </button>
                     </footer>
                 </form>

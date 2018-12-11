@@ -18,9 +18,8 @@ class ProfileController extends Controller
 {
     const SERVER_PING_TIME = 10;
 
-    const SECONDS_TILL_NEXT_MONEY = 60;
-    const HOURS_PER_ADV_CLICK = 8;
-    const SECONDS_PER_MONEY_GATHER = 60;
+    const HOURS_PER_ADV_CLICK = 1;
+    const SECONDS_PER_MONEY_GATHER = 600;
 
     const TWEETS_SHOW_COUNT = 10;
     const MAX_TWEETS_SHOW_COUNT = 100;
@@ -259,7 +258,7 @@ class ProfileController extends Controller
             }
             $secondsPassed = $now->diffInSeconds($startPoint);
 
-            if ($secondsPassed > $this::SECONDS_TILL_NEXT_MONEY) {
+            if ($secondsPassed > $this::SECONDS_PER_MONEY_GATHER) {
                 $moneyEarned = floor($userHouse->money_per_hour * $secondsPassed / 3600);
                 if ($moneyEarned > $userHouse->max_money) {
                     $moneyEarned = $userHouse->max_money;

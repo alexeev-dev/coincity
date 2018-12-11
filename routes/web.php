@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-App::setLocale('ru');
+App::setLocale('en');
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/news', 'HomeController@getNews');
