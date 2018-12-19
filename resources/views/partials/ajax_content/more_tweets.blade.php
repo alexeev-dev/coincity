@@ -8,7 +8,11 @@
         </section>
         <footer>
             <ul class="timer">
-                <li><img src="{{ asset($tweet->first_house->icon) }}"></li>
+                <li>
+                    @foreach ($tweet->houses as $house)
+                        <img src="{{ asset($house->icon) }}">
+                    @endforeach
+                </li>
                 @php $timeLeft = $tweet->time_left; @endphp
                 @if (!empty($timeLeft))
                     <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $timeLeft }}</span></li>

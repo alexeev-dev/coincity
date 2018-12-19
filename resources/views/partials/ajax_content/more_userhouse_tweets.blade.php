@@ -8,7 +8,11 @@
         </section>
         <footer>
             <ul class="timer">
-                <li><img src="{{ asset($userHouse->house->icon) }}"></li>
+                <li>
+                    @foreach ($tweet->houses as $house)
+                        <img src="{{ asset($house->icon) }}">
+                    @endforeach
+                </li>
                 @php $timeLeft = $tweet->time_left; @endphp
                 @if (!empty($timeLeft))
                     <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $timeLeft }}</span></li>
@@ -21,7 +25,7 @@
                         @foreach ($tweet->tweet_updates as $tweet_update)
                             @if (count($tweet_update->current_user_houses()) == 0)
                                 <li>
-                                    <a data-update-id="{{ $tweet_update->id }}" href="#"
+                                    <a data-house-id="{{ $userHouse->house->id }}" data-update-id="{{ $tweet_update->id }}" href="#"
                                        class="js-update{{ $tweet_update->update_class }}">{{ $tweet_update->value_text }}</a>
                                 </li>
                             @endif

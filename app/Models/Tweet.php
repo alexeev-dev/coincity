@@ -22,16 +22,6 @@ class Tweet extends Model
         return $this->belongsToMany('App\Models\House', 'tweet_assignments');
     }
 
-    public function user_read_tweets()
-    {
-        return $this->hasMany('App\Models\UserReadTweet');
-    }
-
-    public function current_user_read()
-    {
-        return $this->user_read_tweets()->where('user_id', Auth::user()->id)->first();
-    }
-
     public function is_unseen()
     {
         $user = Auth::user();
@@ -40,7 +30,7 @@ class Tweet extends Model
             return true;
         }
 
-        return empty($this->current_user_read()) && $this->pub_date > $user->user_stat->last_tweet_read;
+        return $this->pub_date > $user->user_stat->last_tweet_read;
     }
 
     public function getTimeLeftAttribute()

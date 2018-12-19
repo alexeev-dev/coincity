@@ -14,7 +14,11 @@
             </section>
             <footer>
                 <ul class="timer">
-                    <li><img src="{{ asset($tweet->first_house->icon) }}"></li>
+                    <li>
+                        @foreach ($tweet->houses as $house)
+                            <img src="{{ asset($house->icon) }}">
+                        @endforeach
+                    </li>
                     @php $timeLeft = $tweet->time_left; @endphp
                     @if (!empty($timeLeft))
                         <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $timeLeft }}</span></li>
@@ -22,8 +26,7 @@
                 </ul>
                 <ul class="btns">
                     @auth
-                        @if ($tweet->is_house_built && !$tweet->is_old
-                            && !empty($tweet->tweet_updates))
+                        @if ($tweet->is_house_built && !$tweet->is_old && !empty($tweet->tweet_updates))
                             @foreach ($tweet->tweet_updates as $tweet_update)
                                 @if (count($tweet_update->current_user_houses()) == 0)
                                     <li>

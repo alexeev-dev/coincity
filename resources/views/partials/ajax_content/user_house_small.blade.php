@@ -5,10 +5,10 @@
     <div class="info-full">
         <header>
             <figure>
-                <img src="{{ asset($userHouse->house->image) }}">
+                <img src="{{ asset($house->image) }}">
                 <figcaption>
-                    <h2>{{ $userHouse->house->name }}</h2>
-                    {!! $userHouse->house->content !!}
+                    <h2>{{ $house->name }}</h2>
+                    {!! $house->content !!}
                 </figcaption>
             </figure>
         </header>

@@ -8,7 +8,6 @@ use App\Models\UserHouseUpdate;
 use App\Models\TweetUpdate;
 use App\Models\House;
 use App\Models\UserHouse;
-use App\Models\UserReadTweet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -129,23 +128,13 @@ class ProfileController extends Controller
         $userHouse->save();
 
         // get tweets
-        $tweets = $userHouse->house->tweets()
+        $house = $userHouse->house;
+        $tweets = $house->tweets()
             ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take($this::TWEETS_SHOW_COUNT + 1)->get();
-
-        // mark as seen
-        foreach ($tweets as $tweet) {
-            $userReadTweet = $tweet->current_user_read();
-            if (empty($userReadTweet)) {
-                $userReadTweet = new UserReadTweet();
-                $userReadTweet->user_id = $user->id;
-                $userReadTweet->tweet_id = $tweet->id;
-                $userReadTweet->status = 1;
-                $userReadTweet->save();
-            }
-        }
 
         $html = view('partials.ajax_content.house', [
             'userHouse' => $userHouse,
+            'houseId' => $house->id,
             'pageSize' => ProfileController::TWEETS_SHOW_COUNT,
             'tweets' => $tweets
         ])->render();
@@ -188,18 +177,6 @@ class ProfileController extends Controller
             abort(403);
         }
 
-        // mark as seen
-        foreach ($tweets as $tweet) {
-            $userReadTweet = $tweet->current_user_read();
-            if (empty($userReadTweet)) {
-                $userReadTweet = new UserReadTweet();
-                $userReadTweet->user_id = $user->id;
-                $userReadTweet->tweet_id = $tweet->id;
-                $userReadTweet->status = 1;
-                $userReadTweet->save();
-            }
-        }
-
         $html = view('partials.ajax_content.more_userhouse_tweets', [
             'userHouse' => $userHouse,
             'tweets' => $tweets,
@@ -219,23 +196,21 @@ class ProfileController extends Controller
             abort(403);
         }
 
-        $houseId = $request->houseId;
-        $userHouse = $user->user_houses()->where('house_id', $houseId)->first();
-
+        $userHouse = $user->user_houses()->where('house_id', $request->houseId)->first();
         if (empty($userHouse)) {
-            $house = House::where('id', $houseId)->first();
-            if (!empty($house)) {
-                $html = view('partials.ajax_content.house_small', ['house' => $house])->render();
-                $output = json_encode(['html' => $html]);
-            } else {
-                abort(403);
-            }
+            $house = House::where('id', $request->houseId)->first();
         } else {
-            $html = view('partials.ajax_content.user_house_small', ['userHouse' => $userHouse])->render();
-            $output = json_encode(['html' => $html]);
+            $house = $userHouse->house;
         }
 
-        return $output;
+        if (!empty($house)) {
+            $html = view('partials.ajax_content.house_small',
+                ['house' => $house]
+            )->render();
+        } else {
+            abort(403);
+        }
+        return json_encode(['html' => $html]);
     }
 
     public function gatherMoney(Request $request)
@@ -296,8 +271,12 @@ class ProfileController extends Controller
         }
 
         $updateId = $request->updateId;
-
         $tweetUpdate = TweetUpdate::where('id', $updateId)->first();
+
+        if (empty($tweetUpdate)) {
+            abort(403);
+        }
+
         $userHouses = UserHouse::whereIn('house_id', $tweetUpdate->tweet->houses()->pluck('houses.id'))
             ->where('user_id', $user->id)->get();
 
@@ -412,16 +391,12 @@ class ProfileController extends Controller
             $lastTweetRead = $user->user_stat->last_tweet_read;
 
             if (empty($lastTweetRead)) {
-                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
-                    ->whereDoesntHave('user_read_tweets', function ($query) {
-                        $query->where('user_id', Auth::user()->id);
-                    })->count();
+                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->orderBy('id', 'desc')
+                    ->take(ProfileController::MAX_TWEETS_SHOW_COUNT)->count();
             } else {
                 $newTweetCount = Tweet::where('pub_date', '>', $lastTweetRead)
-                    ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
-                    ->whereDoesntHave('user_read_tweets', function ($query) {
-                        $query->where('user_id', Auth::user()->id);
-                    })->count();
+                    ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')
+                    ->take(ProfileController::MAX_TWEETS_SHOW_COUNT)->count();
             }
 
             if ($newTweetCount > 99) {

@@ -2,7 +2,7 @@
     <img src="{{ asset($userHouse->house->image_small) }}">
     <figcaption>
         <ul>
-            <li class="time">
+            <li class="time" data-house-id="{{ $houseId }}">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      width="98.76px" height="92.215px" viewBox="0 0 98.76 92.215"
@@ -47,7 +47,11 @@
             </section>
             <footer>
                 <ul class="timer">
-                    <li><img src="{{ asset($userHouse->house->icon) }}"></li>
+                    <li>
+                        @foreach ($tweet->houses as $house)
+                            <img src="{{ asset($house->icon) }}">
+                        @endforeach
+                    </li>
                     @php $timeLeft = $tweet->time_left; @endphp
                     @if (!empty($timeLeft))
                     <li><img src="{{ asset('img/header/news/time_icon.svg') }}"><span>{{ $timeLeft }}</span></li>
@@ -55,8 +59,7 @@
                 </ul>
                 <ul class="btns">
                     @auth
-                        @if ($tweet->is_house_built && !$tweet->is_old
-                            && !empty($tweet->tweet_updates))
+                        @if ($tweet->is_house_built && !$tweet->is_old && !empty($tweet->tweet_updates))
                             @foreach ($tweet->tweet_updates as $tweet_update)
                                 @if (count($tweet_update->current_user_houses()) == 0)
                                     <li>
@@ -82,7 +85,7 @@
     @endforeach
     @if (count($tweets) > $pageSize)
         <li class="more">
-            <a href="#" class="load_more js-more-house btn" data-house-id="{{ $userHouse->house->id }}">LOAD MORE</a>
+            <a href="#" class="load_more js-more-house btn" data-house-id="{{ $houseId }}">LOAD MORE</a>
         </li>
     @endif
 </ul>

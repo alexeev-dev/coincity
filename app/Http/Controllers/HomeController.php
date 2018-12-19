@@ -7,7 +7,6 @@ use App\Models\House;
 use App\Models\Page;
 use App\Models\Tweet;
 use App\Models\UserHouse;
-use App\Models\UserReadTweet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -126,18 +125,6 @@ class HomeController extends Controller
             return view('errors.404');
         }
 
-        $user = Auth::user();
-        if (!empty($user)) {
-            $userReadTweet = $singleTweetPage->current_user_read();
-            if (empty($userReadTweet)) {
-                $userReadTweet = new UserReadTweet();
-                $userReadTweet->user_id = $user->id;
-                $userReadTweet->tweet_id = $singleTweetPage->id;
-                $userReadTweet->status = 2;
-                $userReadTweet->save();
-            }
-        }
-
         return view('single_page', [
             'content' => $singleTweetPage->content
         ]);
@@ -165,16 +152,12 @@ class HomeController extends Controller
             $lastTweetRead = $user->user_stat->last_tweet_read;
 
             if (empty($lastTweetRead)) {
-                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
-                    ->whereDoesntHave('user_read_tweets', function ($query) {
-                        $query->where('user_id', Auth::user()->id);
-                    })->count();
+                $newTweetCount = Tweet::orderBy('pub_date', 'desc')->orderBy('id', 'desc')
+                    ->take(ProfileController::MAX_TWEETS_SHOW_COUNT)->count();
             } else {
                 $newTweetCount = Tweet::where('pub_date', '>', $lastTweetRead)
-                    ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')->take(ProfileController::TWEETS_SHOW_COUNT)
-                    ->whereDoesntHave('user_read_tweets', function ($query) {
-                        $query->where('user_id', Auth::user()->id);
-                    })->count();
+                    ->orderBy('pub_date', 'desc')->orderBy('id', 'desc')
+                    ->take(ProfileController::MAX_TWEETS_SHOW_COUNT)->count();
             }
 
             if ($newTweetCount > 99) {
