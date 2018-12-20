@@ -57,8 +57,8 @@
 
 <body>
 <!--[if lt IE 10]>
-<p class="browsehappy">Вы используете <strong>УСТАРЕВШИЙ Internet Explorer</strong> браузер. Пожалуйста, <a
-        href="http://browsehappy.com/">обновите ваш Браузер</a> чтобы увидеть больше возможностей на сайтах!</p>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser.
+ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <div class="preloader"></div>
@@ -86,12 +86,21 @@
                                        class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>
                                 </li>
                             @endauth
+                            <!--
                             <li>
                                 <a href="/page/about">About</a>
                             </li>
                             <li>
                                 <a href="/page/rules">Rules</a>
                             </li>
+                            -->
+                            <li>
+                                <a href="" class="js-advertising">Advertising</a>
+                            </li>
+                            <li>
+                                <a href="" class="js-feedback">Feedback</a>
+                            </li>
+
                             @auth
                                 <li>
                                     <a href="" class="js-stats">Statistics</a>
@@ -156,7 +165,11 @@
 
 </div>
 
-@stack('popups')
+<div class="popup{{ $errors->any() ? ' active' : '' }}">
+    @stack('popups')
+
+    @include('partials.popups.static_popups')
+</div>
 
 <script src="{{ compile_assets('js/app.js') }}"></script>
 

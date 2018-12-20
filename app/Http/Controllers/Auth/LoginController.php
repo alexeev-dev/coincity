@@ -22,10 +22,10 @@ class LoginController extends Controller {
     }
 
     protected function attemptLogin(Request $request) {
-        $is_confirmed = $this->users->isConfirmed($request->input('email'));
 
-        if(!is_null($is_confirmed) && !$is_confirmed) {
+        if (!($this->users->isConfirmed($request->email))) {
             $request->session()->flash('not_confirmed', true);
+
             throw ValidationException::withMessages([
                 'email' => [trans('auth.not_confirmed')]
             ]);

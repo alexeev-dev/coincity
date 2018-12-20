@@ -123,4 +123,36 @@ $(document).ready(function() {
 
         return false;
     });
+
+    // feedback
+    $('.js-sendFeedback').click(function() {
+        if (busyCheck()) {
+            return false;
+        }
+
+        const self = $(this);
+        const popup = $('.popup');
+
+        let feedbackEl = popup.find('#feedback');
+        if (feedbackEl.val() === '') {
+            return true;
+        }
+
+        popup.find('.popup-page-content.feedback .page-content').hide();
+        popup.addClass('loading');
+
+        axios.post('/feedback', {
+            feedback: feedbackEl.val()
+        }).then(function (response) {
+
+            popup.removeClass('loading');
+            feedbackEl.val('');
+            popup.find('.popup-page-content.feedback .answer').html(response.data.html).show();
+
+        }).catch(function (error) {
+            popup.find('.popup-page-content.feedback .page-content').html(commonError).show();
+        });
+
+        return false;
+    });
 });

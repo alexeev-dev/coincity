@@ -209,14 +209,12 @@
 @endsection
 
 @push('popups')
-    <div class="popup{{ $errors->any() ? ' active' : '' }}">
-        @auth
-            @include('partials.popups.gameplay_popups')
-        @endauth
+    @auth
+        @include('partials.popups.gameplay_popups')
+    @endauth
 
-        @guest
-            @include('partials.popups.login_popup')
-            @include('partials.popups.reg_popup')
-        @endguest
-    </div>
+    @guest
+        @include('partials.popups.login_popup')
+        @include('partials.popups.reg_popup')
+    @endguest
 @endpush

@@ -7,7 +7,6 @@ use App\User;
 use App\Services\UserService;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -25,20 +24,11 @@ class RegisterController extends Controller {
         $this->middleware('guest');
     }
 
-    protected function validator(array $data) {
-        return Validator::make($data, [
+    public function register(Request $request) {
+        $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
-    }
-
-    public function register(Request $request) {
-        $validator = $this->validator($request->all());
-        if ($validator->fails()) {
-            return redirect('/register')
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         $user = User::create([
             'email' => $request['email'],
@@ -61,27 +51,25 @@ class RegisterController extends Controller {
 
     public function verification(Request $request) {
         $email = '';
-        if($request->has('email')) {
+        if ($request->has('email')) {
             $email = $request->input('email');
         }
 
-        return view('auth.resend_verification', compact('email'));
+        return view('auth.resend_verification', ['email' => $email]);
     }
 
     public function resendVerification(Request $request) {
-        $rules = array(
+        $request->validate([
             'email' => 'required|string|email'
-        );
-
-        Validator::make($request->all(), $rules)->validate();
+        ]);
 
         $user = $this->userService->byEmail($request->input('email'));
 
-        if (is_null($user)) {
+        if (empty($user)) {
             throw ValidationException::withMessages([
                 'email' => [trans('auth.email_not_exist')]
             ]);
-        } elseif($user->confirmed) {
+        } else if ($user->confirmed) {
             throw ValidationException::withMessages([
                 'email' => [trans('auth.already_confirmed')]
             ]);
@@ -93,15 +81,16 @@ class RegisterController extends Controller {
         return redirect($this->redirectTo);
     }
 
-    public function confirm($confirmation_code) {
-        if (!$confirmation_code) {
+    public function confirm($confirmationCode) {
+        if (!$confirmationCode) {
             abort(404);
         }
 
-        if ($this->userService->confirmUser($confirmation_code)) {
+        if ($this->userService->confirmUser($confirmationCode)) {
             return redirect('/register/verified');
+
         } else {
-            session()->flash('message', trans('auth.user_already_confirmed'));
+            // session()->flash('message', trans('auth.user_already_confirmed'));
             return redirect('/');
         }
     }

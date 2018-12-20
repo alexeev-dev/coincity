@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 App::setLocale('en');
@@ -11,11 +12,13 @@ Route::post('/more-news', 'HomeController@moreNews');
 Route::get('/page/{alias}', 'HomeController@getPage');
 Route::get('/news/{alias}', 'HomeController@singleNews');
 
+Route::post('/feedback', 'HomeController@sendFeedback');
+
 Route::get('/admin', 'Admin\AdminController@index')->name('admin');
 Route::post('/admin', 'Admin\AdminController@update')->name('admin_update');
 Route::get('/editor', 'Admin\AdminController@editor');
 
-Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');
     Route::post('change-name', 'User\ProfileController@changeName');
     Route::post('change-houses-state', 'User\ProfileController@changeHousesState');
@@ -36,7 +39,7 @@ Route::group([ 'prefix' => 'user', 'middleware' => 'auth'], function() {
 
 Auth::routes();
 
-Route::group([ 'prefix' => 'register', 'middleware' => 'guest'], function() {
+Route::group(['prefix' => 'register', 'middleware' => 'guest'], function() {
     Route::get('resend-verification', 'Auth\RegisterController@verification')->name('resend_verification');
     Route::post('resend-verification', 'Auth\RegisterController@resendVerification')->name('resend_verification');
     Route::get('verify/{confirmationCode}', 'Auth\RegisterController@confirm')->name('verify_email');

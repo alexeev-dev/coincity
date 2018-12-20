@@ -28,7 +28,6 @@ class UserService {
 
     public function isConfirmed($email) {
         $user = User::where('email', strtolower($email))->first();
-
-        return $user ? $user->confirmed == 1 : null;
+        return !empty($user) ? $user->confirmed == 1 : false;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\User\ProfileController;
+use App\Mail\FeedbackMessage;
 use App\Models\House;
 use App\Models\Page;
 use App\Models\Tweet;
@@ -10,6 +11,7 @@ use App\Models\UserHouse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -67,10 +69,7 @@ class HomeController extends Controller
             abort(403);
         }
 
-        $newTweetCount = 0;
-        if (!empty($user)) {
-            $newTweetCount = $this->getNewTweetCount();
-        }
+        $newTweetCount = $this->getNewTweetCount();
 
         $html = view('partials.ajax_content.tweets', [
             'tweets' => $tweets,
@@ -140,6 +139,19 @@ class HomeController extends Controller
 
         return view('single_page', [
             'content' => $page->content
+        ]);
+    }
+
+    public function sendFeedback(Request $request)
+    {
+        if (empty($request->feedback)) {
+            abort(403);
+        }
+
+        Mail::to('feedback@cryptodales.com')->queue(new FeedbackMessage($request->feedback));
+
+        return json_encode([
+            'html' => '<p>Thank you. Your message has been sent.</p>'
         ]);
     }
 

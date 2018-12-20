@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="popup-page-content">
+<div class="popup-page-content single-page">
     <div class="page-content">
     </div>
     <a href="#" class="close js-closePopup"></a>

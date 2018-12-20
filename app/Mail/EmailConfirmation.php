@@ -12,21 +12,10 @@ class EmailConfirmation extends Mailable
 
     public $confirmation_code;
 
-    /**
-     * Create a new message instance.
-     *
-     * @param $name
-     * @param $confirmation_code
-     */
     public function __construct($confirmation_code) {
         $this->confirmation_code = $confirmation_code;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this->subject('Проверка почтового адреса')

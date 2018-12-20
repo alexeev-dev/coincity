@@ -377,16 +377,16 @@ $(document).ready(function() {
         const self = $(this);
         const popup = $('.popup');
 
-        $('.popup-page-content, .popup').addClass('active');
+        $('.popup-page-content.single-page, .popup').addClass('active');
 
-        popup.find('.page-content').empty();
+        popup.find('.popup-page-content.single-page .page-content').empty();
         popup.addClass('loading');
 
         axios.post('/user/adv', {
         }).then(function (response) {
 
             popup.removeClass('loading');
-            popup.find('.page-content').html(response.data.html);
+            popup.find('.popup-page-content.single-page .page-content').html(response.data.html);
 
             if (response.data.timeLeft === 0) {
                 $('.js-adv-cd').data('countdowndate', '');
@@ -401,7 +401,7 @@ $(document).ready(function() {
             }
 
         }).catch(function (error) {
-            popup.find('.page-content').html(commonError);
+            popup.find('.popup-page-content.single-page .page-content').html(commonError);
         });
 
         return false;
@@ -425,7 +425,7 @@ $(document).ready(function() {
             par.append(response.data.html);
 
         }).catch(function (error) {
-            popup.find('.page-content').html(commonError);
+            // ...
         });
 
         return false;
@@ -450,7 +450,7 @@ $(document).ready(function() {
             par.append(response.data.html);
 
         }).catch(function (error) {
-            popup.find('.page-content').html(commonError);
+            // ...
         });
 
         return false;
@@ -478,6 +478,38 @@ $(document).ready(function() {
 
         }).catch(function (error) {
             popup.find('.statistics').html(commonError);
+        });
+
+        return false;
+    });
+
+    // feedback
+    $('.js-sendFeedback').click(function() {
+        if (busyCheck()) {
+            return false;
+        }
+
+        const self = $(this);
+        const popup = $('.popup');
+
+        let feedbackEl = popup.find('#feedback');
+        if (feedbackEl.val() === '') {
+            return true;
+        }
+
+        popup.find('.popup-page-content.feedback .page-content').hide();
+        popup.addClass('loading');
+
+        axios.post('/feedback', {
+            feedback: feedbackEl.val()
+        }).then(function (response) {
+
+            popup.removeClass('loading');
+            feedbackEl.val('');
+            popup.find('.popup-page-content.feedback .answer').html(response.data.html).show();
+
+        }).catch(function (error) {
+            popup.find('.popup-page-content.feedback .page-content').html(commonError).show();
         });
 
         return false;

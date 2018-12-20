@@ -49,6 +49,38 @@ $(document).ready(function() {
         $('.js-reg, .popup').addClass('active');
     });
 
+    // advertising
+    $('.js-advertising').click(function(e) {
+        e.preventDefault();
+
+        $('.app').removeClass('active-settings');
+        $('.js-settings').removeClass('active');
+
+        $('.popup-page-content.advertising, .popup').addClass('active');
+    });
+
+    $('.js-copy').click(function(e) {
+        e.preventDefault();
+
+        let advEl = $('#adv-email');
+        advEl.select();
+        document.execCommand("copy");
+
+        alert(advEl.val() + ' copied to clipboard');
+    });
+
+    // feedback
+    $('.js-feedback').click(function(e) {
+        e.preventDefault();
+
+        $('.app').removeClass('active-settings');
+        $('.js-settings').removeClass('active');
+
+        $('.popup-page-content.feedback .answer').empty().hide();
+        $('.popup-page-content.feedback .page-content').show();
+        $('.popup-page-content.feedback, .popup').addClass('active');
+    });
+
     // footer list sorting
     footerListSort();
 
