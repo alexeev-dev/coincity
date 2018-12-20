@@ -7,5 +7,5 @@ return [
     'email_not_exist' => 'Email does not exist.',
 
     'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.'
 ];

@@ -21,7 +21,7 @@ class EmailResetPassword extends Mailable
     {
         return $this->subject('Сброс пароля')
             ->view('mail.reset_password')->with([
-            'token' => $this->token
-        ]);
+                'token' => $this->token
+            ]);
     }
 }
