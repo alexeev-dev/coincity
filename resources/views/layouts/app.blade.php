@@ -171,6 +171,8 @@
     @include('partials.popups.static_popups')
 </div>
 
+<div class="news-alert"></div>
+
 <script src="{{ compile_assets('js/app.js') }}"></script>
 
 @guest
