@@ -170,19 +170,21 @@ $(document).ready(function() {
     });
 
     // news menu
-    $('.js-news').click(function(e) {
+    $('.js-news, .news-alert').click(function(e) {
         if (busyCheck()) {
             return false;
         }
 
-        $('.app').toggleClass('active-news');
-        $(this).toggleClass('active');
+        $('.news-alert').fadeOut();
 
-        const popup = $(this).siblings('.news-inner');
+        $('.app').toggleClass('active-news');
+        $('.js-news').toggleClass('active');
+
+        const popup = $('.news-inner');
         popup.empty();
         popup.addClass('loading');
 
-        $(this).find('span').hide();
+        $('.js-news').find('span').hide();
 
         axios.post('/news', {
         }).then(function (response) {

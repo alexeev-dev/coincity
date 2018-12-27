@@ -171,7 +171,9 @@
     @include('partials.popups.static_popups')
 </div>
 
-<div class="news-alert"></div>
+@if (!empty($newTweetCount))
+    <div class="news-alert"></div>
+@endif
 
 <script src="{{ compile_assets('js/app.js') }}"></script>
 
