@@ -411,12 +411,12 @@
 
 				&.collected {
 					pointer-events: none;
-					animation: getCoins_translate 0.8s 1 ease-out;
+					animation: getCoins_translate 1.4s 1 ease;
 					span {
-						animation: getCoins_opacity 0.8s 1 ease-out;
+						animation: getCoins_opacity 1.4s 1 ease;
 					}
 					a {
-						animation: getCoins_opacity 0.8s 1 ease-out;
+						animation: getCoins_opacity 1.4s 1 ease;
 						opacity: 0;
 					}
 				}
@@ -788,4 +788,9 @@
 	width: 90px; height: 86px; cursor: pointer;
 	position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999;
 	background: url('../img/header/message-news.png') 0 0 no-repeat;
+
+	animation: getCoins_opacity 1s infinite;
+	// opacity: 0;
+
+	&:hover {opacity: 1 !important; animation: getCoins_opacity 1s 1;}
 }
