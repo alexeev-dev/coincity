@@ -14,10 +14,6 @@ Route::get('/news/{alias}', 'HomeController@singleNews');
 
 Route::post('/feedback', 'HomeController@sendFeedback');
 
-Route::get('/admin', 'Admin\AdminController@index')->name('admin');
-Route::post('/admin', 'Admin\AdminController@update')->name('admin_update');
-Route::get('/editor', 'Admin\AdminController@editor');
-
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('switch-sound', 'User\ProfileController@switchSound');
     Route::post('change-name', 'User\ProfileController@changeName');
@@ -51,6 +47,18 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest'], function() {
     });
 });
 
+Route::get('/admin', 'Admin\Auth\LoginController@showLoginForm');
+Route::post('/admin', 'Admin\Auth\LoginController@login')->name('admin_login');
+Route::get('/admin_logout', 'Admin\Auth\LoginController@logout')->name('admin_logout');
+
+Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+    Route::get('dashboard', 'Admin\DashboardController@index')->name('admin_dashboard');
+
+    Route::get('loader', 'Admin\LoaderController@index')->name('admin_loader');
+    Route::post('loader', 'Admin\LoaderController@update')->name('admin_loader_update');
+
+    Route::get('editor', 'Admin\DashboardController@editor')->name('admin_editor');;
+});
 
 
 

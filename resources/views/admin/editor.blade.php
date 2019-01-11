@@ -18,3 +18,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts-footer')
+    <script src="{{ compile_assets('js/editor.js') }}"></script>
+@endpush

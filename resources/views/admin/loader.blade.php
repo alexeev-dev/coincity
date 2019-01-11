@@ -7,13 +7,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Administration</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('admin_update') }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{ route('admin_loader_update') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
+                                <label for="password" class="col-md-4 control-label">Password*</label>
                                 <div class="col-md-6">
-                                    <input id="password" type="text" class="form-control" name="password">
+                                    <input id="password" type="text" class="form-control" name="password" required>
 
                                     @if ($errors->has('password'))
                                     <span class="help-block">

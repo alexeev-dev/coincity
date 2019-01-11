@@ -16,13 +16,6 @@
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta property="og:url" content=""/>
-    <meta property="og:type" content=""/>
-    <meta property="og:title" content="Title"/>
-    <meta property="og:description" content="Description"/>
-    <meta property="og:image" content=""/>
-    <link rel="image_src" href="">
-
     <link href="{{ compile_assets('css/bootstrap.min.css') }}" rel="stylesheet">
 
     @stack('styles-header')
@@ -30,7 +23,59 @@
     <title>{{ config('app.name', 'Cryptodales') }}</title>
 </head>
 
-<body>
+<body style="font-size:13px">
+
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#app-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url('/') }}">
+                {{ config('app.name', 'Cryptodales') }}
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <ul class="nav navbar-nav">
+                &nbsp;
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @auth('admin')
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            {{ Auth::guard('admin')->user()->email }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('admin_dashboard') }}">
+                                    Сводка
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin_loader') }}">
+                                    Загрузчик
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin_editor') }}">
+                                    Редактор
+                                </a>
+                            </li>
+                            <li><a href="{{ route('admin_logout') }}">Выйти</a></li>
+                        </ul>
+                    </li>
+                @endauth
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div id="app" class="main-container" style="padding:30px 0">
     @if ( session('message')  )

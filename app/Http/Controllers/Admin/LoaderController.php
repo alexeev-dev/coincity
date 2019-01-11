@@ -13,14 +13,10 @@ use DateTime;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class AdminController extends Controller
+class LoaderController extends Controller
 {
     public function index() {
         return view('admin.loader');
-    }
-
-    public function editor() {
-        return view('admin.editor');
     }
 
     /**
@@ -55,7 +51,7 @@ class AdminController extends Controller
             session()->flash('success-message', 'Data loaded successfully');
         }
 
-        return redirect(route('admin'));
+        return redirect(route('admin_loader'));
     }
 
     private function loadHouses($spreadsheet) {
