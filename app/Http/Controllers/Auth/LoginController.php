@@ -12,18 +12,19 @@ class LoginController extends Controller {
 
     use AuthenticatesUsers;
 
-    private $users;
+    private $userService;
 
     protected $redirectTo = '/';
 
-    public function __construct(UserService $users) {
-        $this->users = $users;
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
         $this->middleware('guest')->except('logout');
     }
 
     protected function attemptLogin(Request $request) {
 
-        if (!($this->users->isConfirmed($request->email))) {
+        $user = $this->userService->getUserByEmail($request->email);
+        if ($user != null && !($this->userService->isConfirmed($request->email))) {
             $request->session()->flash('not_confirmed', true);
 
             throw ValidationException::withMessages([

@@ -63,7 +63,7 @@ class RegisterController extends Controller {
             'email' => 'required|string|email'
         ]);
 
-        $user = $this->userService->byEmail($request->input('email'));
+        $user = $this->userService->getUserByEmail($request->input('email'));
 
         if (empty($user)) {
             throw ValidationException::withMessages([

@@ -6,9 +6,8 @@ use App\User;
 
 class UserService {
 
-    public function byEmail($email) {
+    public function getUserByEmail($email) {
         $user = User::where('email', strtolower($email))->first();
-
         return $user ? $user : null;
     }
 
