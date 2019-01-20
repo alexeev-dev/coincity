@@ -47,7 +47,7 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest'], function() {
     });
 });
 
-Route::get('/admin', 'Admin\Auth\LoginController@showLoginForm');
+Route::get('/admin', 'Admin\Auth\LoginController@showLoginForm')->name('admin_login');
 Route::post('/admin', 'Admin\Auth\LoginController@login')->name('admin_login');
 Route::get('/admin_logout', 'Admin\Auth\LoginController@logout')->name('admin_logout');
 

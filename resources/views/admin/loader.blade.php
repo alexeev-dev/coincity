@@ -1,50 +1,43 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Administration</div>
-                    <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('admin_loader_update') }}" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+    <div class="row">
+        <div class="offset-lg-4 col-lg-4">
+            <div class="card">
+                <div class="card-header">Загрузить данные из xls</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('admin_loader_update') }}"
+                          enctype="multipart/form-data">
+                        {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password*</label>
-                                <div class="col-md-6">
-                                    <input id="password" type="text" class="form-control" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Пароль*"
+                                   class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required>
+                            @if ($errors->has('password'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors->first('password') }}</strong>
                                 </div>
-                            </div>
+                            @endif
+                        </div>
 
-                            <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-                                <label for="file" class="col-md-4 control-label">Data file</label>
-                                <div class="col-md-6">
-                                    <input type="file" id="file" name="datafile" class="inputfile">
+                        <div class="form-group row">
+                            <label for="file" class="col-md-6 col-form-label">Data file (.xls)</label>
+                            <div class="col-md-6">
+                                <input type="file" id="file" name="datafile"
+                                       class="inputfile{{ $errors->has('datafile') ? ' is-invalid' : '' }}">
 
-                                    @if ($errors->has('file'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('file') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
+                                @if ($errors->has('file'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('datafile') }}</strong>
+                                    </div>
+                                @endif
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Submit
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block">Загрузить</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

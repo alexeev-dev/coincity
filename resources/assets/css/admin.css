@@ -1,0 +1,53 @@
+body {
+    padding-top: 90px;
+    padding-bottom: 30px;
+}
+
+.alert ul {
+    margin: 0;
+    padding-left: 5px;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+@media (min-width: 768px) {
+    .form-group.row > .col-form-label {
+        text-align: right;
+    }
+}
+
+.navbar-toggler:hover, .navbar-toggler:focus {
+    outline: 0;
+    border-color: #ccc !important;
+}
+
+.input-sm {
+    padding: 5px
+}
+
+.label-md {
+    font-size: 12px;
+}
+
+.modal {
+    text-align: center;
+}
+
+.modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+

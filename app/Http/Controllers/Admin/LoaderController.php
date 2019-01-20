@@ -48,7 +48,9 @@ class LoaderController extends Controller
             // реклама
             $this->loadAdv($spreadsheet);
 
-            session()->flash('success-message', 'Data loaded successfully');
+            session()->flash('success-message', 'Данные успешно загружены');
+        } else {
+            session()->flash('message', 'Файл не найден');
         }
 
         return redirect(route('admin_loader'));
