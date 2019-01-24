@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.4.1",
+        "bootstrap-datepicker": "^1.8.0",
         "dragula": "^3.7.2",
         "jquery-countdown": "^2.2.0",
         "jquery-mousewheel": "^3.1.13",

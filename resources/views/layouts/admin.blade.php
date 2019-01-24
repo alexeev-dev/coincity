@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
     <meta name="Description" content="">
     <meta name="Rating" content="">
     <meta name="Author" content="">
@@ -36,13 +33,15 @@
         <div id="bs-navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav ml-auto">
                 @auth('admin')
-                    <li><a class="nav-link" href="{{ route('admin_dashboard') }}">Главная</a></li>
+                    <li class="{{ set_active('admin/dashboard') }}"><a class="nav-link" href="{{ route('admin_dashboard') }}">Сводка</a></li>
+                    <li class="{{ set_active('admin/house/list') }}"><a class="nav-link" href="{{ route('admin-house') }}">Домики</a></li>
+                    <li class="{{ set_active('admin/tweet/list') }}"><a class="nav-link" href="{{ route('admin-tweet') }}">Твиты</a></li>
+                    <li class="{{ set_active('admin/adv/list') }}"><a class="nav-link" href="{{ route('admin-adv') }}">Рекламные блоки</a></li>
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
                            aria-expanded="false">{{ Auth::guard('admin')->user()->email }} <span
                                     class="caret"></span></a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('admin_dashboard') }}">Сводка</a>
                             <a class="dropdown-item" href="{{ route('admin_loader') }}">Загрузчик</a>
                             <a class="dropdown-item" href="{{ route('admin_editor') }}">Редактор</a>
                             <div class="dropdown-divider"></div>

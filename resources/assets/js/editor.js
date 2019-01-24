@@ -30,8 +30,8 @@ import 'tinymce/plugins/wordcount/plugin';
 tinymce.init({
     selector: '#content',
     theme: 'modern',
-    height: 500,
-    width: 800,
+    height: 400,
+    width: '100%',
     menubar: true,
     toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
     toolbar2: 'print preview media | forecolor backcolor emoticons | codesample code',

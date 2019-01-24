@@ -71,4 +71,9 @@ class Tweet extends Model
             $this->attributes['pub_date'] = new DateTime();
         }
     }
+
+    public function getFormattedDateAttribute()
+    {
+        return $this->pub_date->format('d.m.Y');
+    }
 }

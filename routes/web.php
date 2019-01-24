@@ -57,7 +57,31 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::get('loader', 'Admin\LoaderController@index')->name('admin_loader');
     Route::post('loader', 'Admin\LoaderController@update')->name('admin_loader_update');
 
-    Route::get('editor', 'Admin\DashboardController@editor')->name('admin_editor');;
+    Route::get('editor', 'Admin\DashboardController@editor')->name('admin_editor');
+
+    // adv
+    Route::get('adv/list', 'Admin\AdvController@index')->name('admin-adv');
+    Route::get('adv/add', 'Admin\AdvController@add')->name('admin-adv-add');
+    Route::post('adv/add', 'Admin\AdvController@save')->name('admin-adv-save');
+    Route::get('adv/{adv_id}/edit', 'Admin\AdvController@edit')->name('admin-adv-edit');
+    Route::post('adv/{adv_id}/edit', 'Admin\AdvController@update')->name('admin-adv-update');
+    Route::get('adv/{adv_id}/delete', 'Admin\AdvController@delete')->name('admin-adv-delete');
+
+    // house
+    Route::get('house/list', 'Admin\HouseController@index')->name('admin-house');
+    Route::get('house/add', 'Admin\HouseController@add')->name('admin-house-add');
+    Route::post('house/add', 'Admin\HouseController@save')->name('admin-house-save');
+    Route::get('house/{house_id}/edit', 'Admin\HouseController@edit')->name('admin-house-edit');
+    Route::post('house/{house_id}/edit', 'Admin\HouseController@update')->name('admin-house-update');
+    Route::get('house/{house_id}/delete', 'Admin\HouseController@delete')->name('admin-house-delete');
+
+    // tweet
+    Route::get('tweet/list', 'Admin\TweetController@index')->name('admin-tweet');
+    Route::get('tweet/add', 'Admin\TweetController@add')->name('admin-tweet-add');
+    Route::post('tweet/add', 'Admin\TweetController@save')->name('admin-tweet-save');
+    Route::get('tweet/{tweet_id}/edit', 'Admin\TweetController@edit')->name('admin-tweet-edit');
+    Route::post('tweet/{tweet_id}/edit', 'Admin\TweetController@update')->name('admin-tweet-update');
+    Route::get('tweet/{tweet_id}/delete', 'Admin\TweetController@delete')->name('admin-tweet-delete');
 });
 
 

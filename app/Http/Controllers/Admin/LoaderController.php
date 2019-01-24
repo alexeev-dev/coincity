@@ -36,17 +36,17 @@ class LoaderController extends Controller
             $spreadsheet = IOFactory::load(base_path().'/storage/app/'.$path);
 
             // домики
-            $this->loadHouses($spreadsheet);
+            // $this->loadHouses($spreadsheet);
             // твиты
-            $this->loadTweets($spreadsheet);
+            // $this->loadTweets($spreadsheet);
             // категории твитов
-            $this->loadTweetAssignments($spreadsheet);
+            // $this->loadTweetAssignments($spreadsheet);
             // апгрейды домиков
-            $this->loadTweetUpdates($spreadsheet);
+            // $this->loadTweetUpdates($spreadsheet);
             // статичные странциы
-            $this->loadStaticPages($spreadsheet);
+            // $this->loadStaticPages($spreadsheet);
             // реклама
-            $this->loadAdv($spreadsheet);
+            // $this->loadAdv($spreadsheet);
 
             session()->flash('success-message', 'Данные успешно загружены');
         } else {
