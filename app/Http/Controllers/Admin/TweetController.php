@@ -27,7 +27,7 @@ class TweetController extends Controller
         $request->validate([
             'pub_date' => 'required',
             'alias' => 'nullable|alpha_dash',
-            'link' => 'nullable|alpha_dash',
+            'link' => 'nullable|url',
 
             'update_type_id.*' => 'nullable|in:1,2',
             'value.*' => 'nullable|integer'
@@ -77,7 +77,7 @@ class TweetController extends Controller
         $request->validate([
             'pub_date' => 'required',
             'alias' => 'nullable|alpha_dash',
-            'link' => 'nullable|alpha_dash',
+            'link' => 'nullable|url',
 
             'update_type_id.*' => 'nullable|in:1,2',
             'value.*' => 'nullable|integer'

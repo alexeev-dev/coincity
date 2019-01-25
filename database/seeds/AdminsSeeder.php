@@ -18,7 +18,7 @@ class AdminsSeeder extends Seeder
                 'id' => 1,
                 'name' => 'Admin',
                 'email' => 'admin@cryptodales.com',
-                'password' => Hash::make('123123')
+                'password' => Hash::make('eTR45fse455c')
             ]
         ]);
 

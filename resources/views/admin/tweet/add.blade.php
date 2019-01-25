@@ -26,11 +26,17 @@
                     {{ csrf_field() }}
 
                     <div class="form-group row">
-                        <label class="col-md-4 col-form-label">Категория (домик)*</label>
-                        <div class="col-md-4">
+                        <label class="col-md-4 col-form-label">Категория / домик<br>+ последний апгрейд</label>
+                        <div class="col-md-6">
                             <select name="house[]" class="form-control" size="10" autocomplete="off" multiple>
                                 @foreach ($houses as $house)
-                                    <option value="{{ $house->id }}">{{ $house->name }}</option>
+                                    @php
+                                        $lastUpdate = $house->last_update_text;
+                                        if ($lastUpdate != '') {
+                                            $lastUpdate = ' ('.$lastUpdate.')';
+                                        }
+                                    @endphp
+                                    <option value="{{ $house->id }}">{{ $house->name }} {{ $lastUpdate }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -10,19 +10,23 @@ class TweetUpdate extends Model
 {
     protected $fillable = ['tweet_id', 'update_type_id', 'value'];
 
-    public function tweet() {
+    public function tweet()
+    {
         return $this->belongsTo('App\Models\Tweet');
     }
 
-    public function user_houses() {
+    public function user_houses()
+    {
         return $this->belongsToMany('App\Models\UserHouse', 'user_house_updates');
     }
 
-    public function current_user_houses() {
+    public function current_user_houses()
+    {
         return $this->user_houses()->where('user_id', Auth::user()->id)->get();
     }
 
-    public function getActualValueAttribute() {
+    public function getActualValueAttribute()
+    {
         $tweetDate = $this->tweet->pub_date;
         $diffInDays = Carbon::now()->diffInDays($tweetDate);
 
@@ -36,7 +40,8 @@ class TweetUpdate extends Model
         return $output;
     }
 
-    public function getUpdateClassAttribute() {
+    public function getUpdateClassAttribute()
+    {
         $output = '';
         switch ($this->update_type_id) {
             case 1:
@@ -50,7 +55,8 @@ class TweetUpdate extends Model
         return $output;
     }
 
-    public function getValueTextAttribute() {
+    public function getValueTextAttribute()
+    {
         $output = '';
         switch ($this->update_type_id) {
             case 1:
@@ -62,5 +68,22 @@ class TweetUpdate extends Model
                 break;
         }
         return $output.$this->actual_value;
+    }
+
+    public function getPrefixValueAttribute()
+    {
+        $output = '';
+        switch ($this->update_type_id) {
+            case 1:
+                $output = '+'.$this->value.' mph';
+                break;
+            case 2:
+                $output .= '+'.$this->value.' mm';
+                break;
+            case 3:
+                $output .= 'x'.$this->value;
+                break;
+        }
+        return $output;
     }
 }

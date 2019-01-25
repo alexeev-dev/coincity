@@ -25,13 +25,21 @@
                                     <strong>Id: </strong>{{ $house->id }}<br>
                                     <strong>Money per hour: </strong>{{ $house->money_per_hour_text }}<br>
                                     <strong>Max money: </strong>{{ $house->max_money_text }}
+                                    @php
+                                        $lastUpdate = $house->last_update_text;
+                                    @endphp
+                                    @if ($lastUpdate != '')
+                                        <br><strong>Последний апгрейд: </strong>{{ $lastUpdate }}
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-sm-2 col-3 text-right">
                                 <a href="{{ route('admin-house-edit', $house->id) }}"><span
                                             class="glyphicon glyphicon-edit"></span></a>
+                                <!--
                                 <a href="" data-follow="{{ route('admin-house-delete', $house->id) }}" data-toggle="modal"
                                    data-target="#confirmation"><span class="glyphicon glyphicon-trash"></span></a>
+                                -->
                             </div>
                             @if (!$loop->last)
                                 <div class="col-sm-12 col-12">
