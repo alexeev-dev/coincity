@@ -67,7 +67,7 @@ class Tweet extends Model
             $value = Carbon::createFromFormat('d.m.Y', $value);
             $this->attributes['pub_date'] = ($value->format('Y-m-d H:i:s'));
         } else {
-            $this->attributes['pub_date'] = new DateTime();
+            $this->attributes['pub_date'] = Carbon::now();
         }
     }
 

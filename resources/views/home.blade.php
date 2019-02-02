@@ -145,7 +145,7 @@
                         <li>
                             <a href="#" class="new active">
                                 <em>
-                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    <svg version="1.1" id="Layer_1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          width="31px" height="31px" viewBox="0 0 31 31" enable-background="new 0 0 31 31" xml:space="preserve">
         								<path fill="#FFFFFF" d="M30.999,18.67c0,0.912-0.74,1.652-1.654,1.652h-9.023v9.025c0,0.912-0.74,1.652-1.654,1.652H12.33
         								c-0.912,0-1.652-0.74-1.652-1.652v-9.025H1.652C0.74,20.323,0,19.583,0,18.67v-6.338c0-0.914,0.74-1.654,1.652-1.654h9.025V1.655
@@ -158,7 +158,7 @@
                         <li>
                             <a href="#" class="built">
                                 <em>
-                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    <svg version="1.1" id="Layer_1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          width="33.828px" height="31.923px" viewBox="0 0 33.828 31.923" enable-background="new 0 0 33.828 31.923" xml:space="preserve">
         							<g>
                                         <path fill="#FFFFFF" d="M10.133,16.731c-0.631,0.633-0.729,1.594-0.293,2.33l-1.824,1.822c-0.641,0.641-1.678,0.641-2.318,0
@@ -177,7 +177,7 @@
                         <li>
                             <a href="#" class="featured">
                                 <em>
-                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    <svg version="1.1" id="Layer_1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          width="31.517px" height="30.326px" viewBox="0 0 31.517 30.326" enable-background="new 0 0 31.517 30.326" xml:space="preserve">
         						<path fill="#FFFFFF" d="M30.426,15.02l-4.717,4.596l1.113,6.49c0.232,1.355-0.322,2.723-1.436,3.529
         						c-0.629,0.459-1.373,0.691-2.121,0.691c-0.574,0-1.15-0.137-1.68-0.416l-5.828-3.064l-5.83,3.064
