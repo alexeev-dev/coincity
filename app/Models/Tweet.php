@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use DateTime;
-use DateTimeZone;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,9 +64,7 @@ class Tweet extends Model
     public function setPubDateAttribute($value)
     {
         if (!empty($value)) {
-            $value = DateTime::createFromFormat('d.m.Y', $value);
-            $value->setTimeZone(new DateTimeZone('Europe/Minsk'));
-
+            $value = Carbon::createFromFormat('d.m.Y', $value);
             $this->attributes['pub_date'] = ($value->format('Y-m-d H:i:s'));
         } else {
             $this->attributes['pub_date'] = new DateTime();
