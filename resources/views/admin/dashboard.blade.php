@@ -16,6 +16,7 @@
                             <th>Имя</th>
                             <th>Дата регистрации</th>
                             <th>Последний просмотр новостей</th>
+                            <th>Построил домов</th>
                             <th>Монет</th>
                         </tr>
                         </thead>
@@ -27,6 +28,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->created_at_text }}</td>
                                 <td>{{ $user->user_stat->last_tweet_read_text }}</td>
+                                <td>{{ $user->user_houses()->count() }}</td>
                                 <td>{{ $user->user_stat->money }}</td>
                             </tr>
                         @endforeach

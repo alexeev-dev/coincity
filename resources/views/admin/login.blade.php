@@ -18,11 +18,6 @@
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </div>
                             @endif
-                            @if (session('not_confirmed'))
-                                <a class="btn btn-info mt-2"
-                                   href="{{ '/register/resend-verification?email='.old('email') }}">Отправить
-                                    подтверждение повторно</a>
-                            @endif
                         </div>
 
                         <div class="form-group">

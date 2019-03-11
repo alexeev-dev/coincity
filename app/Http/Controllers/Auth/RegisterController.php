@@ -19,12 +19,14 @@ class RegisterController extends Controller {
 
     protected $redirectTo = '/register/verification-code-sent';
 
-    public function __construct(UserService $userService) {
+    public function __construct(UserService $userService)
+	{
         $this->userService = $userService;
         $this->middleware('guest');
     }
 
-    public function register(Request $request) {
+    public function register(Request $request)
+	{
         $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -49,7 +51,8 @@ class RegisterController extends Controller {
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 
-    public function verification(Request $request) {
+    public function verification(Request $request)
+	{
         $email = '';
         if ($request->has('email')) {
             $email = $request->input('email');
@@ -58,7 +61,8 @@ class RegisterController extends Controller {
         return view('auth.resend_verification', ['email' => $email]);
     }
 
-    public function resendVerification(Request $request) {
+    public function resendVerification(Request $request)
+	{
         $request->validate([
             'email' => 'required|string|email'
         ]);
