@@ -71,9 +71,6 @@
                 <div class="settings">
                     <a href="#" class="js-settings"></a>
                     <div>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
                         <p>Settings</p>
                         <ul>
                             @auth
@@ -86,14 +83,6 @@
                                        class="sound js-sound">Sound: {{ Auth::user()->user_stat->sound_text }}</a>
                                 </li>
                             @endauth
-                            <!--
-                            <li>
-                                <a href="/page/about">About</a>
-                            </li>
-                            <li>
-                                <a href="/page/rules">Rules</a>
-                            </li>
-                            -->
                             <li>
                                 <a href="" class="js-advertising">Advertising</a>
                             </li>
@@ -106,9 +95,7 @@
                                     <a href="" class="js-stats">Statistics</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('logout') }}" class="log-out"
-                                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log
-                                        Out</a>
+                                    <a href="{{ route('logout') }}" class="log-out">Log Out</a>
                                 </li>
                             @endauth
                         </ul>
@@ -157,7 +144,6 @@
                 @yield('news')
 
             </div>
-
         </div>
     </header>
 

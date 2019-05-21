@@ -286,13 +286,13 @@ function parallaxBackground() {
         parallaxLength = housesContainerWidth - windowWidth,
         currentScrollPosition = $('.scrollbar.scroll-content').scrollLeft();
 
-        if(parallaxLength>100) {
-            $('.parallax-mountain').css('transform','translate3d(' + -(50*currentScrollPosition/parallaxLength) + 'px, 0, 0)');
-            $('.parallax-lake').css('transform','translate3d(' + -(100*currentScrollPosition/parallaxLength) + 'px, 82.63158%, 0)');
-        } else {
-            $('.parallax-mountain').css('transform','translate3d(-26px, 0, 0)');
-            $('.parallax-lake').css('transform','translate3d(-51px, 82.63158%, 0)');
-        }
+    if (parallaxLength > 100) {
+        $('.parallax-mountain').css('transform', 'translate3d(' + -(50 * currentScrollPosition / parallaxLength) + 'px, 0, 0)');
+        $('.parallax-lake').css('transform', 'translate3d(' + -(100 * currentScrollPosition / parallaxLength) + 'px, 82.63158%, 0)');
+    } else {
+        $('.parallax-mountain').css('transform','translate3d(-26px, 0, 0)');
+        $('.parallax-lake').css('transform','translate3d(-51px, 82.63158%, 0)');
+    }
 }
 
 // horizontal mousewheel

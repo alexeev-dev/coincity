@@ -20,15 +20,10 @@
                         </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password">Password</label>
-                            <input id="password" type="password" class="form-control" name="password" required>
+                            <input id="password" type="text" class="form-control" name="password" required>
                             @if ($errors->has('password'))
                                 <span class="help-block">{{ $errors->first('password') }}</span>
                             @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm">Confirm Password</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                         </div>
                     </section>
                     <footer>

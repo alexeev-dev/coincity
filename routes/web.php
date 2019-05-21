@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 App::setLocale('en');
 
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
 });
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['prefix' => 'register', 'middleware' => 'guest'], function() {
     Route::get('resend-verification', 'Auth\RegisterController@verification')->name('resend_verification');
@@ -84,6 +86,10 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::get('tweet/{tweet_id}/delete', 'Admin\TweetController@delete')->name('admin-tweet-delete');
 });
 
-
-
-
+// ******** socialite ********
+Route::get('/socialite/{provider}', ['as' => 'socialite.auth',
+    function ($provider) {
+        return Socialite::driver($provider)->redirect();
+    }
+]);
+Route::get('/socialite/{provider}/callback', 'Auth\SocialController@process');

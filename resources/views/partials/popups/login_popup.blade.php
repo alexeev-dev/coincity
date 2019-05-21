@@ -46,6 +46,20 @@
                     Forgot Your Password?
                 </a>
             </footer>
+
+            <hr>
+            <a class="btn social-box social-box-google"
+               href="{!! route('socialite.auth', 'google') !!}">
+                <img class="ico-google" src="{{ asset('img/social/icon_google.svg') }}"
+                     alt="">
+                Google
+            </a>
+            <a class="btn social-box social-box-facebook"
+               href="{!! route('socialite.auth', 'facebook') !!}">
+                <img class="ico-facebook" src="{{ asset('img/social/icon_facebook.svg') }}"
+                     alt="">
+                Facebook
+            </a>
         </form>
     </div>
 </div>

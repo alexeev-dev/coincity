@@ -143,6 +143,50 @@
 				background: #ebebeb url('../img/preloader.svg') center center no-repeat;
 			}
 		}
+
+		.social-box {
+			display: inline-block !important;
+			opacity: .8;
+			text-decoration: none;
+			transition: opacity 0.3s ease;
+			will-change: opacity;
+			padding: 5px;
+			width: 48% !important;
+		}
+		.social-box-google {
+			margin-left: 0;
+			margin-right: 1%;
+		}
+		.social-box-facebook {
+			margin-left: 2%;
+			margin-right: 0;
+		}
+		.social-box:hover {
+			opacity: 1;
+		}
+		.social-box-google, .social-box-google:hover, .social-box-google:focus {
+			background: linear-gradient(to top, #4285f4 0%, #4285f4 17%, #4285f4 100%);
+			background-color: rgba(0, 0, 0, 0);
+			background-color: #4285f4;
+			border-color: #3792cb #3683c1 #3b779d;
+			box-shadow: none !important;
+		}
+		.social-box-facebook, .social-box-facebook:hover, .social-box-facebook:focus {
+			background: linear-gradient(to top, #2f59ac 0%, #294ea1 17%, #3060be 100%);
+			background-color: rgba(0, 0, 0, 0);
+			background-color: #294ea1;
+			border-color: #234492 #264b9d #2a5098;
+			box-shadow: none !important;
+		}
+		.ico-google {
+			width:20px;
+			float:left;
+		}
+		.ico-facebook {
+			margin-left:5px;
+			width:10px;
+			float:left;
+		}
 	}
 
 	&-news-single {
@@ -584,14 +628,11 @@
 				
 				label {
 					font-size: 16px; line-height: 24px; text-align: left;
-					padding-left: 170px; width: auto; display: block;
+					padding-left: 160px; width: auto; display: block;
 					cursor: pointer;
 
 					@include respond-to(sm) {
-						padding-left: 140px;
-					}
-					@media (max-height: 615px) {
-						padding-left: 0;
+						padding-left: 130px;
 					}
 					@include respond-to(xs) {
 						padding-left: 0;

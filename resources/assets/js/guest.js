@@ -20,8 +20,10 @@ const drag = dragula([document.getElementById("left-lovehandles"),
 
     calculateHousesWidth();
 
-    // show reg popup
-    showRegPopup();
+    let hc = $(".houses.drop .house-item").length;
+    if (hc >= 3) {
+        showRegPopup();
+    }
 });
 
 function showRegPopup() {

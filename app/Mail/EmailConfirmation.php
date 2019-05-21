@@ -19,7 +19,7 @@ class EmailConfirmation extends Mailable
 
     public function build()
     {
-        return $this->subject('Проверка почтового адреса')
+        return $this->subject('Email address verification')
             ->view('mail.email_confirm')->with([
                 'confirmationCode' => $this->confirmationCode
             ]);
