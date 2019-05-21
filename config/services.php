@@ -36,13 +36,13 @@ return [
     ],
 
 	'google' => [
-		'client_id' => '506697099775-bhgcmdckef3mgb570cu3mlb8ltkrjr9b.apps.googleusercontent.com',
-		'client_secret' => 'aPwXGQHYkYG9M-N2VYmtXe7k',
+		'client_id' => '',
+		'client_secret' => '',
 		'redirect' => 'https://www.cryptodales.com/socialite/google/callback'
 	],
 	'facebook' => [
-		'client_id' => '593617281137591',
-		'client_secret' => '66a24cc9fec938f6f0486295f39cbc72',
+		'client_id' => '',
+		'client_secret' => '',
 		'redirect' => 'https://www.cryptodales.com/socialite/facebook/callback'
 	]
 ];
