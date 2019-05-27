@@ -27,3 +27,13 @@
     <div class="answer"></div>
     <a href="#" class="close js-closePopup"></a>
 </div>
+
+@if (session('success-message'))
+    <div class="popup-page-content logged active">
+        <div class="page-content">
+            <h3>Welcome!</h3>
+            {!! session('success-message') !!}
+        </div>
+        <a href="#" class="close js-closePopup"></a>
+    </div>
+@endif

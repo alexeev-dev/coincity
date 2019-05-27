@@ -38,11 +38,14 @@ class SocialController extends Controller
             ]);
 
             session()->flash('success-message', '
-                Successfully registered via '.ucfirst($provider).',<br>
-                Email - <strong>'.$user->email.'</strong><br>.
-                New password - <strong>'.$newPass.'</strong>.
-                ');
+                <p>
+                    Successfully registered via '.ucfirst($provider).',<br>
+                    Email - <strong>'.$user->email.'</strong><br>.
+                    New password - <strong>'.$newPass.'</strong>.
+                </p>');
         } else {
+            session()->flash('success-message', '
+                <p>Successfully logged in via '.ucfirst($provider).'</p>');
         }
 
         Auth::loginUsingId($user->id, true);

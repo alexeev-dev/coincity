@@ -151,7 +151,7 @@
 
 </div>
 
-<div class="popup{{ $errors->any() ? ' active' : '' }}">
+<div class="popup{{ $errors->any() || session('success-message') ? ' active' : '' }}">
     @stack('popups')
 
     @include('partials.popups.static_popups')

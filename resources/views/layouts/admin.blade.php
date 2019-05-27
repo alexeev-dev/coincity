@@ -55,7 +55,7 @@
 </div>
 
 <div class="container">
-    @if ( session('message')  )
+    @if (session('message'))
         <div class="row">
             <div class="col-sm-12">
                 <div class="alert alert-warning alert-dismissible" role="alert">
